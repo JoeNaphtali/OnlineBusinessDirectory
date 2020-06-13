@@ -1,7 +1,7 @@
 <html lang="en">
 
     <head>
-		<title>Home | Find Us</title>
+		<title>Home | Find ME</title>
         <meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
