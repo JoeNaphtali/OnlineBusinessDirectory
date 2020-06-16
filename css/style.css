@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Navigation Bar */
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: #FED800;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.current a {
+    border-bottom: 3px solid;
+}
+
+.nav-link:hover {
+    border-bottom: 3px solid;
+}
+
+.btn-addlisting {
+    background-color: #811D5E;
+    color: #fff;
+    border: none;
+}
+
+.btn-login {
+    background-color: #FF6F01;
+    color: #fff;
+    border: none;
+}
+
+.btn-addlisting:hover {
+    background-color: #631548;
+    color: #fff;
+}
+
+.btn-login:hover {
+    background-color: #e36200;
+    color: #fff;
+}
+
+.btn-login {
+    margin-left: 15px;
+}
+
+/* Navigation Bar */
+
+/* Login Form */
+
+.modal-header {
+    background-color: #FED800;
+}
+
+.btn-submit {
+    background-color: #FF6F01;
+    color: #fff;
+    border: none;
+}
+
+.btn-submit:hover {
+    background-color: #e36200;
+    color: #fff;
+}
+
+.form-prompt {
+    margin-top: 10px;
+}
+
+/* Login Form */
+
+/* Registration Form */
+
+.registration-modal .form-row {
+    padding: 0px;
+}
+
+/* Registration Form */
+
+/* Home Banner */
+
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.search-field {
+    padding: 10px;
+}
+
+.btn-search {
+    background: #FF6F01;
+    border: none;
+    color: #fff;
+    height: 38px;
+}
+
+.btn-search:hover {
+    background: #E36200;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+}
+
+.form-row {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 30px 40px 20px 40px;
+    
+}
+
+/* Social Media Icons */
+
+.fab {
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.fab:hover {
+    opacity: 0.7;
+}
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+  /* Google */
+.fa-google {
+    background: #DB4437;
+    color: white;
+}
+
+/* Social Media Icons */
+
+/* Home Banner */
+
+@media only screen and (max-width: 991px) {
+
+    .btn-login {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .current a {
+        border: none;
+    }
+    
+    .nav-link:hover {
+        border: none;
+    }
+
+}
