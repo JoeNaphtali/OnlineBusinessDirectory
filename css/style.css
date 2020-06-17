@@ -9,10 +9,6 @@ body {
     background-color: #f5f5f5;
 }
 
-.container {
-    flex: 1 0 auto;
-  }
-
 /* Navigation Bar */
 
 .navbar-brand {
@@ -89,6 +85,14 @@ body {
     color: #fff;
 }
 
+.login-form {
+    margin-top: 112px;
+}
+
+.registration-form {
+    margin-top: 112px;
+}
+
 /* Forms */
 
 /* Home Banner */
@@ -96,7 +100,7 @@ body {
 .masthead {
     height: 100vh;
     min-height: 500px;
-    background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+    background-image: url('https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -121,7 +125,7 @@ body {
     border: none;
 }
 
-.form-row {
+.masthead .form-row {
     background: rgba(255, 255, 255, 0.5);
     padding: 30px 40px 20px 40px;
     
@@ -131,31 +135,72 @@ body {
 
 /* Social Media Icons */
 
-.fab {
+form .fab {
   padding: 8px;
   border-radius: 50%;
 }
 
-.fab:hover {
+form .fab:hover {
     opacity: 0.7;
 }
 
-.fa-facebook {
+form .fa-facebook {
     background: #3B5998;
     color: white;
 }
 
-.fa-twitter {
+form .fa-twitter {
     background: #55ACEE;
     color: white;
 }
 
-.fa-google {
+form .fa-google {
     background: #DB4437;
     color: white;
 }
 
 /* Social Media Icons */
+
+/* Footer */
+
+.footer {
+    background: #FD2F24;
+    color: white;
+    margin-top: 56px;
+}
+.footer .links ul {
+    list-style-type: none;
+}
+.footer .links li a {
+    color: white;
+    transition: color 0.2s;
+}
+.footer .links li a:hover {
+    text-decoration: none;
+    color: #811D5E;
+}
+.footer .about-company i {
+    font-size: 25px;
+}
+.footer .about-company a {
+    color: white;
+    transition: color 0.2s;
+}
+.footer .about-company a:hover {
+    color: #811D5E;
+}
+.footer .location i {
+    font-size: 18px;
+}
+.footer .copyright p {
+    border-top: 1px solid #fff;
+}
+
+.footer h4, h2 {
+   font-weight: bold;
+}
+
+/* Footer */
 
 /* If the screen size is 991px wide or less */
 
@@ -176,6 +221,34 @@ body {
         color: #000000 !important;
     }
 
+    .footer .links {
+        padding-bottom: 10px;
+    }
+
+    .footer-section h4 {
+        padding-top: 10px;
+    }
+
+    .footer-section h4 {
+        border-top: 1px solid #fff;
+    }
+
 }
 
 /* If the screen size is 991px wide or less */
+
+/* If the screen size is 575px wide or less */
+
+@media only screen and (max-width: 575px) {
+
+    .login-form {
+        margin-top: 56px;
+    }
+    
+    .registration-form {
+        margin-top: 56px;
+    }
+
+}
+
+/* If the screen size is 575px wide or less */
