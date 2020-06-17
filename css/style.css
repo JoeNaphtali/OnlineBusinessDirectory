@@ -6,7 +6,12 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
+    background-color: #f5f5f5;
 }
+
+.container {
+    flex: 1 0 auto;
+  }
 
 /* Navigation Bar */
 
@@ -26,11 +31,13 @@ body {
 }
 
 .current a {
-    border-bottom: 3px solid;
+    background-color: #000000;
+    color: #FED800 !important;
 }
 
 .nav-link:hover {
-    border-bottom: 3px solid;
+    background-color: #000000;
+    color: #FED800 !important;
 }
 
 .btn-addlisting {
@@ -61,10 +68,14 @@ body {
 
 /* Navigation Bar */
 
-/* Login Form */
+/* Forms */
 
-.modal-header {
-    background-color: #FED800;
+.form-prompt {
+    margin-top: 10px;
+}
+
+.registration-form .form-row {
+    padding: 0px;
 }
 
 .btn-submit {
@@ -78,19 +89,7 @@ body {
     color: #fff;
 }
 
-.form-prompt {
-    margin-top: 10px;
-}
-
-/* Login Form */
-
-/* Registration Form */
-
-.registration-modal .form-row {
-    padding: 0px;
-}
-
-/* Registration Form */
+/* Forms */
 
 /* Home Banner */
 
@@ -128,6 +127,8 @@ body {
     
 }
 
+/* Home Banner */
+
 /* Social Media Icons */
 
 .fab {
@@ -139,19 +140,16 @@ body {
     opacity: 0.7;
 }
 
-/* Facebook */
 .fa-facebook {
     background: #3B5998;
     color: white;
 }
 
-/* Twitter */
 .fa-twitter {
     background: #55ACEE;
     color: white;
 }
 
-  /* Google */
 .fa-google {
     background: #DB4437;
     color: white;
@@ -159,7 +157,7 @@ body {
 
 /* Social Media Icons */
 
-/* Home Banner */
+/* If the screen size is 991px wide or less */
 
 @media only screen and (max-width: 991px) {
 
@@ -169,11 +167,15 @@ body {
     }
 
     .current a {
-        border: none;
+        background-color: #FED800;
+        color: #000000 !important;
     }
     
     .nav-link:hover {
-        border: none;
+        background-color: #FED800;
+        color: #000000 !important;
     }
 
 }
+
+/* If the screen size is 991px wide or less */

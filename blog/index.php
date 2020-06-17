@@ -57,7 +57,7 @@
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
 					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" data-toggle="modal" data-target="#loginModal" href="#">Login</a>
+					<a class="btn btn-login" href="../login/index.php">Login</a>
 				</div>
 			</div>
 		</nav>
