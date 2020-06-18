@@ -34,19 +34,51 @@
 
 		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
 			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+			<button class="navbar-toggler search-icon" style="margin-right: 10px;" type="button" data-toggle="collapse" data-target="#search-bar">
+				<span class="fa fa-search" style="font-size: 30px;"></span>
+			</button>
+			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="search-collapse collapse w-100" id="search-bar">
+				<form class="" style="margin-top: 1rem;">
+					<div class="form-row">
+						<div class="form-group col-md-5">
+							<div class="input-group">
+								<span class="input-group-prepend">
+									<div class="input-group-text bg-white border-right-0">
+										<i class="fa fa-search"></i>
+									</div>
+								</span>
+								<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
+							</div>
+						</div>
+						<div class="form-group col-md-5">
+							<div class="input-group">
+								<span class="input-group-prepend">
+									<div class="input-group-text bg-white border-right-0">
+										<i class="fa fa-map-marker-alt"></i>
+									</div>
+								</span>
+								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town"/>
+							</div>
+						</div>
+						<div class="form-group col-md-2">
+							<button class="btn btn-search" style="width: 100%;">Search</button>
+						</div>								
+					</div>
+				</form>
+			</div>
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item current">
 						<a class="nav-link" href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="businesses/index.php">Businesses</a>
+						<a class="nav-link" href="categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="deals/index.php">Deals</a>
+						<a class="nav-link" href="promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="events/index.php">Events</a>
@@ -70,20 +102,30 @@
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 				<div class="col-12 text-center">
-					<h1 class="font-weight-light">Connect with great local businesses</h1>
-					<p class="lead">Use FindUs to locate businesses near you</p>
 					<form class="">
-						<div class="form-row">
+						<div class="form-row shadow">
 							<div class="form-group col-md-5">
-								<input class="form-control" name="search" type="text" 
-								placeholder="What are you looking for?"/>
+								<div class="input-group">
+									<span class="input-group-prepend">
+										<div class="input-group-text bg-white border-right-0">
+										<i class="fa fa-search"></i>
+										</div>
+									</span>
+									<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
+								</div>
 							</div>
 							<div class="form-group col-md-5">
-								<input class="form-control" name="search" type="text" 
-								placeholder="Where?"/>
+								<div class="input-group">
+									<span class="input-group-prepend">
+										<div class="input-group-text bg-white border-right-0">
+										<i class="fa fa-map-marker-alt"></i>
+										</div>
+									</span>
+									<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
+								</div>
 							</div>
 							<div class="form-group col-md-2">
-								<button class="btn btn-search">Search</button>
+								<button class="btn btn-search" style="width: 100%;">Search</button>
 							</div>								
 						</div>
 					</form>
@@ -94,7 +136,7 @@
 
 		<!-- /.Header -->
 
-		<!-- Footer -->
+		<!-- Footer
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -140,7 +182,7 @@
 			</div>
 		</div>
 
-		<!-- /.Footer -->
+		/.Footer -->
 
 	</body>
 

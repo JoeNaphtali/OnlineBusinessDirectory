@@ -105,7 +105,7 @@
 
 		<!-- /.Login Form -->
 		
-		<!-- Footer -->
+		<!-- Footer
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -151,7 +151,7 @@
 			</div>
 		</div>
 
-		<!-- /.Footer -->
+		/.Footer -->
 
 	</body>
 
