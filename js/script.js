@@ -1,13 +1,19 @@
-$(document).ready(function() {
-  
-    $("#register-link").on("click", function(){
-        $("#loginModal").modal("toggle");
-        $("#registrationModal").modal("show");
+$(document).ready(function () {
+
+    $(document).click(function (event) {
+        var click = $(event.target);
+        var _open = $(".navbar-collapse").hasClass("show");
+        if (_open === true && !click.hasClass("hamburger-icon")) {
+            $(".hamburger-icon").click();
+        }
     });
 
-    $("#login-link").on("click", function(){
-        $("#registrationModal").modal("toggle");
-        $("#loginModal").modal("show");
+    $(document).click(function (event) {
+        var click = $(event.target);
+        var _open = $(".search-collapse").hasClass("show");
+        if (_open === true && !click.hasClass("search-icon")) {
+            $(".search-icon").click();
+        }
     });
-
+    
 });

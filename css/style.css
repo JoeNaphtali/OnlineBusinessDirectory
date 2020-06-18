@@ -100,7 +100,7 @@ body {
 .masthead {
     height: 100vh;
     min-height: 500px;
-    background-image: url('https://images.unsplash.com/photo-1462899006636-339e08d1844e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+    background-image: url('../img/banner-6.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -127,8 +127,11 @@ body {
 
 .masthead .form-row {
     background: rgba(255, 255, 255, 0.5);
-    padding: 30px 40px 20px 40px;
-    
+    padding: 30px;   
+}
+
+.masthead .form-group {
+    margin-bottom: 0rem;
 }
 
 /* Home Banner */
@@ -233,9 +236,37 @@ form .fa-google {
         border-top: 1px solid #fff;
     }
 
+    .masthead {
+        display: none;
+    }
+
 }
 
 /* If the screen size is 991px wide or less */
+
+/* If the screen size is 992px wide or more */
+
+@media only screen and (min-width: 992px) {
+
+    #search-bar {
+        display: none;
+    }
+
+}
+
+/* If the screen size is 992px wide or more */
+
+/* If the screen size is 767px wide or less */
+
+@media only screen and (max-width: 767px) {
+
+    .masthead .form-group .input-group {
+        margin-bottom: 1rem;
+    }    
+
+}
+
+/* If the screen size is 767px wide or less */
 
 /* If the screen size is 575px wide or less */
 
