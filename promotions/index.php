@@ -30,18 +30,18 @@
 
 	<body>
 
-				<!-- Navigation Bar -->
+		<!-- Navigation Bar -->
 
-				<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<button class="navbar-toggler search-icon" style="margin-right: 10px;" type="button" data-toggle="collapse" data-target="#search-bar">
-				<span class="fa fa-search" style="font-size: 30px;"></span>
+		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
+			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
+				<span class="fa fa-search"></span>
 			</button>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="search-collapse collapse w-100" id="search-bar">
-				<form class="" style="margin-top: 1rem;">
+				<form>
 					<div class="form-row">
 						<div class="form-group col-md-5">
 							<div class="input-group">
@@ -60,11 +60,11 @@
 										<i class="fa fa-map-marker-alt"></i>
 									</div>
 								</span>
-								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town"/>
+								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
 							</div>
 						</div>
 						<div class="form-group col-md-2">
-							<button class="btn btn-search" style="width: 100%;">Search</button>
+							<button class="btn btn-search">Search</button>
 						</div>								
 					</div>
 				</form>
@@ -77,8 +77,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="../categories/index.php">Categories</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link current" href="index.php">Promotions</a>
+					<li class="nav-item current">
+						<a class="nav-link" href="index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../events/index.php">Events</a>
@@ -104,7 +104,7 @@
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
 						<h2>FindUs</h2>
 						<p class="pr-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-						<p style="letter-spacing: 5px;"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+						<p class="footer-social-icons"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
 						<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
 						<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
 						<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>

@@ -132,7 +132,7 @@
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
 						<h2>FindUs</h2>
 						<p class="pr-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-						<p style="letter-spacing: 5px;"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+						<p class="footer-social-icons"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
 						<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
 						<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
 						<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
