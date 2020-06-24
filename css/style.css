@@ -15,7 +15,7 @@ body {
     font-weight: bold;
 }
 
-.navbar {
+.main-navbar {
     background-color: #FED800;
     position: absolute;
     width: 100%;
@@ -26,12 +26,12 @@ body {
     color: black !important;
 }
 
-.current a {
+.main-navbar .current a {
     background-color: #000000;
     color: #FED800 !important;
 }
 
-.nav-link:hover {
+.main-navbar .nav-link:hover {
     background-color: #000000;
     color: #FED800 !important;
 }
@@ -110,7 +110,7 @@ body {
 /* Home Banner */
 
 .masthead {
-    height: 100vh;
+    height: 80vh;
     min-height: 500px;
     background-image: url('../img/banner-6.jpg');
     background-size: cover;
@@ -183,6 +183,167 @@ form .fa-google {
 
 /* Social Media Icons */
 
+/* Sections */
+
+.page-section {
+    margin-top: 56px;
+}
+
+.top-businesses-tab {
+	text-align: center;
+	border-bottom: 2px solid #e1e1e1;
+	margin-bottom: 25px;
+}
+
+.top-businesses-tab .nav {
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.top-businesses-tab .nav-tabs {
+	border-bottom: none;
+}
+
+.top-businesses-tab .nav-tabs .nav-item {
+	margin-bottom: 0;
+	margin-right: 40px;
+}
+
+.top-businesses-tab .nav-tabs .nav-item:last-child {
+	margin-right: 0;
+}
+
+.top-businesses-tab .nav-tabs .nav-link {
+	font-size: 15px;
+	border: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	color: #a8a8a8;
+	padding: 0 10px;
+	position: relative;
+}
+
+.top-businesses-tab .nav-tabs .nav-link:after {
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	height: 2px;
+	width: 100%;
+	background: #FD2F24;
+	content: "";
+	opacity: 0;
+}
+
+.top-businesses-tab .nav-tabs .nav-link.active {
+	color: #FD2F24!important;
+}
+
+.top-businesses-tab .nav-tabs .nav-link.active:after {
+	opacity: 1;
+}
+
+.top-businesses-tab .nav-tabs .nav-link span {
+	margin-right: 3px;
+}
+
+/* Sections */
+
+/* Listing Item */
+
+.listing-item {
+	-webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
+}
+
+.listing-item-pic {
+	height: 260px;
+	position: relative;
+}
+
+.listing-item-pic img {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	left: 30px;
+	bottom: -30px;
+	border-radius: 50%;
+}
+
+.listing-item-text {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 40px;
+}
+
+.listing-item-text-inside a {
+	font-size: 20px;
+	color: #323232;
+	font-weight: 600;
+    margin-bottom: 6px;
+    text-decoration: none;
+}
+
+.listing-item-text-inside ul {
+	margin-bottom: 20px;
+}
+
+.listing-item-text-inside ul li {
+	font-size: 15px;
+	color: #323232;
+	list-style: none;
+	line-height: 25px;
+	position: relative;
+	padding-left: 25px;
+}
+
+.listing-item-text-inside ul li span {
+	color: #A8A8A8;
+	position: absolute;
+	left: 0;
+	top: 5px;
+}
+
+.listing-item-text-rating {
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.listing-item-text-rating .listing-item-text-rating-star {
+	float: left;
+}
+
+.listing-item-text-rating .listing-item-text-rating-star span {
+	font-size: 14px;
+	color: #F09D17;
+	margin-right: -3px;
+}
+
+.listing-item-text-rating .listing-item-text-rating-star span:last-child {
+	margin-right: 0;
+}
+
+.open-closed {
+	float: right;
+	font-size: 14px;
+	color: #50D437;
+	font-weight: 700;
+	padding-top: 4px;
+}
+
+.open-closed.closed {
+	color: #FD2F24;
+}
+
+.set-bg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+
+/* Listing Item */
+
 /* Footer */
 
 .footer {
@@ -233,12 +394,12 @@ form .fa-google {
         margin-top: 10px;
     }
 
-    .current a {
+    .main-navbar .current a {
         background-color: #FED800;
         color: #000000 !important;
     }
     
-    .nav-link:hover {
+    .main-navbar .nav-link:hover {
         background-color: #FED800;
         color: #000000 !important;
     }
@@ -257,6 +418,22 @@ form .fa-google {
 
     .masthead {
         display: none;
+    }
+
+    .page-section {
+        margin-top: 112px;
+    }
+
+    .page-section {
+        margin-top: 56px;
+    }
+
+    .login-form {
+        margin-top: 56px;
+    }
+    
+    .registration-form {
+        margin-top: 56px;
     }
 
 }
@@ -291,12 +468,9 @@ form .fa-google {
 
 @media only screen and (max-width: 575px) {
 
-    .login-form {
-        margin-top: 56px;
-    }
-    
-    .registration-form {
-        margin-top: 56px;
+    .top-businesses-tab .nav-tabs .nav-item {
+        margin-right: 0;
+        text-align: left;
     }
 
 }

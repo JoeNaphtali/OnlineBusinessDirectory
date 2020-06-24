@@ -1,5 +1,9 @@
 $(document).ready(function () {
     
+    /*------------------
+        Navigation
+    --------------------*/
+
     $(document).click(function (event) {
         if ($(event.target).parents(".navbar-collapse").length < 1) {
             var click = $(event.target);
@@ -18,6 +22,14 @@ $(document).ready(function () {
                 $(".search-icon").click();
             }
         }
+    });
+
+    /*------------------
+        Background Set
+    --------------------*/
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
     });
     
 });

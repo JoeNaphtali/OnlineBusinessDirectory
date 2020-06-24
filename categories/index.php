@@ -30,16 +30,20 @@
 
 	<body>
 
-		<!-- Navigation Bar -->
+		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
+		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+			<!-- Navbar Logo -->
+			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
+			<!-- Search Button -->
 			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
 				<span class="fa fa-search"></span>
 			</button>
+			<!-- Hamburger Menu Button -->
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<!-- Navbar Search Form -->
 			<div class="search-collapse collapse w-100" id="search-bar">
 				<form>
 					<div class="form-row">
@@ -69,6 +73,7 @@
 					</div>
 				</form>
 			</div>
+			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item">
@@ -94,7 +99,7 @@
 			</div>
 		</nav>
 
-		<!-- /.Navigation Bar -->
+		<!-- /.Main Navigation -->
 
 		<!-- Footer
 
