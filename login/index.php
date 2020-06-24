@@ -30,13 +30,16 @@
 
 	<body>
 
-		<!-- Navigation Bar -->
+		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+			<!-- Navbar Logo -->
 			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
+			<!-- Hamburger Menu Button -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item">
@@ -62,11 +65,11 @@
 			</div>
 		</nav>
 
-		<!-- /.Navigation Bar -->
+		<!-- /.Main Navigation -->
 
         <!-- Login Form -->
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="login-form col-lg-4 bg-light px-0 shadow">
 					<form class="p-4 bg-white" action="../includes/login.inc.php" method="post">

@@ -30,16 +30,20 @@
 
 	<body>
 
-		<!-- Navigation Bar -->
+		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+			<!-- Navbar Logo -->
 			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
+			<!-- Search Button -->
 			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
 				<span class="fa fa-search"></span>
 			</button>
+			<!-- Hamburger Menu Button -->
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<!-- Navbar Search Form -->
 			<div class="search-collapse collapse w-100" id="search-bar">
 				<form>
 					<div class="form-row">
@@ -69,6 +73,7 @@
 					</div>
 				</form>
 			</div>
+			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item current">
@@ -94,7 +99,7 @@
 			</div>
 		</nav>
 
-		<!-- /.Navigation Bar -->
+		<!-- /.Main Navigation -->
 
 		<!-- Header -->
 
@@ -102,7 +107,8 @@
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 				<div class="col-12 text-center">
-					<form class="">
+					<!-- Header Search Form -->
+					<form>
 						<div class="form-row shadow">
 							<div class="form-group col-md-5">
 								<div class="input-group">
@@ -136,7 +142,183 @@
 
 		<!-- /.Header -->
 
-		<!-- Footer
+		<!-- Content -->
+
+		<!-- Top Businesses Tabs Panel -->
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="page-section col-lg-10 bg-white p-3">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section-title text-center">
+								<h2>Top Businesses and Services</h2>
+								<p>The best businesses and services recommended by your fellow FindUs users</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="top-businesses-tab">
+								<!-- Tabs -->
+								<ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+											<span class="fa fa-utensils"></span>
+											Restaurants
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+											<span class="fa fa-shopping-cart"></span>
+											Shopping
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+											<span class="fa fa-bed"></span>
+											Hotels & Travel
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+											<span class="fa fa-spa"></span>
+											Salon, Barber & Spa
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">
+											<span class="fa fa-home"></span>
+											Home Services
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
+											<span class="fa fa-car-side"></span>
+											Car Hire
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-- Tab Content -->
+							<div class="tab-content">
+								<!-- First Tab -->
+								<div class="tab-pane active" id="tabs-1" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+											<div class="listing-item">
+												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
+													<img src="img/listing/food.png" alt="">
+												</div>
+												<div class="listing-item-text">
+													<div class="listing-item-text-inside">
+														<a href="#">
+														Chinese Sausage Restaurant
+														</a>
+														<div class="listing-item-text-rating">
+															<div class="listing-item-text-rating-star">
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+															</div>
+															<div class="open-closed">Open Now</div>
+														</div>
+														<ul style="padding-bottom: 20px;">
+															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
+																Philadelphia, Ohio, United States</li>
+															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>							
+								</div>
+								<!-- Second Tab -->
+								<div class="tab-pane" id="tabs-2" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+
+										</div>
+									</div>
+								</div>
+								<!-- Third Tab -->
+								<div class="tab-pane" id="tabs-3" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+
+										</div>
+									</div>
+								</div>
+								<!-- Fourth Tab -->
+								<div class="tab-pane" id="tabs-4" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+
+										</div>
+									</div>
+								</div>
+								<!-- Fifth Tab -->
+								<div class="tab-pane" id="tabs-5" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+
+										</div>
+									</div>
+								</div>
+								<!-- Sixth Tab -->
+								<div class="tab-pane" id="tabs-6" role="tabpanel">
+									<div class="row">
+										<div class="col-lg-4 col-md-6">
+
+										</div>
+									</div>
+								</div>							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+		<!-- Latest Reviews -->
+
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="page-section col-lg-10 bg-white p-3 shadow">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section-title text-center">
+								<h2>Latest Reviews</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!-- Latest Articles -->
+
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="page-section col-lg-10 bg-white p-3 shadow">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section-title text-center">
+								<h2>Latest Articles</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- /.Content -->
+
+		<!-- Footer -->
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -182,7 +364,7 @@
 			</div>
 		</div>
 
-		/.Footer -->
+		<!-- /.Footer -->
 
 	</body>
 
