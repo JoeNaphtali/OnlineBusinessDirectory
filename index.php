@@ -103,39 +103,39 @@
 
 		<!-- Header -->
 
-		<header class="masthead">
+		<header class="masthead-home">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
-				<div class="col-12 text-center">
-					<!-- Header Search Form -->
-					<form>
-						<div class="form-row shadow">
-							<div class="form-group col-md-5">
-								<div class="input-group">
-									<span class="input-group-prepend">
-										<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-search"></i>
-										</div>
-									</span>
-									<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
+					<div class="col-12 text-center">
+						<!-- Header Search Form -->
+						<form>
+							<div class="form-row shadow">
+								<div class="form-group col-md-5">
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<div class="input-group-text bg-white border-right-0">
+											<i class="fa fa-search"></i>
+											</div>
+										</span>
+										<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
+									</div>
 								</div>
-							</div>
-							<div class="form-group col-md-5">
-								<div class="input-group">
-									<span class="input-group-prepend">
-										<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-map-marker-alt"></i>
-										</div>
-									</span>
-									<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
+								<div class="form-group col-md-5">
+									<div class="input-group">
+										<span class="input-group-prepend">
+											<div class="input-group-text bg-white border-right-0">
+											<i class="fa fa-map-marker-alt"></i>
+											</div>
+										</span>
+										<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
+									</div>
 								</div>
+								<div class="form-group col-md-2">
+									<button class="btn btn-search">Search</button>
+								</div>								
 							</div>
-							<div class="form-group col-md-2">
-								<button class="btn btn-search">Search</button>
-							</div>								
-						</div>
-					</form>
-				</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -145,9 +145,9 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row justify-content-center">
-				<div class="page-section col-lg-10 bg-white p-3">
+				<div class="page-section page-section-top col-lg-12 bg-white p-3 shadow">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="section-title text-center">
@@ -282,33 +282,33 @@
 			</div>
 		</div>
 
-	
-		<!-- Latest Reviews -->
+		<!-- Latest Blog Posts -->
 
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row justify-content-center">
-				<div class="page-section col-lg-10 bg-white p-3 shadow">
+				<div class="page-section col-lg-12 bg-white p-3 shadow">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="section-title text-center">
-								<h2>Latest Reviews</h2>
+								<h2>Latest Blog Posts</h2>
+								<p>The latest news, articles and more from our blog</p>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-
-		<!-- Latest Articles -->
-
-		<div class="container-fluid">
-			<div class="row justify-content-center">
-				<div class="page-section col-lg-10 bg-white p-3 shadow">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="section-title text-center">
-								<h2>Latest Articles</h2>
+							<div class="col-lg-4 col-md-6">
+								<div class="blog__item">
+									<div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg">
+									</div>
+									<div class="blog__item__text">
+										<ul class="blog__item__tags">
+											<li><i class="fa fa-tags"></i> Travel</li>
+											<li>Videos</li>
+										</ul>
+										<h5><a href="#">Internet Banner Advertising Most Reliable</a></h5>
+										<ul class="blog__item__widget">
+											<li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
+											<li><i class="fa fa-user"></i> John Smith</li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
