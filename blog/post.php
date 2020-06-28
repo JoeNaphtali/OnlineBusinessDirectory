@@ -104,17 +104,12 @@
 
 		<div class="container">
 			<div class="row">
-				<!-- Blog Posts Column -->
+				<!-- Blog Content Column -->
 				<div class="col-lg-8 page-section-no-banner">
 					<div class="blog__item__large">
                         <div class="blog__item__pic set-bg" data-setbg="../img/blog/blog-large.jpg">
-                            <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
                         </div>
                         <div class="blog__item__text">
-                            <ul class="blog__item__tags">
-                                <li><i class="fa fa-tags"></i> Travel</li>
-                                <li>Videos</li>
-                            </ul>
                             <h3><a href="#">Internet Banner Advertising Most Reliable</a></h3>
                             <ul class="blog__item__widget">
                                 <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
@@ -124,30 +119,29 @@
                                 mistakes made during the making of a movie.</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item bg-white">
-                                <div class="blog__item__pic set-bg" data-setbg="../img/blog/bp-1.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa fa-tags"></i> Travel</li>
-                                        <li>Videos</li>
-                                    </ul>
-                                    <h5><a href="#">Florida for 20 YEARS swims in the Gulf for the FIRST</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="blog__details__tags p-3 bg-white shadow" style="border-radius: 5px;">
+                        <span>Tags</span>
+                        <a href="#">Ideas</a>
+                        <a href="#">Unique</a>
+                        <a href="#">Video</a>
                     </div>
-                    <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                    <div class="blog__details__share p-3 bg-white shadow" style="border-radius: 5px;"">
+                        <a href="#" class="blog__details__share__item">
+                            <i class="fa fa-facebook"></i>
+                            <span>Share</span>
+                        </a>
+                        <a href="#" class="blog__details__share__item twitter">
+                            <i class="fa fa-twitter"></i>
+                            <span>Share</span>
+                        </a>
+                        <a href="#" class="blog__details__share__item google">
+                            <i class="fa fa-google"></i>
+                            <span>Share</span>
+                        </a>
+                        <a href="#" class="blog__details__share__item linkedin">
+                            <i class="fa fa-linkedin"></i>
+                            <span>Share</span>
+                        </a>
                     </div>
 				</div>
 				<!-- Side Column -->
