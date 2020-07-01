@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -24,7 +25,8 @@
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<!-- Local Script -->
-		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/typed.js"></script>
 
 	</head>
 
@@ -107,7 +109,11 @@
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-12 text-center">
-						<!-- Header Search Form -->
+						<div class="text-center header-text">
+							<h1>Find Nearby <span class="typed-words"></span></h1>
+							<p class=" w-75 mx-auto">Explore top-rated attractions, activities and more!</p>
+						</div>
+						<!-- Header Search Form
 						<form>
 							<div class="form-row shadow">
 								<div class="form-group col-md-5">
@@ -135,6 +141,43 @@
 								</div>								
 							</div>
 						</form>
+						-->
+						
+						<div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
+              <form method="post">
+                <div class="row align-items-center">
+                  <div class="col-md-12 col-lg-4 no-sm-border border-right input">
+                    <input type="text" class="form-control" placeholder="What are you looking for?">
+                  </div>
+                  <div class="col-md-12 col-lg-3 no-sm-border border-right input">
+                    <div class="wrap-icon">
+                      <span class="icon icon-room"></span>
+                      <input type="text" class="form-control" placeholder="Location">
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-12 col-lg-3 input">
+                    <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                      <select class="form-control" name="" id="">
+                        <option value="">All Categories</option>
+                        <option value="">Hotels</option>
+                        <option value="">Restaurant</option>
+                        <option value="">Eat &amp; Drink</option>
+                        <option value="">Events</option>
+                        <option value="">Fitness</option>
+                        <option value="">Others</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-lg-2 text-right input">
+                    <input type="submit" class="btn text-white btn-primary" value="Search">
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+
 					</div>
 				</div>
 			</div>
@@ -331,6 +374,18 @@
 		</div>
 
 		<!-- /.Footer -->
+
+		<script>
+            var typed = new Typed('.typed-words', {
+            strings: ["Attractions"," Events"," Hotels", " Restaurants"],
+            typeSpeed: 80,
+            backSpeed: 80,
+            backDelay: 4000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: true
+            });
+            </script>
 
 	</body>
 

@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 body.home {
@@ -113,9 +113,9 @@ body.home {
 /* Headers */
 
 .masthead-home {
-    height: 100vh;
+    height: 75vh;
     min-height: 500px;
-    background-image: url('../img/city-scape.jpg');
+    background-image: url('../img/city-scape-dark.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -161,6 +161,60 @@ body.home {
 .btn-search {
     width: 100%;
 }
+
+.header-text {
+    color: #fff;
+}
+
+.header-text h1 {
+    font-size: 44px;
+    font-weight: 500;
+}
+
+.header-text p {
+    font-size: 20px;
+    font-weight: 400px;
+}
+
+.form-search-wrap .form-control {
+    height: 43px;
+    border-radius: 0;
+}
+
+.form-search-wrap .form-control:active, .form-search-wrap .form-control:focus {
+    border-color: #00918e;
+}
+
+.form-search-wrap .form-control:hover, .form-search-wrap .form-control:active, .form-search-wrap .form-control:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; 
+}
+
+.form-search-wrap {
+    background: #fff;
+    padding: 10px !important;
+    border-radius: 50px;
+    -webkit-box-shadow: 0 2px 30px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 30px -5px rgba(0, 0, 0, 0.2); 
+}
+
+.form-search-wrap .form-control {
+    border: none; 
+}
+
+.form-search-wrap .btn {
+    border-radius: 30px;
+    padding: 10px 30px;
+    background-color: #FF6F01;
+    border: none;
+}
+
+.form-search-wrap .btn:hover {
+    background-color: #E36200;
+}
+
+
+
 /* Headers */
 
 /* Social Media Icons */
@@ -494,10 +548,6 @@ form .fa-google {
         border-top: 1px solid #fff;
     }
 
-    .masthead-home, .masthead-blog {
-        display: none;
-    }
-
     .page-section-top {
         margin-top: 112px;
     }
@@ -521,6 +571,36 @@ form .fa-google {
     .registration-form {
         margin-top: 56px;
     }
+
+    .form-search-wrap {
+        background: none; 
+        padding: 0!important;
+    }
+    
+    .form-search-wrap .border-right {
+        border: 0!important;
+    }
+    
+    .form-search-wrap .input {
+        margin-bottom: 10px;
+    }
+    
+    .form-search-wrap .input input {
+        border-radius: 5px;
+    }
+    
+    .form-search-wrap .input select {
+        border-radius: 5px;
+    }
+
+    .form-search-wrap .btn {
+        border-radius: 30px;
+        padding: 10px 30px;
+        background-color: #FF6F01;
+        border: none;
+        width: 100%;
+    }
+    
 
 }
 
