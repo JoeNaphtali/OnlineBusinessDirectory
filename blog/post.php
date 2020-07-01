@@ -104,81 +104,213 @@
 
 		<div class="container">
 			<div class="row">
-				<!-- Blog Content Column -->
-				<div class="col-lg-8 page-section-no-banner">
-					<div class="blog__item__large">
-                        <div class="blog__item__pic set-bg" data-setbg="../img/blog/blog-large.jpg">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="#">Internet Banner Advertising Most Reliable</a></h3>
-                            <ul class="blog__item__widget">
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>One of my favourite things I like to watch is the bloopers and outtakes that are shown of
-                                mistakes made during the making of a movie.</p>
-                        </div>
+				<!-- Blog Entries Column -->
+      			<div class="col-lg-8 page-section">
+
+					<!-- Title -->
+                    <h1 class="mt-4">Post Title</h1>
+
+                    <hr>
+
+                    <!-- Date/Time -->
+                    Posted on January 1, 2020 by
+					<a href="#">Joseph Wamulume</a>
+
+                    <hr>
+
+                    <!-- Preview Image -->
+                    <div class="blog-post-pic set-bg" data-setbg="../img/blog/details/blog-video-bg.jpg">
                     </div>
-                    <div class="blog__details__tags p-3 bg-white shadow" style="border-radius: 5px;">
-                        <span>Tags</span>
-                        <a href="#">Ideas</a>
-                        <a href="#">Unique</a>
-                        <a href="#">Video</a>
+
+                    <hr>
+
+                    <!-- Post Content -->
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+
+                    <blockquote class="blockquote">
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer class="blockquote-footer">Someone famous in
+                        <cite title="Source Title">Source Title</cite>
+                    </footer>
+                    </blockquote>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+
+                    <hr>
+
+                    <div class="blog-tags">
+                        <span>Tags:</span>
+						<a href="#" class="shadow-sm">Business</a>
+                        <a href="#" class="shadow-sm">Marketing</a>
+                        <a href="#" class="shadow-sm">Payment</a>
                     </div>
-                    <div class="blog__details__share p-3 bg-white shadow" style="border-radius: 5px;"">
-                        <a href="#" class="blog__details__share__item">
-                            <i class="fa fa-facebook"></i>
-                            <span>Share</span>
-                        </a>
-                        <a href="#" class="blog__details__share__item twitter">
-                            <i class="fa fa-twitter"></i>
-                            <span>Share</span>
-                        </a>
-                        <a href="#" class="blog__details__share__item google">
-                            <i class="fa fa-google"></i>
-                            <span>Share</span>
-                        </a>
-                        <a href="#" class="blog__details__share__item linkedin">
-                            <i class="fa fa-linkedin"></i>
-                            <span>Share</span>
-                        </a>
-                    </div>
-				</div>
-				<!-- Side Column -->
-				<div class="col-lg-4 page-section-no-banner page-section-side">
-					<div class="blog__sidebar">
-                        <div class="blog__sidebar__search bg-white p-4">
-                            <form action="#">
-                                <input type="text" placeholder="Searching...">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                    
+                    <div class="share-social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"> | Share</i></a>
+						<a href="#"><i class="fab fa-twitter">  | Share</i></a>
+						<a href="#"><i class="fab fa-linkedin">  | Share</i></a>
+                        <a href="#"><i class="fab fa-google">  | Share</i></a>
+                        <a href="#"><i class="fab fa-whatsapp">  | Share</i></a>
+					</div>
+
+					<!-- Comment Forms -->
+
+					<!-- Unregistered User Comment Form -->
+                    <div class="card my-4 shadow">
+                        <h5 class="card-header">Leave a comment</h5>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Firtname*</label>
+                                        <input class="form-control" type="text" name="firstname" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Lastname*</label>
+                                        <input class="form-control" type="text" name="lastname" required>
+                                    </div>
+                                </div> 
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Email Address*</label>
+                                        <input class="form-control" type="text" name="email" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Website</label>
+                                        <input class="form-control" type="text" name="website">
+                                    </div>
+                                </div>   
+                                <div class="form-group">
+                                    <label>Your comment*</label>
+                                    <textarea class="form-control" rows="3" name="comment" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-submit-comment">Submit</button>
                             </form>
                         </div>
-                        <div class="blog__sidebar__recent">
-                            <h5>Recent Post</h5>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="../img/blog/recent-1.jpg" alt="">
+					</div>
+					<!-- Registered User Comment Form -->
+					<div class="card my-4 shadow">
+                        <h5 class="card-header">Leave a comment</h5>
+                        <div class="card-body">
+                            <form>   
+                                <div class="form-group">
+                                    <label>Your comment*</label>
+                                    <textarea class="form-control" rows="3" name="comment" required></textarea>
                                 </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Shopping</span>
-                                    <h6>Tortoise grilled on salt</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="blog__sidebar__categories">
-                            <h5>Categories</h5>
-                            <ul>
-                                <li><a href="#">Finance <span>18</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__tags">
-                            <h5>Popular Tag</h5>
-                            <a href="#">Business</a>
+                                <button type="submit" class="btn btn-submit-comment">Submit</button>
+                            </form>
                         </div>
                     </div>
+
+                    <!-- Single Comment -->
+                    <div class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                    <div class="media-body">
+                        <h5 class="mt-0">Commenter Name</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                    </div>
+
+                    <!-- Comment with nested comments -->
+                    <div class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                    <div class="media-body">
+                        <h5 class="mt-0">Commenter Name</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                        <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                        </div>
+
+                        <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+
 				</div>
-			</div>
+
+				<!-- Sidebar Widgets Column -->
+				<div class="col-lg-4 page-section">
+
+					<!-- Search Form -->
+					<div class="card my-4 shadow">
+						<form>
+							<div class="card-body">
+								<div class="input-group">
+									<input type="search" class="form-control border-right-0" placeholder="Search">
+									<span class="input-group-prepend">
+										<button class="btn input-group-text bg-white border-left-0">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- Categories -->
+					<div class="card my-4 shadow categories-widget">
+						<h5 class="card-header">Categories</h5>
+						<div class="card-body">
+							<ul>
+								<li>
+									<a href="">Travel</a>
+								</li>
+								<li>
+									<a href="">News</a>
+								</li>
+								<li>
+									<a href="">Finance</a>
+								</li>
+								<li>
+									<a href="">Music</a>	
+								</li>
+								<li>
+									<a href="">Design</a>
+								</li>
+								<li>
+									<a href="">Animals</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Tags Widget -->
+					<div class="card my-4 shadow">
+						<h5 class="card-header">Popular Tags</h5>
+						<div class="card-body blog-tags">
+							<a href="#">Business</a>
+                            <a href="#">Marketing</a>
+                            <a href="#">Payment</a>
+                            <a href="#">Travel</a>
+                            <a href="#">Finance</a>
+                            <a href="#">Videos</a>
+                            <a href="#">Ideas</a>
+                            <a href="#">Unique</a>
+                            <a href="#">Music</a>
+                            <a href="#">Key</a>
+						</div>
+					</div>
+
+      			</div>
+
+    		</div>
 		</div>
 
 		<!-- /.Content -->

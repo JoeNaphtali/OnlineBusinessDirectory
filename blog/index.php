@@ -104,87 +104,107 @@
 
 		<div class="container">
 			<div class="row">
-				<!-- Blog Posts Column -->
-				<div class="col-lg-8 page-section-no-banner">
-					<div class="blog__item__large">
-                        <div class="blog__item__pic set-bg" data-setbg="../img/blog/blog-large.jpg">
-                            <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+				<!-- Blog Entries Column -->
+      			<div class="col-md-8 page-section">
+
+					<div class="section-title my-4">
+						<h2>Welcome to our blog</h2>
+						<p>Explore all the great content written by our talented authors</p>
+					</div>
+
+					<!-- Blog Post -->
+					<div class="card mb-4 shadow">
+						<div class="blog-item-pic set-bg" data-setbg="../img/blog/blog-large.jpg">
                         </div>
-                        <div class="blog__item__text">
-                            <ul class="blog__item__tags">
-                                <li><i class="fa fa-tags"></i> Travel</li>
-                                <li>Videos</li>
-                            </ul>
-                            <h3><a href="#">Internet Banner Advertising Most Reliable</a></h3>
-                            <ul class="blog__item__widget">
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>One of my favourite things I like to watch is the bloopers and outtakes that are shown of
-                                mistakes made during the making of a movie.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item bg-white">
-                                <div class="blog__item__pic set-bg" data-setbg="../img/blog/bp-1.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa fa-tags"></i> Travel</li>
-                                        <li>Videos</li>
-                                    </ul>
-                                    <h5><a href="#">Florida for 20 YEARS swims in the Gulf for the FIRST</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+						<div class="card-body">
+							<h2 class="card-title">Post Title</h2>
+							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+							<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
+						</div>
+						<div class="card-footer text-muted">
+							Posted on January 1, 2020 by
+							<a href="#">Joseph Wamulume</a>
+						</div>
+					</div>
+
+					<!-- Pagination -->
+					<ul class="pagination justify-content-center mb-4">
+						<li class="page-item">
+							<a class="page-link" href="#">&larr; Older</a>
+						</li>
+						<li class="page-item disabled">
+							<a class="page-link" href="#">Newer &rarr;</a>
+						</li>
+					</ul>
+
 				</div>
-				<!-- Side Column -->
-				<div class="col-lg-4 page-section-no-banner page-section-side">
-					<div class="blog__sidebar">
-                        <div class="blog__sidebar__search bg-white p-4">
-                            <form action="#">
-                                <input type="text" placeholder="Searching...">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="blog__sidebar__recent">
-                            <h5>Recent Post</h5>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="../img/blog/recent-1.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Shopping</span>
-                                    <h6>Tortoise grilled on salt</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="blog__sidebar__categories">
-                            <h5>Categories</h5>
-                            <ul>
-                                <li><a href="#">Finance <span>18</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="blog__sidebar__tags">
-                            <h5>Popular Tag</h5>
-                            <a href="#">Business</a>
-                        </div>
-                    </div>
-				</div>
-			</div>
+
+				<!-- Sidebar Widgets Column -->
+				<div class="col-md-4 page-section">
+
+					<!-- Search Form -->
+					<div class="card my-4 shadow">
+						<form>
+							<div class="card-body">
+								<div class="input-group">
+									<input type="search" class="form-control border-right-0" placeholder="Search">
+									<span class="input-group-prepend">
+										<button class="btn input-group-text bg-white border-left-0">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- Categories -->
+					<div class="card my-4 shadow categories-widget">
+						<h5 class="card-header">Categories</h5>
+						<div class="card-body">
+							<ul>
+								<li>
+									<a href="">Travel</a>
+								</li>
+								<li>
+									<a href="">News</a>
+								</li>
+								<li>
+									<a href="">Finance</a>
+								</li>
+								<li>
+									<a href="">Music</a>	
+								</li>
+								<li>
+									<a href="">Design</a>
+								</li>
+								<li>
+									<a href="">Animals</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Tags Widget -->
+					<div class="card my-4 shadow">
+						<h5 class="card-header">Popular Tags</h5>
+						<div class="card-body blog-tags">
+							<a href="#">Business</a>
+                            <a href="#">Marketing</a>
+                            <a href="#">Payment</a>
+                            <a href="#">Travel</a>
+                            <a href="#">Finance</a>
+                            <a href="#">Videos</a>
+                            <a href="#">Ideas</a>
+                            <a href="#">Unique</a>
+                            <a href="#">Music</a>
+                            <a href="#">Key</a>
+						</div>
+					</div>
+
+      			</div>
+
+    		</div>
 		</div>
 
 		<!-- /.Content -->
