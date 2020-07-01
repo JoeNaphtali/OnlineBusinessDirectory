@@ -28,7 +28,7 @@
 
 	</head>
 
-	<body>
+	<body class="home">
 
 		<!-- Main Navigation -->
 
@@ -117,7 +117,7 @@
 											<i class="fa fa-search"></i>
 											</div>
 										</span>
-										<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
+										<input class="form-control border-left-0" type="search" placeholder="What are you looking for?"/>
 									</div>
 								</div>
 								<div class="form-group col-md-5">
@@ -145,9 +145,9 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="page-section page-section-top col-lg-12 bg-white p-3 shadow">
+		<div class="container-fluid home-page-section">
+			<div class="row justify-content-center bg-white">
+				<div class="col-lg-10 p-3 top-businesses">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="section-title text-center">
@@ -275,40 +275,6 @@
 										</div>
 									</div>
 								</div>							
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Latest Blog Posts -->
-
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="page-section col-lg-12 bg-white p-3 shadow">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="section-title text-center">
-								<h2>Latest Blog Posts</h2>
-								<p>The latest news, articles and more from our blog</p>
-							</div>
-							<div class="col-lg-4 col-md-6">
-								<div class="blog__item">
-									<div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg">
-									</div>
-									<div class="blog__item__text">
-										<ul class="blog__item__tags">
-											<li><i class="fa fa-tags"></i> Travel</li>
-											<li>Videos</li>
-										</ul>
-										<h5><a href="#">Internet Banner Advertising Most Reliable</a></h5>
-										<ul class="blog__item__widget">
-											<li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-											<li><i class="fa fa-user"></i> John Smith</li>
-										</ul>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
