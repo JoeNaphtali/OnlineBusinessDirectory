@@ -12,6 +12,7 @@
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -24,9 +25,11 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/aos.css">
 		<!-- Local Script -->
 		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript" src="js/typed.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
 
 	</head>
 
@@ -34,69 +37,32 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<!-- Navbar Logo -->
-			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<!-- Search Button -->
-			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
-				<span class="fa fa-search"></span>
-			</button>
-			<!-- Hamburger Menu Button -->
+		<nav class="navbar navbar-light clear-navbar navbar-expand-lg justify-content-center fixed-top">
+			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Navbar Search Form -->
-			<div class="search-collapse collapse w-100" id="search-bar">
-				<form>
-					<div class="form-row">
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-search"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
-							</div>
-						</div>
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-map-marker-alt"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<button class="btn btn-search">Search</button>
-						</div>								
-					</div>
-				</form>
-			</div>
-			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item current">
 						<a class="nav-link" href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="categories/index.php">Categories</a>
+						<a class="nav-link js-scroll-trigger" href="categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="promotions/index.php">Promotions</a>
+						<a class="nav-link js-scroll-trigger" href="promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="events/index.php">Events</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="blog/index.php">Blog</a>
+						<a class="nav-link js-scroll-trigger" href="blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" href="login/index.php">Login</a>
+					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+					<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
 				</div>
 			</div>
 		</nav>
@@ -110,74 +76,48 @@
 				<div class="row h-100 align-items-center">
 					<div class="col-12 text-center">
 						<div class="text-center header-text">
-							<h1>Find Nearby <span class="typed-words"></span></h1>
-							<p class=" w-75 mx-auto">Explore top-rated attractions, activities and more!</p>
+							<h1 data-aos="fade-up">Find Nearby <span class="typed-words"></span></h1>
+							<p data-aos="fade-up" class=" w-75 mx-auto">Explore top-rated attractions, activities and more!</p>
 						</div>
-						<!-- Header Search Form
-						<form>
-							<div class="form-row shadow">
-								<div class="form-group col-md-5">
-									<div class="input-group">
-										<span class="input-group-prepend">
-											<div class="input-group-text bg-white border-right-0">
-											<i class="fa fa-search"></i>
-											</div>
-										</span>
-										<input class="form-control border-left-0" type="search" placeholder="What are you looking for?"/>
-									</div>
-								</div>
-								<div class="form-group col-md-5">
-									<div class="input-group">
-										<span class="input-group-prepend">
-											<div class="input-group-text bg-white border-right-0">
-											<i class="fa fa-map-marker-alt"></i>
-											</div>
-										</span>
-										<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
-									</div>
-								</div>
-								<div class="form-group col-md-2">
-									<button class="btn btn-search">Search</button>
-								</div>								
-							</div>
-						</form>
-						-->
-						
+						<!-- Header Search Form -->
 						<div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-              <form method="post">
-                <div class="row align-items-center">
-                  <div class="col-md-12 col-lg-4 no-sm-border border-right input">
-                    <input type="text" class="form-control" placeholder="What are you looking for?">
-                  </div>
-                  <div class="col-md-12 col-lg-3 no-sm-border border-right input">
-                    <div class="wrap-icon">
-                      <span class="icon icon-room"></span>
-                      <input type="text" class="form-control" placeholder="Location">
-                    </div>
-                    
-                  </div>
-                  <div class="col-md-12 col-lg-3 input">
-                    <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" name="" id="">
-                        <option value="">All Categories</option>
-                        <option value="">Hotels</option>
-                        <option value="">Restaurant</option>
-                        <option value="">Eat &amp; Drink</option>
-                        <option value="">Events</option>
-                        <option value="">Fitness</option>
-                        <option value="">Others</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-2 text-right input">
-                    <input type="submit" class="btn text-white btn-primary" value="Search">
-                  </div>
-                  
-                </div>
-              </form>
-            </div>
-
+              				<form method="post">
+                				<div class="row align-items-center">
+									<div class="col-md-12 col-lg-4 no-sm-border border-right input">
+										<input type="text" class="form-control" placeholder="What are you looking for?">
+									</div>
+									<div class="col-md-12 col-lg-3 no-sm-border border-right input">
+										<div class="wrap-icon">
+											<input type="text" class="form-control" placeholder="Location">
+										</div>
+									</div>
+									<div class="col-md-12 col-lg-3 input">
+										<div class="select-wrap">
+											<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+											<select class="form-control" name="" id="">
+												<option value="">All Categories</option>
+												<option value="">Hotels</option>
+												<option value="">Restaurant</option>
+												<option value="">Eat &amp; Drink</option>
+												<option value="">Events</option>
+												<option value="">Fitness</option>
+												<option value="">Others</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12 col-lg-2 text-right">
+										<input type="submit" class="btn text-white btn-primary" value="Search">
+									</div>
+                  				</div>
+              				</form>
+						</div>
+						<!-- ./Header Search Form -->
+						<div class="category-tags" data-aos="fade-up">
+							<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drink</a>
+                            <a href="#"><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</a>
+                            <a href="#"><i class="fa fa-bed fa-fw stroke-transparent"></i> Hotels & Travel</a>
+                            <a href="#"><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Hire</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -385,7 +325,11 @@
             loop: true,
             showCursor: true
             });
-            </script>
+			</script>
+
+<script type="text/javascript" src="js/aos.js"></script><script>
+  AOS.init();
+</script>
 
 	</body>
 

@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -32,7 +33,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
+		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center fixed-top">
 			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
 			<!-- Search Button -->
 			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">

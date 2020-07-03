@@ -11,6 +11,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -32,76 +34,39 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<!-- Navbar Logo -->
-			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<!-- Search Button -->
-			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
-				<span class="fa fa-search"></span>
-			</button>
-			<!-- Hamburger Menu Button -->
+		<nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top">
+			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Navbar Search Form -->
-			<div class="search-collapse collapse w-100" id="search-bar">
-				<form>
-					<div class="form-row">
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-search"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
-							</div>
-						</div>
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-map-marker-alt"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town ..."/>
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<button class="btn btn-search">Search</button>
-						</div>								
-					</div>
-				</form>
-			</div>
-			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
-					<li class="nav-item">
+					<li class="nav-item current">
 						<a class="nav-link" href="../index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item current">
-						<a class="nav-link" href="index.php">Promotions</a>
+						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="../promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../blog/index.php">Blog</a>
+						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php">Login</a>
+					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+					<a class="btn btn-login" href="../login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
 				</div>
 			</div>
 		</nav>
 
 		<!-- /.Main Navigation -->
 
-		<!-- Footer
+		<!-- Footer -->
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -147,7 +112,7 @@
 			</div>
 		</div>
 
-		/.Footer -->
+		<!-- /.Footer -->
 
 	</body>
 

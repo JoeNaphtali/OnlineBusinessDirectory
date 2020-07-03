@@ -14,41 +14,74 @@ body.home {
 
 /* Navigation Bar */
 
-.navbar-brand {
-    font-weight: bold;
+.clear-navbar {
+    transition:500ms ease;
+    background:transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
-.main-navbar {
+.clear-navbar .nav-item a {
+    color: #fff!important;
+}
+
+.solid-navbar {
     background-color: #FED800;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.nav-link {
-    color: black !important;
+.solid-navbar .nav-item a {
+    color: #000!important;
 }
 
-.main-navbar .current a {
-    background-color: #000000;
-    color: #FED800 !important;
+.clear-navbar .navbar-brand {
+    font-family: 'Norican', cursive;
+    color: #fff!important;
+    font-size: 24px;
 }
 
-.main-navbar .nav-link:hover {
-    background-color: #000000;
-    color: #FED800 !important;
+.solid-navbar .navbar-brand {
+    font-family: 'Norican', cursive;
+    color: #000!important;
+    font-size: 24px;
 }
+
+.clear-navbar.scrolled .navbar-brand {
+    font-family: 'Norican', cursive;
+    color: #000!important;
+}
+
+.clear-navbar.scrolled .nav-item a {
+    color: #000!important;
+}
+
+.clear-navbar.scrolled {
+    background:#FED800;
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.current a {
+    border-bottom: 3px solid #DB4437 !important;
+}
+
+.nav-item a:hover {
+    border-bottom: 3px solid #DB4437 !important;
+}
+
 
 .btn-addlisting {
     background-color: #811D5E;
     color: #fff;
     border: none;
+    border-radius: 50px;
 }
 
 .btn-login {
     background-color: #FF6F01;
     color: #fff;
     border: none;
+    border-radius: 50px;
 }
 
 .btn-addlisting:hover {
@@ -63,18 +96,6 @@ body.home {
 
 .btn-login {
     margin-left: 15px;
-}
-
-.search-icon {
-    margin-right: 10px;
-}
-
-.search-icon span {
-    font-size: 30px;
-}
-
-.search-collapse form {
-    margin-top: 1rem;
 }
 
 /* Navigation Bar */
@@ -113,18 +134,9 @@ body.home {
 /* Headers */
 
 .masthead-home {
-    height: 75vh;
+    height: 100vh;
     min-height: 500px;
     background-image: url('../img/city-scape-dark.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
-.masthead-blog {
-    height: 60vh;
-    background-image: url('../img/banner-2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -213,7 +225,31 @@ body.home {
     background-color: #E36200;
 }
 
+.category-tags {
+    margin-top: 20px;
+}
 
+.category-tags a {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+	font-size: 15px;
+	color: #fff;
+	display: inline-block;
+	padding: 6px 15px 3px;
+	border-radius: 50px;
+	margin-right: 6px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.category-tags a:hover {
+	color: #fff;
+	background: #811D5E;
+}
+
+.typed-words {
+    color: #d13628;
+}
 
 /* Headers */
 
@@ -479,7 +515,7 @@ form .fa-google {
 /* Footer */
 
 .footer {
-    background: #FD2F24;
+    background: #880a03;
     color: white;
     margin-top: 56px;
 }
@@ -524,16 +560,35 @@ form .fa-google {
     .btn-login {
         margin-left: 0px;
         margin-top: 10px;
+        border-radius: 5px;
     }
 
-    .main-navbar .current a {
+    .btn-addlisting {
+        border-radius: 5px;
+    }
+
+    .clear-navbar {
         background-color: #FED800;
-        color: #000000 !important;
+    }
+
+    .clear-navbar .nav-item a {
+        color: #000!important;
     }
     
-    .main-navbar .nav-link:hover {
-        background-color: #FED800;
-        color: #000000 !important;
+    .clear-navbar .navbar-brand {
+        color: #000!important;
+    }
+
+    .clear-navbar .current a {
+        border-bottom: none!important;
+    }
+
+    .solid-navbar .current a {
+        border-bottom: none!important;
+    }
+    
+    .clear-navbar .nav-link:hover {
+        border-bottom: none!important;
     }
 
     .footer .links {
@@ -736,3 +791,8 @@ form .fa-google {
     background-color: #e36200;
     color: #fff;
 }
+
+.stroke-transparent {
+    -webkit-text-stroke: 1px;
+    -webkit-text-fill-color: transparent;
+   }
