@@ -128,12 +128,12 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid home-page-section">
+		<div class="container-fluid">
 			<div class="row justify-content-center bg-white">
-				<div class="col-lg-10 p-3 top-businesses">
+				<div class="col-lg-10 p-3">
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="section-title text-center">
+							<div class="section-title">
 								<h2>Top Businesses and Services</h2>
 								<p>The best businesses and services recommended by your fellow FindUs users</p>
 							</div>
@@ -142,7 +142,6 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="top-businesses-tab">
-								<!-- Tabs -->
 								<ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
 									<li class="nav-item">
 										<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
@@ -182,9 +181,7 @@
 									</li>
 								</ul>
 							</div>
-							<!-- Tab Content -->
 							<div class="tab-content">
-								<!-- First Tab -->
 								<div class="tab-pane active" id="tabs-1" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -207,7 +204,65 @@
 															</div>
 															<div class="open-closed">Open Now</div>
 														</div>
-														<ul style="padding-bottom: 20px;">
+														<ul>
+															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
+																Philadelphia, Ohio, United States</li>
+															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-6">
+											<div class="listing-item">
+												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
+													<img src="img/listing/food.png" alt="">
+												</div>
+												<div class="listing-item-text">
+													<div class="listing-item-text-inside">
+														<a href="#">
+														Chinese Sausage Restaurant
+														</a>
+														<div class="listing-item-text-rating">
+															<div class="listing-item-text-rating-star">
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+															</div>
+															<div class="open-closed">Open Now</div>
+														</div>
+														<ul>
+															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
+																Philadelphia, Ohio, United States</li>
+															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-6">
+											<div class="listing-item">
+												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
+													<img src="img/listing/food.png" alt="">
+												</div>
+												<div class="listing-item-text">
+													<div class="listing-item-text-inside">
+														<a href="#">
+														Chinese Sausage Restaurant
+														</a>
+														<div class="listing-item-text-rating">
+															<div class="listing-item-text-rating-star">
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+																<span class="fa fa-star"></span>
+															</div>
+															<div class="open-closed">Open Now</div>
+														</div>
+														<ul>
 															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
 																Philadelphia, Ohio, United States</li>
 															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
@@ -218,7 +273,6 @@
 										</div>
 									</div>							
 								</div>
-								<!-- Second Tab -->
 								<div class="tab-pane" id="tabs-2" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -226,7 +280,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Third Tab -->
 								<div class="tab-pane" id="tabs-3" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -234,7 +287,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Fourth Tab -->
 								<div class="tab-pane" id="tabs-4" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -242,7 +294,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Fifth Tab -->
 								<div class="tab-pane" id="tabs-5" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -250,7 +301,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Sixth Tab -->
 								<div class="tab-pane" id="tabs-6" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -265,9 +315,46 @@
 			</div>
 		</div>
 
+		<!-- Top Businesses Tabs Panel -->
+		<div class="container-fluid">
+			<div class="row justify-content-center bg-white">
+				<div class="col-lg-10 p-3">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Latest News & Articles</h2>
+								<p>Read the latest news, articles, tips and more from our blog</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div style="margin-top: 16px;">
+								<div class="col-lg-4 col-md-6">
+									<div class="card mb-4 shadow">
+										<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+										</div>
+										<div class="card-body">
+											<h2 class="card-title">Post Title</h2>
+											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+											<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
+										</div>
+										<div class="card-footer text-muted">
+											Posted on January 1, 2020 by
+											<a href="#">Joseph Wamulume</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- /.Content -->
 
-		<!-- Footer -->
+		<!-- Footer
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -313,7 +400,7 @@
 			</div>
 		</div>
 
-		<!-- /.Footer -->
+		/.Footer -->
 
 		<script>
             var typed = new Typed('.typed-words', {

@@ -80,7 +80,7 @@
 
 					<!-- Blog Post -->
 					<div class="card mb-4 shadow">
-						<div class="blog-item-pic set-bg" data-setbg="../img/blog/blog-large.jpg">
+						<div class="blog-item-large-pic set-bg" data-setbg="../img/blog/blog-large.jpg">
                         </div>
 						<div class="card-body">
 							<h2 class="card-title">Post Title</h2>
