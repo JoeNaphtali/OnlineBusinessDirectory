@@ -737,6 +737,13 @@ form .fa-google {
   Blog
 -----------------------*/
 
+.blog-item {
+
+}
+
+.blog-item:hover {
+}
+
 .blog-item-large-pic {
 	height: 300px;
 	position: relative;
@@ -744,9 +751,17 @@ form .fa-google {
 }
 
 .blog-item-pic {
-	height: 205px;
+	height: 250px;
 	position: relative;
 	display: flex;
+}
+
+.blog-item h2 {
+    font-size: 24px;
+}
+
+.read-more-link {
+    
 }
 
 .blog-post-pic {

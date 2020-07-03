@@ -330,18 +330,51 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div style="margin-top: 16px;">
-								<div class="col-lg-4 col-md-6">
-									<div class="card mb-4 shadow">
-										<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+								<div class="row">
+									<div class="col-lg-4 col-md-6">
+										<div class="card mb-4 blog-item shadow">
+											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+											</div>
+											<div class="card-body">
+												<h2 class="card-title">Post Title</h2>
+												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+												Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta 
+												expedita corporis animi vero voluptate voluptatibus possimus.</p>
+												<a href="post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
+											</div>
+											<div class="card-footer text-muted">
+												Posted on January 1, 2020 by Joseph Wamulume
+											</div>
 										</div>
-										<div class="card-body">
-											<h2 class="card-title">Post Title</h2>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-											<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
+									</div>
+									<div class="col-lg-4 col-md-6">
+										<div class="card mb-4 shadow">
+											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+											</div>
+											<div class="card-body">
+												<h2 class="card-title">Post Title</h2>
+												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+												<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
+											</div>
+											<div class="card-footer text-muted">
+												Posted on January 1, 2020 by
+												<a href="#">Joseph Wamulume</a>
+											</div>
 										</div>
-										<div class="card-footer text-muted">
-											Posted on January 1, 2020 by
-											<a href="#">Joseph Wamulume</a>
+									</div>
+									<div class="col-lg-4 col-md-6">
+										<div class="card mb-4 shadow">
+											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+											</div>
+											<div class="card-body">
+												<h2 class="card-title">Post Title</h2>
+												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+												<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
+											</div>
+											<div class="card-footer text-muted">
+												Posted on January 1, 2020 by
+												<a href="#">Joseph Wamulume</a>
+											</div>
 										</div>
 									</div>
 								</div>
