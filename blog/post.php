@@ -12,6 +12,7 @@
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -33,68 +34,32 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center fixed-top">
-			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<!-- Search Button -->
-			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
-				<span class="fa fa-search"></span>
-			</button>
-			<!-- Hamburger Menu Button -->
+		<nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top">
+			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Navbar Search Form -->
-			<div class="search-collapse collapse w-100" id="search-bar">
-				<form>
-					<div class="form-row">
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-search"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
-							</div>
-						</div>
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-map-marker-alt"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town"/>
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<button class="btn btn-search">Search</button>
-						</div>								
-					</div>
-				</form>
-			</div>
-			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item">
 						<a class="nav-link" href="../index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../categories/index.php">Categories</a>
+						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../promotions/index.php">Promotions</a>
+						<a class="nav-link js-scroll-trigger" href="../promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
 					</li>
 					<li class="nav-item current">
-						<a class="nav-link" href="index.php">Blog</a>
+						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php">Login</a>
+					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+					<a class="btn btn-login" href="../login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
 				</div>
 			</div>
 		</nav>
@@ -106,18 +71,17 @@
 		<div class="container">
 			<div class="row">
 				<!-- Blog Entries Column -->
-      			<div class="col-lg-8 page-section">
+      			<div class="col-lg-8 blog-enteries-column blog-post">
 
 					<!-- Title -->
-                    <h1 class="mt-4">Post Title</h1>
-
-                    <hr>
-
-                    <!-- Date/Time -->
+					<h2>Post Title</h2>
+					
+                 	<!-- Date/Time -->
                     Posted on January 1, 2020 by
 					<a href="#">Joseph Wamulume</a>
 
-                    <hr>
+					<!-- Category -->
+					<div><i class="fa fa-folder-open stroke-transparent"></i></div>
 
                     <!-- Preview Image -->
                     <div class="blog-post-pic set-bg" data-setbg="../img/blog/details/blog-video-bg.jpg">
@@ -247,10 +211,10 @@
 				</div>
 
 				<!-- Sidebar Widgets Column -->
-				<div class="col-lg-4 page-section">
+				<div class="col-lg-4 sidebar-widgets-column">
 
 					<!-- Search Form -->
-					<div class="card my-4 shadow">
+					<div class="card shadow search-widget">
 						<form>
 							<div class="card-body">
 								<div class="input-group">
@@ -293,7 +257,7 @@
 					</div>
 
 					<!-- Tags Widget -->
-					<div class="card my-4 shadow">
+					<div class="card my-4 shadow tags-widget">
 						<h5 class="card-header">Popular Tags</h5>
 						<div class="card-body blog-tags">
 							<a href="#">Business</a>

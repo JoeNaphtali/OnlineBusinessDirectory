@@ -128,10 +128,10 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid aos-init aos-animate" data-aos="fade-right">
+		<div class="container-fluid page-section-container aos-init aos-animate" data-aos="fade-right">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
-					<div class="row">
+					<div class="row section-title-row">
 						<div class="col-lg-12">
 							<div class="section-title">
 								<h2>Top Businesses and Services</h2>
@@ -257,10 +257,10 @@
 		</div>
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid aos-init aos-animate" data-aos="fade-left">
+		<div class="container-fluid page-section-container aos-init aos-animate" data-aos="fade-left">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
-					<div class="row">
+					<div class="row section-title-row">
 						<div class="col-lg-12">
 							<div class="section-title">
 								<h2>Latest News & Articles</h2>
@@ -270,7 +270,7 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
-							<div style="margin-top: 16px;">
+							<div>
 								<div class="row">
 									<div class="col-lg-4 col-md-6">
 										<div class="card mb-4 blog-item shadow">

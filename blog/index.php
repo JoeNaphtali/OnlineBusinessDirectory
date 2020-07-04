@@ -2,7 +2,7 @@
 
     <head>
 
-		<title>Blogs | FindUs</title>
+		<title>Blog | FindUs</title>
         <meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
@@ -71,11 +71,15 @@
 		<div class="container">
 			<div class="row">
 				<!-- Blog Entries Column -->
-      			<div class="col-md-8 page-section">
+      			<div class="col-lg-8 blog-enteries-column">
 
-					<div class="section-title my-4">
-						<h2>Welcome to our blog</h2>
-						<p>Explore all the great content written by our talented authors</p>
+					<div class="row blog-section-title-row">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Welcome to our blog</h2>
+								<p>Read the latest news, articles, tips and more from talented authors</p>
+							</div>
+						</div>
 					</div>
 
 					<!-- Blog Post -->
@@ -105,10 +109,10 @@
 				</div>
 
 				<!-- Sidebar Widgets Column -->
-				<div class="col-md-4 page-section">
+				<div class="col-lg-4 sidebar-widgets-column">
 
 					<!-- Search Form -->
-					<div class="card my-4 shadow">
+					<div class="card shadow search-widget">
 						<form>
 							<div class="card-body">
 								<div class="input-group">
@@ -124,7 +128,7 @@
 					</div>
 
 					<!-- Categories -->
-					<div class="card my-4 shadow categories-widget">
+					<div class="card shadow categories-widget">
 						<h5 class="card-header">Categories</h5>
 						<div class="card-body">
 							<ul>
@@ -151,7 +155,7 @@
 					</div>
 
 					<!-- Tags Widget -->
-					<div class="card my-4 shadow">
+					<div class="card tags-widget shadow">
 						<h5 class="card-header">Popular Tags</h5>
 						<div class="card-body blog-tags">
 							<a href="#">Business</a>

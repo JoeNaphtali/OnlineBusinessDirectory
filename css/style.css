@@ -344,6 +344,11 @@ form .fa-google {
     text-align: center;
 }
 
+.page-section-container {
+    margin-top: 24px;
+    border-bottom: 1px solid #eaeaea;
+}
+
 .section-title p {
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -362,8 +367,34 @@ form .fa-google {
     margin: 0 auto;
 }
 
+.section-title-row {
+    margin-bottom: 40px;
+}
+
+.blog-section-title-row .section-title h2 {
+    text-align: left;
+}
+
+.blog-section-title-row .section-title p {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.blog-section-title-row .section-title::after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 3px;
+    background: #DB4437;
+    left: 15px;
+    right: 0;
+    bottom: 0;
+    top: initial;
+    margin: 0 !important;
+}
+
 .page-section {
-	margin-top: 56px;
+	margin-top: 124px;
 }
 
 .home-page-section {
@@ -510,7 +541,6 @@ form .fa-google {
 .footer {
     background: #880a03;
     color: white;
-    margin-top: 56px;
 }
 .footer .links ul {
     list-style-type: none;
@@ -648,6 +678,41 @@ form .fa-google {
         border: none;
         width: 100%;
     }
+
+    .blog-post h2 {
+        font-size: 24px !important;
+        font-weight: 700 !important;
+    }
+
+    .blog-enteries-column {
+        margin-top: 87px !important;
+    }
+
+    .sidebar-widgets-column {
+        margin-top: 0px !important;
+    }
+
+    .blog-section-title-row .section-title h2 {
+        text-align: center;
+    }
+    
+    .blog-section-title-row .section-title p {
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+    
+    .blog-section-title-row .section-title::after {
+        position: absolute;
+        content: "";
+        width: 100px;
+        height: 3px;
+        background: #DB4437;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: initial;
+        margin: 0 auto !important;
+    }
     
 
 }
@@ -702,6 +767,26 @@ form .fa-google {
 /*---------------------
   Blog
 -----------------------*/
+
+.search-widget {
+    margin-bottom: 30px;
+}
+
+.blog-section-title-row {
+    margin-bottom: 25px;
+}
+
+.categories-widget {
+    margin-bottom: 30px;
+}
+
+.blog-enteries-column {
+    margin-top: 124px;
+}
+
+.sidebar-widgets-column {
+    margin-top: 124px;
+}
 
 .blog-item-large-pic {
 	height: 300px;
