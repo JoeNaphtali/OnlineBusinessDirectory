@@ -37,7 +37,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light clear-navbar navbar-expand-lg justify-content-center fixed-top">
+		<nav class="navbar navbar-light clear-navbar navbar-expand-lg justify-content-center fixed-top" data-aos="fade-down">
 			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
@@ -128,7 +128,7 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid">
+		<div class="container-fluid aos-init aos-animate" data-aos="fade-right">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
 					<div class="row">
@@ -185,89 +185,30 @@
 								<div class="tab-pane active" id="tabs-1" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
-											<div class="listing-item">
+											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<img src="img/listing/food.png" alt="">
-												</div>
-												<div class="listing-item-text">
-													<div class="listing-item-text-inside">
-														<a href="#">
-														Chinese Sausage Restaurant
-														</a>
-														<div class="listing-item-text-rating">
-															<div class="listing-item-text-rating-star">
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-															</div>
-															<div class="open-closed">Open Now</div>
-														</div>
-														<ul>
-															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
-																Philadelphia, Ohio, United States</li>
-															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
-														</ul>
+													<div class="listing-category">
+														<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
+													</div>
+													<div class="listing-badge open">
+														Open
+													</div>
+													<div class="blog-item-bookmark">
+														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
 													</div>
 												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-6">
-											<div class="listing-item">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<img src="img/listing/food.png" alt="">
+												<div class="card-body listing-details">
+													<h2 class="card-title">Burger House</h2>
+													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> 14320 Keenes Mill Rd. Cottondale, Alabama(AL)</div>
+													<div><i class="fa fa-phone fa-fw"></i> (+12) 345-678-910</div>
 												</div>
-												<div class="listing-item-text">
-													<div class="listing-item-text-inside">
-														<a href="#">
-														Chinese Sausage Restaurant
-														</a>
-														<div class="listing-item-text-rating">
-															<div class="listing-item-text-rating-star">
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-															</div>
-															<div class="open-closed">Open Now</div>
-														</div>
-														<ul>
-															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
-																Philadelphia, Ohio, United States</li>
-															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-6">
-											<div class="listing-item">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<img src="img/listing/food.png" alt="">
-												</div>
-												<div class="listing-item-text">
-													<div class="listing-item-text-inside">
-														<a href="#">
-														Chinese Sausage Restaurant
-														</a>
-														<div class="listing-item-text-rating">
-															<div class="listing-item-text-rating-star">
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-																<span class="fa fa-star"></span>
-															</div>
-															<div class="open-closed">Open Now</div>
-														</div>
-														<ul>
-															<li><span class="fa fa-map-marker-alt"></span> 236 Littleton St. New
-																Philadelphia, Ohio, United States</li>
-															<li><span class="fa fa-phone"></span> (+12) 345-678-910</li>
-														</ul>
-													</div>
+												<div class="card-footer listing-rating text-muted">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-half-alt"></i>
+													<span> (1 review)</span>
 												</div>
 											</div>
 										</div>
@@ -316,7 +257,7 @@
 		</div>
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid">
+		<div class="container-fluid aos-init aos-animate" data-aos="fade-left">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
 					<div class="row">
@@ -334,6 +275,9 @@
 									<div class="col-lg-4 col-md-6">
 										<div class="card mb-4 blog-item shadow">
 											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
+												<div class="blog-item-bookmark">
+													<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
+												</div>
 											</div>
 											<div class="card-body">
 												<h2 class="card-title">Post Title</h2>
@@ -347,36 +291,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-4 col-md-6">
-										<div class="card mb-4 shadow">
-											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
-											</div>
-											<div class="card-body">
-												<h2 class="card-title">Post Title</h2>
-												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-												<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
-											</div>
-											<div class="card-footer text-muted">
-												Posted on January 1, 2020 by
-												<a href="#">Joseph Wamulume</a>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-4 col-md-6">
-										<div class="card mb-4 shadow">
-											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
-											</div>
-											<div class="card-body">
-												<h2 class="card-title">Post Title</h2>
-												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-												<a href="post.php" class="btn btn-read-more">Read More &rarr;</a>
-											</div>
-											<div class="card-footer text-muted">
-												Posted on January 1, 2020 by
-												<a href="#">Joseph Wamulume</a>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -387,7 +301,7 @@
 
 		<!-- /.Content -->
 
-		<!-- Footer
+		<!-- Footer -->
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -433,7 +347,7 @@
 			</div>
 		</div>
 
-		/.Footer -->
+		<!-- /.Footer -->
 
 		<script>
             var typed = new Typed('.typed-words', {
