@@ -2,7 +2,7 @@
 
     <head>
 
-		<title>Blogs | FindUs</title>
+		<title>Blog | FindUs</title>
         <meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
@@ -72,16 +72,6 @@
 			<div class="row">
 				<!-- Blog Entries Column -->
       			<div class="col-lg-8 blog-enteries-column blog-post">
-
-					<!-- Title -->
-					<h2>Post Title</h2>
-					
-                 	<!-- Date/Time -->
-                    Posted on January 1, 2020 by
-					<a href="#">Joseph Wamulume</a>
-
-					<!-- Category -->
-					<div><i class="fa fa-folder-open stroke-transparent"></i></div>
 
                     <!-- Preview Image -->
                     <div class="blog-post-pic set-bg" data-setbg="../img/blog/details/blog-video-bg.jpg">
