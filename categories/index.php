@@ -11,6 +11,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -24,7 +26,7 @@
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<!-- Local Script -->
-		<script type="text/javascript" src="../js/script.js"></script>
+		<script type="text/javascript" src="../js/main.js"></script>
 
 	</head>
 
@@ -32,78 +34,137 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<!-- Navbar Logo -->
-			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<!-- Search Button -->
-			<button class="navbar-toggler search-icon" type="button" data-toggle="collapse" data-target="#search-bar">
-				<span class="fa fa-search"></span>
-			</button>
-			<!-- Hamburger Menu Button -->
+		<nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top" data-aos="fade-down">
+			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Navbar Search Form -->
-			<div class="search-collapse collapse w-100" id="search-bar">
-				<form>
-					<div class="form-row">
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-search"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0 border-right-0" type="search" placeholder="What are you looking for?"/>
-							</div>
-						</div>
-						<div class="form-group col-md-5">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<div class="input-group-text bg-white border-right-0">
-										<i class="fa fa-map-marker-alt"></i>
-									</div>
-								</span>
-								<input class="form-control border-left-0" type="search" placeholder="Where? Province, City, Town"/>
-							</div>
-						</div>
-						<div class="form-group col-md-2">
-							<button class="btn btn-search">Search</button>
-						</div>								
-					</div>
-				</form>
-			</div>
-			<!-- Navigation Menu -->
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item">
 						<a class="nav-link" href="../index.php">Home</a>
 					</li>
 					<li class="nav-item current">
-						<a class="nav-link" href="index.php">Categories</a>
+						<a class="nav-link js-scroll-trigger" href="index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../promotions/index.php">Promotions</a>
+						<a class="nav-link js-scroll-trigger" href="../promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../blog/index.php">Blog</a>
+						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php">Login</a>
+					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+					<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
 				</div>
 			</div>
 		</nav>
 
 		<!-- /.Main Navigation -->
 
-		<!-- Footer
+		<!-- Content -->
 
-		<div class="pt-5 pb-5 footer">
+		<div class="container content-container">
+
+			<div class="row section-title-row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Explore places near you</h2>
+						<p>Filter by category</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="category-item col-lg-6 col-md-6">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-6 col-md-6">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/shopping.jpg">
+								<div class="category-icon">
+									<span class="fa fa-shopping-cart category-icon-icon"></span>
+									<span class="category-icon-text">Shopping</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Accomodation & Travel</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-6 col-md-6">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+						<div class="category-item col-lg-3 col-md-3">
+							<div class="category-item-pic set-bg shadow" data-setbg="../img/restaurant.jpg">
+								<div class="category-icon">
+									<span class="fa fa-utensils category-icon-icon"></span>
+									<span class="category-icon-text">Food & Drink</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- /.Content -->
+
+		<!-- Footer -->
+
+		<div class="pt-5 pb-5 footer" style="margin-top: 31px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
@@ -147,7 +208,7 @@
 			</div>
 		</div>
 
-		/.Footer -->
+		<!-- /.Footer -->
 
 	</body>
 

@@ -32,6 +32,10 @@ $(document).ready(function () {
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+
     $(window).scroll(function(){
         $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
     });

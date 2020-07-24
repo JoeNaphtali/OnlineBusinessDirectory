@@ -25,6 +25,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		
 		<!-- Local Script -->
 		<script type="text/javascript" src="../js/main.js"></script>
 
@@ -83,8 +84,18 @@
 					</div>
 
 					<!-- Blog Post -->
-					<div class="blog-item-large mb-4 shadow">
+					<div class="blog-item-large mb-4 card shadow" data-aos="flip-left">
 						<div class="blog-item-large-pic set-bg" data-setbg="../img/blog/blog-large.jpg">
+							<div class="blog-item-date">
+								<span class="month">Jul</span>
+								<span class="day">05</span>
+							</div>
+							<div class="blog-item-category category">
+								<a href="#"><i class="fa fa-folder-open fa-fw stroke-transparent"></i> Travel</a>
+							</div>
+							<div class="bookmark">
+								<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
+							</div>
                         </div>
 						<div class="card-body">
 							<h2 class="card-title">Post Title</h2>
@@ -92,7 +103,7 @@
 							<a href="post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
 						</div>
 						<div class="card-footer text-muted">
-							Posted on January 1, 2020 by Joseph Wamulume
+							by Joseph Wamulume
 						</div>
 					</div>
 
@@ -158,16 +169,16 @@
 					<div class="card tags-widget shadow">
 						<h5 class="card-header">Popular Tags</h5>
 						<div class="card-body blog-tags">
-							<a href="#">Business</a>
-                            <a href="#">Marketing</a>
-                            <a href="#">Payment</a>
-                            <a href="#">Travel</a>
-                            <a href="#">Finance</a>
-                            <a href="#">Videos</a>
-                            <a href="#">Ideas</a>
-                            <a href="#">Unique</a>
-                            <a href="#">Music</a>
-                            <a href="#">Key</a>
+							<a href="#"><i class="fa fa-tag fa-fw"></i> Business</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Marketing</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Payment</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Travel</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Finance</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Videos</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Ideas</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Unique</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Music</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Key</a>
 						</div>
 					</div>
 

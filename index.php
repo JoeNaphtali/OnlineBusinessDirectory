@@ -6,7 +6,7 @@
         <meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+		<link rel="stylesheet" href="css/all.css">
 		<!-- Material Icons -->
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
@@ -14,15 +14,15 @@
 		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<!-- Bootstrap tooltips -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/aos.css">
@@ -128,7 +128,7 @@
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid page-section-container aos-init aos-animate" data-aos="fade-right">
+		<div class="container-fluid page-section-container">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
 					<div class="row section-title-row">
@@ -187,13 +187,13 @@
 										<div class="col-lg-4 col-md-6">
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category">
+													<div class="listing-category category">
 														<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
 													</div>
 													<div class="listing-badge open">
 														Open
 													</div>
-													<div class="blog-item-bookmark">
+													<div class="bookmark">
 														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
 													</div>
 												</div>
@@ -257,7 +257,7 @@
 		</div>
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid page-section-container aos-init aos-animate" data-aos="fade-left">
+		<div class="container-fluid page-section-container">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
 					<div class="row section-title-row">
@@ -271,23 +271,29 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div>
-								<div class="row">
+								<div class="row latest-blog-posts">
 									<div class="col-lg-4 col-md-6">
 										<div class="card mb-4 blog-item shadow">
 											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
-												<div class="blog-item-bookmark">
+												<div class="blog-item-date">
+													<span class="month">Jul</span>
+													<span class="day">05</span>
+												</div>
+												<div class="blog-item-category category">
+													<a href="#"><i class="fa fa-folder-open fa-fw stroke-transparent"></i> Travel</a>
+												</div>
+												<div class="bookmark">
 													<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
 												</div>
 											</div>
 											<div class="card-body">
 												<h2 class="card-title">Post Title</h2>
 												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-												Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta 
-												expedita corporis animi vero voluptate voluptatibus possimus.</p>
+												Reiciendis aliquid atque, nulla?</p>
 												<a href="post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
 											</div>
 											<div class="card-footer text-muted">
-												Posted on January 1, 2020 by Joseph Wamulume
+												By Joseph Wamulume
 											</div>
 										</div>
 									</div>

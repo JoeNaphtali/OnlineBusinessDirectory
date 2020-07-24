@@ -72,12 +72,20 @@
 			<div class="row">
 				<!-- Blog Entries Column -->
       			<div class="col-lg-8 blog-enteries-column blog-post">
+					
+				  	<!-- Blog post meta date -->
+					<div class="blog-post-info">
+						<h1>Post title</h1>
+						<span><i class="fa fa-calendar-alt fa-fw"></i> 4th July, 2020</span>
+						<span><i class="fa fa-pen-nib fa-fw"></i> Joseph Wamulume</span>
+						<span><i class="fa fa-folder-open fa-fw"></i> Travel</span>
+					</div>
 
                     <!-- Preview Image -->
                     <div class="blog-post-pic set-bg" data-setbg="../img/blog/details/blog-video-bg.jpg">
-                    </div>
-
-                    <hr>
+					</div>
+					
+					<hr>
 
                     <!-- Post Content -->
                     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -99,104 +107,177 @@
 
                     <hr>
 
-                    <div class="blog-tags">
-                        <span>Tags:</span>
-						<a href="#" class="shadow-sm">Business</a>
-                        <a href="#" class="shadow-sm">Marketing</a>
-                        <a href="#" class="shadow-sm">Payment</a>
-                    </div>
-                    
-                    <div class="share-social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"> | Share</i></a>
-						<a href="#"><i class="fab fa-twitter">  | Share</i></a>
-						<a href="#"><i class="fab fa-linkedin">  | Share</i></a>
-                        <a href="#"><i class="fab fa-google">  | Share</i></a>
-                        <a href="#"><i class="fab fa-whatsapp">  | Share</i></a>
+					<div class="row">
+						<div class="blog-tags col-md-6">
+							<a href="#"><i class="fa fa-tag fa-fw"></i> Business</a>
+							<a href="#"><i class="fa fa-tag fa-fw"></i> Marketing</a>
+							<a href="#"><i class="fa fa-tag fa-fw"></i> Payment</a>
+						</div>
+						
+						<div class="share-social-icons col-md-6">
+							<a href="#" class="facebook" data-toggle="tooltip" data-placement="top" title="Share on Facebook"><i class="fab fa-facebook-f fa-fw"></i></a>
+							<a href="#" class="twitter" data-toggle="tooltip" data-placement="top" title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a>
+							<a href="#" class="link" data-toggle="tooltip" data-placement="top" title="Copy link"><i class="fa fa-link fa-fw"></i></a>
+						</div>
 					</div>
 
 					<!-- Comment Forms -->
 
-					<!-- Unregistered User Comment Form -->
-                    <div class="card my-4 shadow">
-                        <h5 class="card-header">Leave a comment</h5>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Firtname*</label>
-                                        <input class="form-control" type="text" name="firstname" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Lastname*</label>
-                                        <input class="form-control" type="text" name="lastname" required>
-                                    </div>
-                                </div> 
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Email Address*</label>
-                                        <input class="form-control" type="text" name="email" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Website</label>
-                                        <input class="form-control" type="text" name="website">
-                                    </div>
-                                </div>   
-                                <div class="form-group">
-                                    <label>Your comment*</label>
-                                    <textarea class="form-control" rows="3" name="comment" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-submit-comment">Submit</button>
-                            </form>
-                        </div>
+					<!-- About Author -->
+					<div class="about-author">
+						<div class="author-pic">
+							<img src="../img/user-profile-avatar.jpg">
+						</div>
+						<div class="author-info">
+							<span class="author-name">Joseph Wamulume</span>
+							<span class="author-posts"><a href="#">View all posts by Joseph Wamulume</a></span>
+							<span class="author-bio">Quisque rhoncus tellus et suscipit pellentesque. 
+							Donec viverra eros sed justo dignissim laoreet. Aenean justo risus, 
+							imperdiet id massa ac, convallis condimentum risus.</span>
+						</div>
 					</div>
-					<!-- Registered User Comment Form -->
-					<div class="card my-4 shadow">
-                        <h5 class="card-header">Leave a comment</h5>
-                        <div class="card-body">
-                            <form>   
-                                <div class="form-group">
-                                    <label>Your comment*</label>
-                                    <textarea class="form-control" rows="3" name="comment" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-submit-comment">Submit</button>
-                            </form>
-                        </div>
-                    </div>
 
-                    <!-- Single Comment -->
-                    <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                    </div>
+					<hr>
 
-                    <!-- Comment with nested comments -->
-                    <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+					<div class="row blog-section-title-row">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Related Posts</h2>
+							</div>
+						</div>
+					</div>
 
-                        <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                        <div class="media-body">
-                            <h5 class="mt-0">Commenter Name</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        </div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div>
+								<div class="row">
+									<div class="col-lg-6 col-md-6">
+										<div class="card mb-4 blog-item shadow">
+											<div class="blog-item-pic set-bg" data-setbg="../img/blog/blog-large.jpg">
+												<div class="blog-item-date">
+													<span class="month">Jul</span>
+													<span class="day">05</span>
+												</div>
+												<div class="blog-item-category">
+													<a href="#"><i class="fa fa-folder-open fa-fw stroke-transparent"></i> Travel</a>
+												</div>
+												<div class="blog-item-bookmark">
+													<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
+												</div>
+											</div>
+											<div class="card-body">
+												<h2 class="card-title">Post Title</h2>
+												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+												Reiciendis aliquid atque, nulla?</p>
+												<a href="post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
+											</div>
+											<div class="card-footer text-muted">
+												By Joseph Wamulume
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                        <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                        <div class="media-body">
-                            <h5 class="mt-0">Commenter Name</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                        </div>
+					<hr>
 
-                    </div>
-                    </div>
+					<div class="row blog-section-title-row">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Leave a comment</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<form>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label>First Name</label>
+										<input class="form-control" type="text" name="firstname" required>
+									</div>
+									<div class="form-group col-md-6">
+										<label>Last Name</label>
+										<input class="form-control" type="text" name="lastname" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Email Address</label>
+									<input class="form-control" type="email" name="email" required>
+								</div>
+								<div class="form-group">
+									<label>Comment</label>
+									<textarea class="form-control" type="text" name="comment"></textarea>
+								</div>
+								<div>
+									<button class="btn btn-submit">Submit</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="row blog-section-title-row">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Comments (5)</h2>
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<ul class="comment-list">
+							<li class="comment">
+								<div class="vcard bio">
+									<img src="../img/user-profile-avatar.jpg" alt="Image">
+								</div>
+								<div class="comment-body">
+									<h3>Joseph Wamulume</h3>
+									<div class="meta">July 7, 2020 at 5:21pm</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+									<p><a href="#" class="reply"><i class="fa fa-reply fa-fw"></i> Reply</a></p>
+								</div>
+								<ul class="children">
+									<li class="comment">
+									<div class="vcard bio">
+										<img src="../img/user-profile-avatar.jpg" alt="Image placeholder">
+									</div>
+									<div class="comment-body">
+										<h3>Joseph Wamulume</h3>
+										<div class="meta">July 7, 2020 at 5:21pm</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+									</div>
+									</li>
+									<li class="comment">
+									<div class="vcard bio">
+										<img src="../img/user-profile-avatar.jpg" alt="Image placeholder">
+									</div>
+									<div class="comment-body">
+										<h3>Joseph Wamulume</h3>
+										<div class="meta">July 7, 2020 at 5:21pm</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+									</div>
+									</li>
+								</ul>
+							</li>
+							<li class="comment">
+								<div class="vcard bio">
+									<img src="../img/user-profile-avatar.jpg" alt="Image">
+								</div>
+								<div class="comment-body">
+									<h3>Joseph Wamulume</h3>
+									<div class="meta">July 7, 2020 at 5:21pm</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+									<p><a href="#" class="reply"><i class="fa fa-reply fa-fw"></i> Reply</a></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+
 
 				</div>
 
@@ -250,16 +331,16 @@
 					<div class="card my-4 shadow tags-widget">
 						<h5 class="card-header">Popular Tags</h5>
 						<div class="card-body blog-tags">
-							<a href="#">Business</a>
-                            <a href="#">Marketing</a>
-                            <a href="#">Payment</a>
-                            <a href="#">Travel</a>
-                            <a href="#">Finance</a>
-                            <a href="#">Videos</a>
-                            <a href="#">Ideas</a>
-                            <a href="#">Unique</a>
-                            <a href="#">Music</a>
-                            <a href="#">Key</a>
+							<a href="#"><i class="fa fa-tag fa-fw"></i> Business</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Marketing</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Payment</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Travel</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Finance</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Videos</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Ideas</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Unique</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Music</a>
+                            <a href="#"><i class="fa fa-tag fa-fw"></i> Key</a>
 						</div>
 					</div>
 
