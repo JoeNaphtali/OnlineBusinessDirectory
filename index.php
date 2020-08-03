@@ -3,10 +3,10 @@
     <head>
 
 		<title>Home | FindUs</title>
-        <meta charset="utf-8">
+		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="css/all.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 		<!-- Material Icons -->
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
@@ -14,15 +14,15 @@
 		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
-		<script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<!-- Bootstrap tooltips -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<!-- Local Stylesheet -->
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/aos.css">
@@ -49,9 +49,6 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="promotions/index.php">Promotions</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="events/index.php">Events</a>
@@ -198,9 +195,9 @@
 													</div>
 												</div>
 												<div class="card-body listing-details">
-													<h2 class="card-title">Burger House</h2>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> 14320 Keenes Mill Rd. Cottondale, Alabama(AL)</div>
-													<div><i class="fa fa-phone fa-fw"></i> (+12) 345-678-910</div>
+													<a href="listing/index.php"><h2 class="card-title">Burger House</h2></a>
+													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> Plot No. 1086, Off Simon Mwansa Kapwepwe Rd</div>
+													<div><i class="fa fa-phone fa-fw"></i> +260 975 944 213</div>
 												</div>
 												<div class="card-footer listing-rating text-muted">
 													<i class="fa fa-star"></i>
@@ -290,7 +287,7 @@
 												<h2 class="card-title">Post Title</h2>
 												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
 												Reiciendis aliquid atque, nulla?</p>
-												<a href="post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
+												<a href="blog/post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
 											</div>
 											<div class="card-footer text-muted">
 												By Joseph Wamulume

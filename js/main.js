@@ -39,5 +39,20 @@ $(document).ready(function () {
     $(window).scroll(function(){
         $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
     });
-    
+
+    $('#enableDistanceRadius').click(function(){
+        // If the user checks the terms and conditions checkbox
+        if($(this).is(':checked')){
+            // Enable the 'Propose Idea' button.
+            $('.distanceRangeInput').attr("disabled", false);
+        } else{
+            // If the user did not check the terms and conditions checkbox
+            $('.distanceRangeInput').attr("disabled", true);
+        }
+    });
+
+    $('.dropdown-panel-toggle').click(function(){
+        $(".dropdown-panel-content").fadeToggle();
+    });
+
 });

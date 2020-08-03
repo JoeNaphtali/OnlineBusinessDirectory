@@ -49,9 +49,6 @@
 						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../promotions/index.php">Promotions</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
 					</li>
 					<li class="nav-item current">

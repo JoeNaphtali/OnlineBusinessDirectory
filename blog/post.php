@@ -48,9 +48,6 @@
 						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../promotions/index.php">Promotions</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
 					</li>
 					<li class="nav-item current">
@@ -158,10 +155,10 @@
 													<span class="month">Jul</span>
 													<span class="day">05</span>
 												</div>
-												<div class="blog-item-category">
+												<div class="blog-item-category category">
 													<a href="#"><i class="fa fa-folder-open fa-fw stroke-transparent"></i> Travel</a>
 												</div>
-												<div class="blog-item-bookmark">
+												<div class="blog-item-bookmark bookmark">
 													<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
 												</div>
 											</div>
