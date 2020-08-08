@@ -564,15 +564,6 @@ form .fa-google {
     z-index: 101;
 }
 
-.dropdown-panel-toggle {
-    padding: 5px 10px 5px 10px;
-    border-radius: 50px;
-}
-
-.dropdown-panel-toggle:hover {
-    background-color: #f0f0f0;
-}
-
 .event-item-details {
     position: absolute;
     left: 20px;
@@ -734,27 +725,6 @@ form .fa-google {
 	background-position: top center;
 }
 
-.search-column {
-    background-color: #f7f7f7;
-}
-
-.search-column .search-form {
-    padding: 31px 31px 16px 31px;
-    background-color: #fff;
-}
-
-.search-column .sort-by {
-    padding-left: 31px;
-    padding-right: 31px;
-    margin-top: 16px;
-}
-
-.search-column .listings {
-    padding-left: 31px;
-    padding-right: 31px;
-    margin-top: 16px;
-}
-
 .sort-by select {
     border: none;
     padding: 5px 10px 5px 10px;
@@ -790,14 +760,9 @@ form .fa-google {
     color: #DB4437;
 }
 
-.map-column {
-    height: calc(100vh - 62px);
-}
-
-#map-id {
+#map {
     height: 100%; 
     width: 100%; 
-    position: fixed;
 }
 
 .distance-radius a {
@@ -1028,6 +993,27 @@ form .fa-google {
 /* If the screen size is 767px wide or less */
 
 @media only screen and (max-width: 767px) {
+
+    .fs-container {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .fs-inner-container {
+        display: block!important;
+    }
+
+    .map-container {
+        width: 100%!important;
+        position: static!important;
+        order: 1;
+    }
+
+    .search-container {
+        width: 100%!important;
+        order: 2;
+        float: none!important;
+    }
 
     .masthead-home .form-group .input-group {
         margin-bottom: 1rem;
@@ -1647,6 +1633,10 @@ form .fa-google {
     padding-top: 20px;
 }
 
+.padding-top-62 {
+    padding-top: 62px;
+}
+
 .margin-bottom-30 {
     margin-bottom: 30px;
 }
@@ -1756,4 +1746,28 @@ form .fa-google {
 .listing-links li a.listing-links-tt {
     color: #fff;
     background: #1da1f2;
+}
+
+.fs-inner-container {
+    display: inline-block;
+}
+
+.search-container {
+    float: left;
+    width: 50%;
+    background-color: #f5f5f5;
+    padding-top: 62px;
+    height: 100vh;
+}
+
+.map-container {
+    width: 50%;
+    padding-top: 62px;
+    height: 100vh;
+    position: fixed;
+}
+
+.search {
+    padding: 30px;
+    background-color: #fff;
 }
