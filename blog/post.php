@@ -1,3 +1,20 @@
+<?php
+    // Start Session
+	session_start();
+	
+	// Database Connection
+	include "../includes/dbh.inc.php";
+	
+	// If the user is logged in, store session varibles 
+	if (isset($_SESSION['login'])) {
+		$user_id = $_SESSION['user_id'];
+		$profile_picture = $_SESSION['profile_picture'];
+		$email = $_SESSION['email'];
+		$first_name = $_SESSION['first_name'];
+		$last_name = $_SESSION['last_name'];
+  	}
+?>
+
 <html lang="en">
 
     <head>
@@ -34,32 +51,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top">
-			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
-			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse w-100" id="navbar">
-				<ul class="navbar-nav w-100 justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link" href="../index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
-					</li>
-					<li class="nav-item current">
-						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
-					</li>
-				</ul>
-				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
-				</div>
-			</div>
-		</nav>
+		<?php include '../includes/solidnavbar.inc.php' ?>
 
 		<!-- /.Main Navigation -->
 
@@ -180,6 +172,63 @@
 
 					<hr>
 
+					
+
+
+				</div>
+
+				<!-- Sidebar Widgets Column -->
+				<div class="col-lg-4 sidebar-widgets-column">
+
+					<!-- Search Form -->
+					<div class="card shadow search-widget">
+						<form>
+							<div class="card-body">
+								<div class="input-group">
+									<input type="search" class="form-control border-right-0" placeholder="Search">
+									<span class="input-group-prepend">
+										<button class="btn input-group-text bg-white border-left-0">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- Categories -->
+					<div class="card my-4 shadow categories-widget">
+						<h5 class="card-header">Categories</h5>
+						<div class="card-body">
+							<ul>
+								<li>
+									<a href="">Travel</a>
+								</li>
+								<li>
+									<a href="">News</a>
+								</li>
+								<li>
+									<a href="">Finance</a>
+								</li>
+								<li>
+									<a href="">Music</a>	
+								</li>
+								<li>
+									<a href="">Design</a>
+								</li>
+								<li>
+									<a href="">Animals</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+      			</div>
+
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-8 blog-post">
 					<div class="row blog-section-title-row">
 						<div class="col-lg-12">
 							<div class="section-title">
@@ -274,76 +323,9 @@
 							</li>
 						</ul>
 					</div>
-
-
 				</div>
+			</div>
 
-				<!-- Sidebar Widgets Column -->
-				<div class="col-lg-4 sidebar-widgets-column">
-
-					<!-- Search Form -->
-					<div class="card shadow search-widget">
-						<form>
-							<div class="card-body">
-								<div class="input-group">
-									<input type="search" class="form-control border-right-0" placeholder="Search">
-									<span class="input-group-prepend">
-										<button class="btn input-group-text bg-white border-left-0">
-											<i class="fa fa-search"></i>
-										</button>
-									</span>
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<!-- Categories -->
-					<div class="card my-4 shadow categories-widget">
-						<h5 class="card-header">Categories</h5>
-						<div class="card-body">
-							<ul>
-								<li>
-									<a href="">Travel</a>
-								</li>
-								<li>
-									<a href="">News</a>
-								</li>
-								<li>
-									<a href="">Finance</a>
-								</li>
-								<li>
-									<a href="">Music</a>	
-								</li>
-								<li>
-									<a href="">Design</a>
-								</li>
-								<li>
-									<a href="">Animals</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- Tags Widget -->
-					<div class="card my-4 shadow tags-widget">
-						<h5 class="card-header">Popular Tags</h5>
-						<div class="card-body blog-tags">
-							<a href="#"><i class="fa fa-tag fa-fw"></i> Business</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Marketing</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Payment</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Travel</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Finance</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Videos</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Ideas</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Unique</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Music</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Key</a>
-						</div>
-					</div>
-
-      			</div>
-
-    		</div>
 		</div>
 
 		<!-- /.Content -->

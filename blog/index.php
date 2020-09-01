@@ -1,3 +1,20 @@
+<?php
+    // Start Session
+	session_start();
+	
+	// Database Connection
+	include "../includes/dbh.inc.php";
+	
+	// If the user is logged in, store session varibles 
+	if (isset($_SESSION['login'])) {
+		$user_id = $_SESSION['user_id'];
+		$profile_picture = $_SESSION['profile_picture'];
+		$email = $_SESSION['email'];
+		$first_name = $_SESSION['first_name'];
+		$last_name = $_SESSION['last_name'];
+  	}
+?>
+
 <html lang="en">
 
     <head>
@@ -24,8 +41,7 @@
 		<!-- Bootstrap core JavaScript -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<!-- Local Stylesheet -->
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		
+		<link rel="stylesheet" type="text/css" href="../css/style.css">	
 		<!-- Local Script -->
 		<script type="text/javascript" src="../js/main.js"></script>
 
@@ -35,29 +51,91 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top">
+		<nav class="navbar navbar-light solid-navbar navbar-expand-lg fixed-top">
 			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<?php 
+				if (isset($_SESSION['login'])) {
+					echo "<div class='navbar-mobile-buttons'>
+					<div class='dropdown dropdown-mobile'>
+						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
+						if ($profile_picture == true) {
+							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
+							$fileinfo = glob($filename);
+							$fileext = explode("_".$user_id.".", $fileinfo[0]);
+							$fileactualext = $fileext[1];
+							echo "<img class='img-profile rounded-circle' src='../img/profile_pictures/profile_picture_user_".$user_id.".".$fileactualext."?".mt_rand()."'>";
+						}
+						else {
+							echo "<img class='img-profile rounded-circle' src='../img/profile_pictures/profile_picture_user_default.png'>";
+						}
+						echo "</a><div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
+							<a class='dropdown-item' href='../dashboard/index.php'><i class='fa fa-cog fa-fw'></i> Dashboard</a>
+							<a class='dropdown-item' href='../dashboard/mylistings.php'><i class='fa fa-layer-group fa-fw'></i> My Listings</a>
+							<a class='dropdown-item' href='../dashboard/mylistings.php'><i class='fa fa-user fa-fw'></i> My Profile</a>
+							<form action='../includes/logout.inc.php' method='post'>
+								<button class='dropdown-item' name='logout'><i class='fa fa-sign-out-alt fa-fw'></i> Log out</button>
+							</form>
+						</div>
+					</div>
+				</div>";
+				}
+			?>
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item">
 						<a class="nav-link" href="../index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="../directory/index.php">Directory</a>
 					</li>
 					<li class="nav-item current">
 						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
+					<?php
+					if (isset($_SESSION['login'])) {
+						echo '<div class="navbar-buttons"><div class="dropdown no-arrow cart"><div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
+						if ($profile_picture == true) {
+							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
+							$fileinfo = glob($filename);
+							$fileext = explode("_".$user_id.".", $fileinfo[0]);
+							$fileactualext = $fileext[1];
+							echo "<img class='img-profile rounded-circle' src='../img/profile_pictures/profile_picture_user_".$user_id.".".$fileactualext."?".mt_rand()."'>";
+						}
+						else {
+							echo "<img class='img-profile rounded-circle' src='../img/profile_pictures/profile_picture_user_default.png'>";
+						}
+								
+						echo '</a>
+						<div class="dropdown-menu user-dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../dashboard/index.php"><i class="fa fa-cog fa-fw"></i> Dashboard</a>
+							<a class="dropdown-item" href="../dashboard/mylistings.php"><i class="fa fa-layer-group fa-fw"></i> My Listings</a>
+							<a class="dropdown-item" href="../dashboard/mylistings.php"><i class="fa fa-user fa-fw"></i> My Profile</a>
+							<form action="../includes/logout.inc.php" method="post">
+								<button class="dropdown-item" name="logout"><i class="fa fa-sign-out-alt fa-fw"></i> Log out</button>
+							</form>
+						</div>
+					</div>
+					</div>';
+					}
+					else {
+						echo '<a class="btn btn-login" href="../login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
+						';
+					}
+					?>
+					<?php
+					if (isset($_SESSION['login'])) {
+						echo '<a class="btn btn-addlisting" href="../dashboard/addlisting.php"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>';
+					}
+					else {
+						echo '<a class="btn btn-addlisting" data-toggle="modal" data-target="#login-prompt"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+						';
+					}
+					?>
 				</div>
 			</div>
 		</nav>
@@ -159,23 +237,6 @@
 									<a href="">Animals</a>
 								</li>
 							</ul>
-						</div>
-					</div>
-
-					<!-- Tags Widget -->
-					<div class="card tags-widget shadow">
-						<h5 class="card-header">Popular Tags</h5>
-						<div class="card-body blog-tags">
-							<a href="#"><i class="fa fa-tag fa-fw"></i> Business</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Marketing</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Payment</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Travel</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Finance</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Videos</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Ideas</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Unique</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Music</a>
-                            <a href="#"><i class="fa fa-tag fa-fw"></i> Key</a>
 						</div>
 					</div>
 

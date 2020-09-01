@@ -1,3 +1,20 @@
+<?php
+    // Start Session
+	session_start();
+	
+	// Database Connection
+	include "../includes/dbh.inc.php";
+	
+	// If the user is logged in, store session varibles 
+	if (isset($_SESSION['login'])) {
+		$user_id = $_SESSION['user_id'];
+		$profile_picture = $_SESSION['profile_picture'];
+		$email = $_SESSION['email'];
+		$first_name = $_SESSION['first_name'];
+		$last_name = $_SESSION['last_name'];
+  	}
+?>
+
 <html lang="en">
 
     <head>
@@ -44,32 +61,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light clear-navbar navbar-expand-lg justify-content-center fixed-top" data-aos="fade-down">
-			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
-			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse w-100" id="navbar">
-				<ul class="navbar-nav w-100 justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link" href="../index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../events/index.php">Events</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="../blog/index.php">Blog</a>
-					</li>
-				</ul>
-				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
-					<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
-				</div>
-			</div>
-		</nav>
+		<?php include '../includes/clearnavbar.inc.php' ?>
 
 		<!-- /.Main Navigation -->
 
@@ -78,19 +70,19 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
-						<div class="listing__hero__option">
-							<div class="listing__hero__icon">
+						<div class="listing-hero-option">
+							<div class="listing-hero-icon">
 								<img src="img/listing/details/ld-icon.png" alt="">
 							</div>
-							<div class="listing__hero__text">
+							<div class="listing-hero-text">
 								<h2>
 									Burger House
 									<span class="category">
 										<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
 									</span>
 								</h2>
-								<div class="listing__hero__widget">
-									<div class="listing__hero__widget__rating listing-rating">
+								<div class="listing-hero-widget">
+									<div class="listing-hero-widget-rating listing-rating">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -98,13 +90,20 @@
 										<i class="fa fa-star-half-alt"></i>
 									</div>
 									<div>1 Review</div>
+									<!--
+									<div class="listing-hero-widget-date">
+										<span>
+											<i class="fa fa-calendar-alt fa-fw"></i> 20th August, 2020
+										</span>
+									</div>		
+									-->						
 								</div>
 								<p><i class="fa fa-map-marker-alt fa-fw"></i> Plot No. 1086, Off Simon Mwansa Kapwepwe Rd</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="listing__hero__btns">						
+						<div class="listing-hero-btns">						
 							<a href="#" class="btn btn-share"><i class="fa fa-share-alt"></i> Share</a>
 							<a href="#" class="btn btn-bookmark"><i class="fa fa-heart"></i> Bookmark</a>
 						</div>
@@ -135,27 +134,18 @@
 						et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. 
 						Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
 						<div class="listing-links-container">		
-							<ul class="listing-links contact-links">
+							<ul class="social-links">
 								<li>
-									<a href="tel:+260 975 944 213" class="listing-links"><i class="fa fa-phone"></i> +260 975 944 213</a>
+									<a href="#" target="_blank" class="social-links-fb text-decoration-none"><i class="fab fa-facebook-square"></i> Facebook</a>
 								</li>
 								<li>
-									<a href="mailto:burgerhouse@listeo.pro" class="listing-links"><i class="fa fa-envelope"></i> enquiries@burgerhouse.com</a>
-								</li>
-							</ul>
-							<div class="clearfix"></div>
-							<ul class="listing-links">
-								<li>
-									<a href="#" target="_blank" class="listing-links-fb"><i class="fab fa-facebook-square"></i> Facebook</a>
+									<a href="#" target="_blank" class="social-links-yt text-decoration-none"><i class="fab fa-youtube"></i> YouTube</a>
 								</li>
 								<li>
-									<a href="#" target="_blank" class="listing-links-yt"><i class="fab fa-youtube"></i> YouTube</a>
+									<a href="#" target="_blank" class="social-links-ig text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
 								</li>
 								<li>
-									<a href="#" target="_blank" class="listing-links-ig"><i class="fab fa-instagram"></i> Instagram</a>
-								</li>
-								<li>
-									<a href="#" target="_blank" class="listing-links-tt"><i class="fab fa-twitter"></i> Twitter</a>
+									<a href="#" target="_blank" class="social-links-tt text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
 								</li>
 							</ul>
 							<div class="clearfix"></div>				
@@ -177,6 +167,51 @@
 							<li><i class="fa fa-check-square"></i>Vegan</li>
 						</ul>
 					</div>
+					<div class="listing-pricing">
+						<div class="row blog-section-title-row">
+							<div class="col-lg-12">
+								<div class="section-title">
+									<h2>Pricing</h2>
+								</div>
+							</div>
+						</div>
+						<div class="pricing-list-container margin-bottom-40">
+							<div class="pricing-category">
+								<h4>Food</h4>
+								<ul>
+									<li>
+										<h5>Classic Burger (K45)</h5>
+										<p>Beef, Salad, Mayonnaise, Spicey Relish, Cheese</p>
+										<a href="#" class="btn btn-primary text-decoration-none"><i class="fa fa-cart-plus"></i></a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<h5>Cheddar Burger (K55)</h5>
+										<p>Cheddar Cheese, Lettuce, Tomato, Onion, Dill Pickles</p>
+										<a href="#" class="btn btn-primary text-decoration-none"><i class="fa fa-cart-plus"></i></a>
+									</li>
+								</ul>
+							</div>
+							<div class="pricing-category">
+								<h4>Drinks & Refreshments</h4>
+								<ul>
+									<li>
+										<h5>Frozen Shake (K15)</h5>
+										<p>Condimentum, Eratid, Facilisis, Malesuada</p>
+										<a href="#" class="btn btn-primary text-decoration-none"><i class="fa fa-cart-plus"></i></a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<h5>Orange Juice (K25)</h5>
+										<p>Justo, Felis, Congue, Sapien</p>
+										<a href="#" class="btn btn-primary text-decoration-none"><i class="fa fa-cart-plus"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 					<div class="listing-location margin-bottom-40">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
@@ -187,7 +222,7 @@
 						</div>
 						<div id="listing-map"></div>
 					</div>
-					<div class="margin-bottom-40">
+					<div class="listing-rating margin-bottom-40">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
 								<div class="section-title">
@@ -245,68 +280,42 @@
 							</div>
 						</div>
 					</div>
-					<div class="leave-review margin-bottom-40">
-						<div class="row blog-section-title-row">
-							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Leave a review</h2>
-								</div>
-							</div>
-						</div>
-						<div class="review-form">
-							<form>
-								<div class="listing-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-								</div>
-								<div class="form-group">
-									<textarea class="form-control" placeholder="We thank you for your feedback...."></textarea>
-								</div>
-								<button class="btn btn-primary form-control">Submit</button>
-							</form>
-						</div>
-					</div>
-					<div class="listing-reviews">
-						<div class="row blog-section-title-row">
-							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Reviews (1)</h2>
-								</div>
-							</div>
-						</div>
-						<div>
-						<ul class="comment-list">
-							<li class="comment">
-								<div class="vcard bio">
-									<img src="../img/user-profile-avatar.jpg" alt="Image">
-								</div>
-								<div class="comment-body">
-									<h3>Joseph Wamulume</h3>
-									<div class="meta">July 7, 2020 at 5:21pm</div>
-									<div class="listing-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-alt"></i>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-					</div>
 				</div>
 				<div class="col-lg-4">
+					<div class="card contact-information margin-bottom-30">
+						<div class="card-header">
+							<h4 class="margin-bottom-0">Contant Information</h4>
+						</div>
+						<div class="card-body">
+							<ul class="list-style-none margin-bottom-0">
+								<li>
+									<i class="fa fa-external-link-alt fa-fw"></i>
+									<a href="#" class="text-decoration-none"> www.burgerhouse.com</a>
+								</li>
+								<li>
+									<i class="fa fa-phone fa-fw"></i>
+									<a href="tel:+260 975 944 213" class="text-decoration-none"> +260 975 944 213</a>
+								</li>
+								<li class="border-none">
+									<i class="fa fa-envelope fa-fw"></i>
+									<a href="mailto:enquiries@burgerhouse.com" class="text-decoration-none"> enquiries@burgerhouse.com</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--
+					<div class="margin-bottom-30">
+						<button class="btn btn-primary width-100">Make Booking</button>
+					</div>
+					-->
 					<div class="card listing-opening-hours margin-bottom-30">
+						<div class="card-header">
+							<h4 class="margin-bottom-0 text-center">Opening Hours</h4>
+						</div>
 						<div class="card-body">
 							<div class="listing-badge open">
 								Open
 							</div>
-							<h4 class="text-center padding-bottom-20 border-bottom-gray">Opening Hours</h4>
 							<ul class="list-style-none">
 								<li>
 									<span class="day">Monday</span>
@@ -341,6 +350,85 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="leave-review margin-bottom-40">
+						<div class="row blog-section-title-row">
+							<div class="col-lg-12">
+								<div class="section-title">
+									<h2>Leave a review</h2>
+								</div>
+							</div>
+						</div>
+						<div class="review-form">
+							<form>
+								<div class="listing-rating">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" placeholder="We thank you for your feedback...."></textarea>
+								</div>
+								<button class="btn btn-primary form-control">Submit</button>
+							</form>
+						</div>
+					</div>
+					<!--
+					<div class="enquiry margin-bottom-40">
+						<div class="row blog-section-title-row">
+							<div class="col-lg-12">
+								<div class="section-title">
+									<h2>Get in touch</h2>
+								</div>
+							</div>
+						</div>
+						<div class="enquiry-form">
+							<form>
+								<div class="form-group">
+									<textarea class="form-control" placeholder="Your message...."></textarea>
+								</div>
+								<button class="btn btn-primary form-control">Submit</button>
+							</form>
+						</div>
+					</div>
+					-->
+					<div class="listing-reviews">
+						<div class="row blog-section-title-row">
+							<div class="col-lg-12">
+								<div class="section-title">
+									<h2>Reviews (1)</h2>
+								</div>
+							</div>
+						</div>
+						<div>
+							<ul class="comment-list">
+								<li class="comment">
+									<div class="vcard bio">
+										<img src="../img/user-profile-avatar.jpg" alt="Image">
+									</div>
+									<div class="comment-body">
+										<h3>Joseph Wamulume</h3>
+										<div class="meta">July 7, 2020 at 5:21pm</div>
+										<div class="listing-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-half-alt"></i>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
         
 		<!-- /.Content -->
@@ -395,8 +483,8 @@
 
 		<script>
 			
-		var mymap = L.map('listing-map').setView([-15.386283, 28.399378], 18);
-		var marker = L.marker([-15.386283, 28.399378]).addTo(mymap);
+		var listing_map = L.map('listing-map').setView([-15.386283, 28.399378], 18);
+		var listing_marker = L.marker([-15.386283, 28.399378]).addTo(listing_map);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -406,13 +494,9 @@
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
 		zoomOffset: -1
-		}).addTo(mymap);
+		}).addTo(listing_map);
 
 		</script>
-
-<script type="text/javascript" src="js/aos.js"></script><script>
-	AOS.init();
-	</script>
 
 	</body>
 

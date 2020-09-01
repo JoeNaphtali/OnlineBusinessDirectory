@@ -1,3 +1,17 @@
+<?php
+    // Start Session
+	session_start();
+	
+	// Database Connection
+	include "../includes/dbh.inc.php";
+	
+	// If the user is logged in, store session varibles 
+	if (isset($_SESSION['login'])) {
+		header("Location: ../index.php");
+		exit;
+	}
+?>
+
 <html lang="en">
 
     <head>
@@ -11,6 +25,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<!-- Bootstrap core CSS -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 		<!-- JQuery -->
@@ -32,38 +48,7 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar main-navbar navbar-light navbar-expand-lg bg-faded justify-content-center static-top">
-			<!-- Navbar Logo -->
-			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto">FindUs</a>
-			<!-- Hamburger Menu Button -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<!-- Navigation Menu -->
-			<div class="navbar-collapse collapse w-100" id="navbar">
-				<ul class="navbar-nav w-100 justify-content-center">
-					<li class="nav-item">
-						<a class="nav-link" href="../index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../businesses/index.php">Businesses</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../deals/index.php">Deals</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../events/index.php">Events</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../blog/index.php">Blog</a>
-					</li>
-				</ul>
-				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#">Add Listing</a>
-					<a class="btn btn-login" href="../login/index.php">Login</a>
-				</div>
-			</div>
-		</nav>
+		<?php include '../includes/solidnavbar.inc.php' ?>
 
 		<!-- /.Main Navigation -->
 
@@ -85,7 +70,7 @@
 							<a href="#">Forgot your password?</a>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-block btn-submit" type="submit" name="login-submit">Login</button>
+							<button class="btn btn-block btn-submit" type="submit" name="login">Login</button>
 						</div>
 						<div class="form-group">
 							<small>By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
@@ -93,10 +78,10 @@
 						<div class="form-group text-center">
 							Or continue with:
 						</div>
-						<div class="form-group text-center">
-							<a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-							<a href="#"><i class="fab fa-google fa-2x"></i></a>
-							<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+						<div class="form-group text-center social-login">
+							<a href="" class="text-decoration-none facebook"><i class="fab fa-facebook-square"></i> Facebook</a>
+							<a href="" class="text-decoration-none google"><i class="fab fa-google"></i> Google</a>
+							<a href="" class="text-decoration-none twitter"><i class="fab fa-twitter"></i> Twitter</a>
 						</div>
 						<div class="form-group">
 							New to FindUs? <a href="../register/index.php">Register</a>

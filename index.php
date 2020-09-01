@@ -1,3 +1,20 @@
+<?php
+    // Start Session
+	session_start();
+	
+	// Database Connection
+	include "includes/dbh.inc.php";
+	
+	// If the user is logged in, store session varibles 
+	if (isset($_SESSION['login'])) {
+		$user_id = $_SESSION['user_id'];
+		$profile_picture = $_SESSION['profile_picture'];
+		$email = $_SESSION['email'];
+		$first_name = $_SESSION['first_name'];
+		$last_name = $_SESSION['last_name'];
+  	}
+?>
+
 <html lang="en">
 
     <head>
@@ -28,43 +45,124 @@
 		<link rel="stylesheet" type="text/css" href="css/aos.css">
 		<!-- Local Script -->
 		<script type="text/javascript" src="js/main.js"></script>
+		<!-- Typed.js -->
 		<script type="text/javascript" src="js/typed.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
+		<!-- Animate On Scroll -->
+		<script type="text/javascript" src="js/aos.js"></script>
 
 	</head>
 
-	<body class="home">
+	<body>
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light clear-navbar navbar-expand-lg justify-content-center fixed-top" data-aos="fade-down">
+		<nav class="navbar navbar-light clear-navbar navbar-expand-lg fixed-top" data-aos="fade-down">
 			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<?php 
+				if (isset($_SESSION['login'])) {
+					echo "<div class='navbar-mobile-buttons'>
+					<div class='dropdown dropdown-mobile'>
+						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
+						if ($profile_picture == true) {
+							$filename = "img/profile_pictures/profile_picture_user_".$user_id."*";
+							$fileinfo = glob($filename);
+							$fileext = explode("_".$user_id.".", $fileinfo[0]);
+							$fileactualext = $fileext[1];
+							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_".$user_id.".".$fileactualext."?".mt_rand()."'>";
+						}
+						else {
+							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_default.png'>";
+						}
+						echo "</a><div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
+							<a class='dropdown-item' href='dashboard/index.php'><i class='fa fa-cog fa-fw'></i> Dashboard</a>
+							<a class='dropdown-item' href='dashboard/mylistings.php'><i class='fa fa-layer-group fa-fw'></i> My Listings</a>
+							<a class='dropdown-item' href='dashboard/mylistings.php'><i class='fa fa-user fa-fw'></i> My Profile</a>
+							<form action='includes/logout.inc.php' method='post'>
+								<button class='dropdown-item' name='logout'><i class='fa fa-sign-out-alt fa-fw'></i> Log out</button>
+							</form>
+						</div>
+					</div>
+				</div>";
+				}
+			?>
 			<div class="navbar-collapse collapse w-100" id="navbar">
 				<ul class="navbar-nav w-100 justify-content-center">
 					<li class="nav-item current">
 						<a class="nav-link" href="index.php">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="categories/index.php">Categories</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="events/index.php">Events</a>
+						<a class="nav-link js-scroll-trigger" href="directory/index.php">Directory</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="blog/index.php">Blog</a>
 					</li>
 				</ul>
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
-					<a class="btn btn-addlisting" href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
-					<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
+					<?php
+					if (isset($_SESSION['login'])) {
+						echo '<div class="navbar-buttons"><div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
+						if ($profile_picture == true) {
+							$filename = "img/profile_pictures/profile_picture_user_".$user_id."*";
+							$fileinfo = glob($filename);
+							$fileext = explode("_".$user_id.".", $fileinfo[0]);
+							$fileactualext = $fileext[1];
+							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_".$user_id.".".$fileactualext."?".mt_rand()."'>";
+						}
+						else {
+							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_default.png'>";
+						}
+								
+						echo '</a>
+						<div class="dropdown-menu user-dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="dashboard/index.php"><i class="fa fa-cog fa-fw"></i> Dashboard</a>
+							<a class="dropdown-item" href="dashboard/mylistings.php"><i class="fa fa-layer-group fa-fw"></i> My Listings</a>
+							<a class="dropdown-item" href="dashboard/mylistings.php"><i class="fa fa-user fa-fw"></i> My Profile</a>
+							<form action="includes/logout.inc.php" method="post">
+								<button class="dropdown-item" name="logout"><i class="fa fa-sign-out-alt fa-fw"></i> Log out</button>
+							</form>
+						</div>
+					</div>
+					</div>';
+					}
+					else {
+						echo '<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
+						';
+					}
+					?>
+					<?php
+					if (isset($_SESSION['login'])) {
+						echo '<a class="btn btn-addlisting" href="dashboard/addlisting.php"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>';
+					}
+					else {
+						echo '<a class="btn btn-addlisting" data-toggle="modal" data-target="#login-prompt"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
+						';
+					}
+					?>
 				</div>
 			</div>
 		</nav>
 
 		<!-- /.Main Navigation -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="login-prompt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Please log in</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You must be <a href="login/index.php">logged in</a> in order to add a listing.
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- Header -->
 
@@ -253,7 +351,7 @@
 			</div>
 		</div>
 
-		<!-- Top Businesses Tabs Panel -->
+		<!-- Latest News and Articles -->
 		<div class="container-fluid page-section-container">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
@@ -353,20 +451,32 @@
 		<!-- /.Footer -->
 
 		<script>
-            var typed = new Typed('.typed-words', {
-            strings: ["Attractions"," Events"," Hotels", " Restaurants"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-            });
-			</script>
 
-<script type="text/javascript" src="js/aos.js"></script><script>
-  AOS.init();
-</script>
+		/* Typed words */
+    
+		$(document).ready(function () {
+
+		var typed = new Typed('.typed-words', {
+		strings: ["Attractions"," Events"," Hotels", " Restaurants"],
+		typeSpeed: 80,
+		backSpeed: 80,
+		backDelay: 4000,
+		startDelay: 1000,
+		loop: true,
+		showCursor: true
+		});
+
+		});
+
+		/*Animate on scroll */
+
+		$(document).ready(function () {
+
+		AOS.init();
+
+		});
+
+		</script>
 
 	</body>
 
