@@ -12,7 +12,7 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $password_repeat = $_POST['password_repeat'];
-    $profile_picture = false;
+    $profile_picture_status = false;
 
     $file = $_FILES['profile_picture'];
 
@@ -20,26 +20,41 @@ if (isset($_POST['register'])) {
 	$fileTmpName = $_FILES['profile_picture']['tmp_name'];
 	$fileSize = $_FILES['profile_picture']['size'];
 	$fileError = $_FILES['profile_picture']['error'];
-	$fileType = $_FILES['profile_picture']['type'];
-
+    $fileType = $_FILES['profile_picture']['type'];
+    
 	$fileExt = explode('.', $fileName);
 	$fileActualExt = strtolower(end($fileExt));
 
     $allowed = array('jpg', 'jpeg', 'png');
 
-    // Display an error if the user leaves an empty field
-    if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($password_repeat)) {
-        header("Location: ../register/index.php?error=emptyfields&fname=".$first_name."&lname=".$last_name."&email=".$email);
+    // Display an error if the user did not enter a first name
+    if (empty($first_name)) {
+        header("Location: ../register/index.php?error=nofirstname&lname=".$last_name."&email=".$email);
         exit();
     }
-    // Display an error if the user enters an invalid email, first name or last name
-    else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $first_name) && !preg_match("/^[a-zA-Z0-9]*$/", $last_name)) {
-        header("Location: ../register/index.php?error=invalidmailfnamelname");
+    // Display an error if the user did not enter a last name
+    if (empty($last_name)) {
+        header("Location: ../register/index.php?error=nolastname&fname=".$first_name."&email=".$email);
+        exit();
+    }
+    // Display an error if the user did not enter an email address
+    if (empty($email)) {
+        header("Location: ../register/index.php?error=noemail&fname=".$first_name."&lname=".$last_name);
+        exit();
+    }
+    // Display an error if the user did not enter a password
+    if (empty($password)) {
+        header("Location: ../register/index.php?error=nopassword&fname=".$first_name."&lname=".$last_name."&email=".$email);
+        exit();
+    }
+    // Display an error if the user did not repeat their password
+    if (empty($password_repeat)) {
+        header("Location: ../register/index.php?error=norepeat&fname=".$first_name."&lname=".$last_name."&email=".$email);
         exit();
     }
     // Display an error if the user enters an invalid email
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ../register/index.php.php?error=invalidmail&fname=".$first_name."&lname=".$last_name);
+        header("Location: ../register/index.php?error=invalidemail&fname=".$first_name."&lname=".$last_name);
         exit();
     }
     // Display an error if the user enters an invalid first name
@@ -50,6 +65,42 @@ if (isset($_POST['register'])) {
     // Display an error if the user enters an invalid last name
     else if (!preg_match("/^[a-zA-Z]*$/", $last_name)) {
         header("Location: ../register/index.php?error=invalidlname&fname=".$first_name."&mail=".$email);
+        exit();
+    }
+    // Check if password is at least 8 charaters long
+    else if (strlen($password) < 8) {
+        // Display error message if password is less than 8 characters
+        header("Location: ../register/index.php?error=passwordshort&fname=".$first_name."&lname=".$last_name."&mail=".$email);
+        exit();
+    }
+    // Check if password contains at least one digit
+    else if (!preg_match("/\d/", $password)) {
+        // Display error message if password does not contain at least one digit
+        header("Location: ../register/index.php?error=passwordnodigit&fname=".$first_name."&lname=".$last_name."&mail=".$email);
+        exit();
+    }
+    // Check if password contains at least one capital letter
+    else if (!preg_match("/[A-Z]/", $password)) {
+        // Display error message if password does not contain at least one capital letter
+        header("Location: ../register/index.php?error=passwordnocapitalletter&fname=".$first_name."&lname=".$last_name."&mail=".$email);
+        exit();
+    }
+    // Check if password contains at least one small letter
+    else if (!preg_match("/[a-z]/", $password)) {
+        // Display error message if password does not contain at least one small letter
+        header("Location: ../register/index.php?error=passwordnosmallletter&fname=".$first_name."&lname=".$last_name."&mail=".$email);
+        exit();
+    }
+    // Check if password contains at least one special character
+    else if (!preg_match("/\W/", $password)) {
+        // Display error message if password does not contain at least one special character
+        header("Location: ../register/index.php?error=passwordnospecial&fname=".$first_name."&lname=".$last_name."&mail=".$email);
+        exit();
+    }
+    // Check if password contains white space
+    else if (preg_match("/\s/", $password)) {
+        // Display error message if password contains white space
+        header("Location: ../register/index.php?error=passwordwhitespace&fname=".$first_name."&lname=".$last_name."&mail=".$email);
         exit();
     }
     // Check if passwords match
@@ -82,7 +133,7 @@ if (isset($_POST['register'])) {
             }
             else {
                 //Insert user details into the database
-                $sql = "INSERT INTO user (first_name, last_name, profile_picture, email, password) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO user (first_name, last_name, email, user_password, profile_picture_status) VALUES (?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 // Check for sql syntax error
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -93,12 +144,12 @@ if (isset($_POST['register'])) {
                 else {
                     // Check if user uploaded profile picture
                     if (($_FILES['profile_picture']['name'])) {
-                        $profile_picture = true;
+                        $profile_picture_status = true;
                     }
                     // Hash the user password
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                    // Bind varibales the variables to a prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $profile_picture, $email, $hashed_password);
+                    // Bind the varibales to a prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $email, $hashed_password, $profile_picture_status);
                     // Execute the prepared statement
                     mysqli_stmt_execute($stmt);
                     // Check if user uploaded profile picture

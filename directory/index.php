@@ -8,11 +8,15 @@
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
 		$user_id = $_SESSION['user_id'];
-		$profile_picture = $_SESSION['profile_picture'];
-		$email = $_SESSION['email'];
-		$first_name = $_SESSION['first_name'];
-		$last_name = $_SESSION['last_name'];
-  	}
+		// Retrieve user from 'user' table
+		$results = mysqli_query($conn, "SELECT * FROM user WHERE id = $user_id");
+		$row = mysqli_fetch_array($results);
+
+		$first_name = $row['first_name'];
+		$last_name = $row['last_name'];
+		$email = $row['email'];
+		$profile_picture_status = $row['profile_picture_status'];
+	}
 ?>
 
 <html lang="en">
@@ -71,7 +75,7 @@
 					echo "<div class='navbar-mobile-buttons'>
 					<div class='dropdown dropdown-mobile'>
 						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
-						if ($profile_picture == true) {
+						if ($profile_picture_status == true) {
 							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
 							$fileinfo = glob($filename);
 							$fileext = explode("_".$user_id.".", $fileinfo[0]);
@@ -109,7 +113,7 @@
 					<?php
 					if (isset($_SESSION['login'])) {
 						echo '<div class="navbar-buttons"><div class="dropdown no-arrow cart"><div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
-						if ($profile_picture == true) {
+						if ($profile_picture_status == true) {
 							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
 							$fileinfo = glob($filename);
 							$fileext = explode("_".$user_id.".", $fileinfo[0]);

@@ -26,3 +26,6 @@ if ($conn->query($sql)==TRUE) {
 else {
     echo "There was an error deleting the database: ". $conn->error;
 }
+
+// Close connection string
+mysqli_close($conn);

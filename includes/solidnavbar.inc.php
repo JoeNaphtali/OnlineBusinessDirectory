@@ -8,7 +8,7 @@
 					echo "<div class='navbar-mobile-buttons'>
 					<div class='dropdown dropdown-mobile'>
 						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
-						if ($profile_picture == true) {
+						if ($profile_picture_status == true) {
 							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
 							$fileinfo = glob($filename);
 							$fileext = explode("_".$user_id.".", $fileinfo[0]);
@@ -21,7 +21,7 @@
 						echo "</a><div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
 							<a class='dropdown-item' href='../dashboard/index.php'><i class='fa fa-cog fa-fw'></i> Dashboard</a>
 							<a class='dropdown-item' href='../dashboard/mylistings.php'><i class='fa fa-layer-group fa-fw'></i> My Listings</a>
-							<a class='dropdown-item' href='../dashboard/mylistings.php'><i class='fa fa-user fa-fw'></i> My Profile</a>
+							<a class='dropdown-item' href='../dashboard/myprofile.php'><i class='fa fa-user fa-fw'></i> My Profile</a>
 							<form action='../includes/logout.inc.php' method='post'>
 								<button class='dropdown-item' name='logout'><i class='fa fa-sign-out-alt fa-fw'></i> Log out</button>
 							</form>
@@ -46,7 +46,7 @@
 					<?php
 					if (isset($_SESSION['login'])) {
 						echo '<div class="navbar-buttons"><div class="dropdown no-arrow cart"><div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
-						if ($profile_picture == true) {
+						if ($profile_picture_status == true) {
 							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
 							$fileinfo = glob($filename);
 							$fileext = explode("_".$user_id.".", $fileinfo[0]);
@@ -61,7 +61,7 @@
 						<div class="dropdown-menu user-dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="../dashboard/index.php"><i class="fa fa-cog fa-fw"></i> Dashboard</a>
 							<a class="dropdown-item" href="../dashboard/mylistings.php"><i class="fa fa-layer-group fa-fw"></i> My Listings</a>
-							<a class="dropdown-item" href="../dashboard/mylistings.php"><i class="fa fa-user fa-fw"></i> My Profile</a>
+							<a class="dropdown-item" href="../dashboard/myprofile.php"><i class="fa fa-user fa-fw"></i> My Profile</a>
 							<form action="../includes/logout.inc.php" method="post">
 								<button class="dropdown-item" name="logout"><i class="fa fa-sign-out-alt fa-fw"></i> Log out</button>
 							</form>

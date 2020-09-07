@@ -3,16 +3,20 @@
 	session_start();
 	
 	// Database Connection
-	include "../includes/dbh.inc.php";
+	include "..includes/dbh.inc.php";
 	
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
 		$user_id = $_SESSION['user_id'];
-		$profile_picture = $_SESSION['profile_picture'];
-		$email = $_SESSION['email'];
-		$first_name = $_SESSION['first_name'];
-		$last_name = $_SESSION['last_name'];
-  	}
+		// Retrieve user from 'user' table
+		$results = mysqli_query($conn, "SELECT * FROM user WHERE id = $user_id");
+		$row = mysqli_fetch_array($results);
+
+		$first_name = $row['first_name'];
+		$last_name = $row['last_name'];
+		$email = $row['email'];
+		$profile_picture_status = $row['profile_picture_status'];
+	}
 ?>
 
 <html lang="en">
