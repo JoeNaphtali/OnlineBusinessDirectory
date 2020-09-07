@@ -58,9 +58,58 @@
             <div class="row justify-content-center">
                 <div class="login-form col-lg-4 bg-light px-0 shadow">
 					<form class="p-4 bg-white" action="../includes/login.inc.php" method="post">
+						<?php 
+						// Success messages
+						if (isset($_GET['register'])) {
+							if ($_GET['register'] == "success") {
+								echo '<div class="text-center success-message">
+								<p class="text-white">Registration successful. Please login to continue.</p>
+								</div>';
+							}
+						}
+						if (isset($_GET['password'])) {
+							if ($_GET['password'] == "updated") {
+								echo '<div class="text-center success-message">
+								<p class="text-white">Your password was updated succesfully, please login to continue.</p>
+								</div>';
+							}
+						}
+						// Error messages
+						if (isset($_GET['error'])) {
+							if ($_GET['error'] == "noemail") {
+								echo '<div class="text-center error-message">
+								<p class="text-white">Please enter your email address.</p>
+								</div>';
+							}
+							if ($_GET['error'] == "invalidemail") {
+								echo '<div class="text-center error-message">
+								<p class="text-white">Please enter a valid email address.</p>
+								</div>';
+							}
+							if ($_GET['error'] == "nopassword") {
+								echo '<div class="text-center error-message">
+								<p class="text-white">Please enter your password.</p>
+								</div>';
+							}
+							if ($_GET['error'] == "wrongpassword") {
+								echo '<div class="text-center error-message">
+								<p class="text-white">The password you entered is incorrect.</p>
+								</div>';
+							}
+							if ($_GET['error'] == "nouser") {
+								echo '<div class="text-center error-message">
+								<p class="text-white">This user does not exist. Please make sure you entered the correct email address.</p>
+								</div>';
+							}
+						}
+						?>
 						<div class="form-group">
 							<label>Email</label>
+							<?php if (isset($_GET['email'])):?>
+                            <input class="form-control" type="email" name="email" value="<?php echo ($_GET['email']); ?>" required>
+							<?php else :?>
 							<input class="form-control" type="email" name="email" required>
+							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label>Password</label>
@@ -75,16 +124,11 @@
 						<div class="form-group">
 							<small>By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
 						</div>
-						<div class="form-group text-center">
-							Or continue with:
-						</div>
-						<div class="form-group text-center social-login">
-							<a href="" class="text-decoration-none facebook"><i class="fab fa-facebook-square"></i> Facebook</a>
-							<a href="" class="text-decoration-none google"><i class="fab fa-google"></i> Google</a>
-							<a href="" class="text-decoration-none twitter"><i class="fab fa-twitter"></i> Twitter</a>
-						</div>
 						<div class="form-group">
 							New to FindUs? <a href="../register/index.php">Register</a>
+						</div>
+						<div class="form-group">
+							<a href="../forgotpassword/resetrequest.php">Forgot your password?</a>
 						</div>
 					</form>
                 </div>

@@ -11224,6 +11224,29 @@ body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
 
+/* Navigation */
+
+.btn-myaccount:after {
+  bottom: -6px;
+  right: -6px;
+}
+
+.btn-myaccount:after {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  background-color: #38b653;
+  bottom: 0;
+  right: 0;
+  display: block;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  border-radius: 50%;
+}
+
+/* End of Navigation
+
 /* Add Listing Page */
 
 .add-listing-section {
@@ -11302,3 +11325,24 @@ width: 100%;
 }
 
 /* End of Margin and Padding Classes */
+
+/* Forms */
+
+.image-preview {
+  width: 100%;
+  min-height: 100px;
+  border: 2px solid #dddddd;
+  margin-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+.image-preview__image {
+  width: 100%;
+}
+
+/* End of Forms */

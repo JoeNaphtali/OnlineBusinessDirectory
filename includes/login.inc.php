@@ -10,9 +10,19 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Display error if user leaves fields empty
-    if (empty($email) || empty($password)) {
-        header("Location: ../login/index.php?error=emptyfields&mail=".$email);
+    // Display error message if user does not enter an email address
+    if (empty($email)) {
+        header("Location: ../login/index.php?error=noemail");
+        exit();
+    }
+    // Display an error if the user enters an invalid email
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: ../login/index.php?error=invalidemail");
+        exit();
+    }
+    // Display error message if user does not enter a password
+    else if (empty($password)) {
+        header("Location: ../login/index.php?error=nopassword&email=".$email);
         exit();
     }
     else {
@@ -32,11 +42,11 @@ if (isset($_POST['login'])) {
             if ($row = mysqli_fetch_assoc($result)) {
 
                 // Verify user password
-                $password_check = password_verify($password, $row['password']);
+                $password_check = password_verify($password, $row['user_password']);
 
                 // Display error and return user to login page if password is incorrect
                 if ($password_check == false) {
-                    header("Location: ../login/index.php?error=wrongpwd&mail=".$email);
+                    header("Location: ../login/index.php?error=wrongpassword&email=".$email);
                     exit();
                 }
 
@@ -50,7 +60,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['first_name'] = $row['first_name'];
                     $_SESSION['last_name'] = $row['last_name'];
-                    $_SESSION['profile_picture'] = $row['profile_picture'];
+                    $_SESSION['profile_picture_status'] = $row['profile_picture_status'];
                     $_SESSION['login'] = true;
 
                     header("Location: ../index.php?login=success");
@@ -59,7 +69,7 @@ if (isset($_POST['login'])) {
                 }
                 // Display error and return user to login page if password is incorrect
                 else {
-                    header("Location: ../login/index.php?error=wrongpwd");
+                    header("Location: ../login/index.php?error=wrongpassword");
                     exit();
                 }
             }
@@ -69,7 +79,10 @@ if (isset($_POST['login'])) {
             }
         }
     }
-
+    // Close statement
+    mysqli_stmt_close($sql);
+    // Close connection string
+    mysqli_close($conn);
 }
 else {
     header("Location: ../login/index.php");
