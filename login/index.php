@@ -103,17 +103,17 @@
 							}
 						}
 						?>
-						<div class="form-group">
+						<div class="form-group error">
 							<label>Email</label>
 							<?php if (isset($_GET['email'])):?>
-                            <input class="form-control" type="email" name="email" value="<?php echo ($_GET['email']); ?>" required>
+                            <input class="form-control" id="email" type="email" name="email" value="<?php echo ($_GET['email']); ?>" required>
 							<?php else :?>
-							<input class="form-control" type="email" name="email" required>
+							<input class="form-control" id="email" type="email" name="email" required>
 							<?php endif ?>
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-							<input class="form-control" type="password" name="password" required>
+							<input class="form-control" id="password" type="password" name="password" required>
 						</div>
 						<div class="form-group">
 							<a href="#">Forgot your password?</a>

@@ -65,11 +65,10 @@
 
 	<title>Add Listing | Find Us</title>
 
-	<!-- Custom fonts for this template-->
+	<!-- Font Awesome -->
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-	<!-- Custom styles for this template-->
+	<!-- Local CSS -->
 	<link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
@@ -188,19 +187,10 @@
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1">
-							<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-home fa-fw"></i>
-							</a>
-						</li>
-
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img class="img-profile rounded-circle" src="../img/user-profile-avatar.jpg">
+						<!-- Return to home -->
+						<li class="nav-item mx-1">
+							<a class="nav-link" href="../index.php">
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">Back to home page</span><i class="fas fa-home fa-fw"></i>
 							</a>
 						</li>
 
@@ -222,7 +212,7 @@
 
 						<div class="col-md-12">
 
-							<form class="add-listing">
+							<form class="add-listing" method="POST" action="../includes/addlisting.inc.php">
 
 								<div class="add-listing-section basic-info shadow">
 									<div class="add-listing-headline">
@@ -231,26 +221,34 @@
 									<div class="add-listing-container">
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>Listing Name</label>
-												<input class="form-control">
+												<label for="listing-name">Listing Name</label>
+												<?php if (isset($_GET['lname'])): ?>
+												<input type="text" id="listing-name" class="form-control" name="listing_name" value="<?php echo($_GET['lname']) ?>">
+												<?php else: ?>
+												<input type="text" id="listing-name" class="form-control" name="listing_name">
+												<?php endif ?>
 											</div>
                                     		<div class="form-group col-md-6">
-												<label>Category</label>
+												<label for="category">Category</label>
 												<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-												<select class="form-control" name="" id="">
-													<option value="">All Categories</option>
-													<option value="">Hotels</option>
-													<option value="">Restaurant</option>
-													<option value="">Eat &amp; Drink</option>
-													<option value="">Events</option>
-													<option value="">Fitness</option>
-													<option value="">Others</option>
+												<select class="form-control" id="category" name="category[]">
+													<option disabled selected>Select Category...</option>
+													<?php 
+													// Select all catergories from the 'listing_category' table and list them in the dropdown-list
+													$results = mysqli_query($conn, "SELECT * FROM listing_category");
+													while ($row = mysqli_fetch_array($results)) { ?>
+													<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>	
+													<?php } ?>
 												</select>
 											</div>
                                 		</div>
 										<div class="form-group">
-											<label>Description</label>
-											<textarea class="form-control" id="summernote"></textarea>
+											<label for="description">Description</label>
+											<?php if (isset($_GET['desc'])): ?>
+											<textarea class="form-control" id="summernote" name="description"><?php echo ($_GET['desc']); ?></textarea>
+											<?php else :?>
+											<textarea class="form-control" id="summernote" name="description"></textarea>
+											<?php endif ?>
 										</div>
 										<!--
 										<div class="form-group">
@@ -276,44 +274,65 @@
 										</div>
 										<div class="form-row">
 											<div class="col-md-6">
-												<label>Province</label>
+												<label for="province">Province</label>
 												<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-												<select class="form-control">
-													<option value="">Lusaka</option>
-													<option value="">Copperbelt</option>
-													<option value="">Southern</option>
-													<option value="">Western</option>
-													<option value="">Central</option>
-													<option value="">Eastern</option>
-													<option value="">Northern</option>
-													<option value="">North-Western</option>
-													<option value="">Muchinga</option>
-													<option value="">Luapula</option>
+												<select id="province" class="form-control" name="province[]">
+													<option disabled selected>Select Province...</option>
+													<option value="lusaka">Lusaka</option>
+													<option value="copperbelt">Copperbelt</option>
+													<option value="southern">Southern</option>
+													<option value="western">Western</option>
+													<option value="central">Central</option>
+													<option value="eastern">Eastern</option>
+													<option value="northern">Northern</option>
+													<option value="north-western">North-Western</option>
+													<option value="muchinga">Muchinga</option>
+													<option value="luapula">Luapula</option>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label>City/Town</label>
-												<input class="form-control">
+												<label for="citytown">City/Town</label>
+												<?php if (isset($_GET['citytown'])) :?>
+												<input type="text" class="form-control" id="citytown" name="city_town" value="<?php echo ($_GET['citytown']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="citytown" name="city_town">
+												<?php endif ?>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>Address</label>
-												<input class="form-control">
+												<label for="address">Address</label>
+												<?php if (isset($_GET['address'])) :?>
+												<input type="text" class="form-control" id="address" name="address" value="<?php echo ($_GET['address']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="address" name="address">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
-												<label>Friendly Address</label>
-												<input class="form-control">
+												<label for="friendly-address">Friendly Address</label>
+												<?php if (isset($_GET['faddress'])) :?>
+												<input type="text" class="form-control" id="friendly-address" name="friendly_address" value="<?php echo ($_GET['faddress']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="friendly-address" name="friendly_address">
+												<?php endif ?>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-md-6">
-												<label>Longitude</label>
-												<input class="form-control">
+												<label for="latitude">Latitude</label>
+												<?php if (isset($_GET['lat'])) :?>
+												<input type="text" class="form-control" id="latitude" name="latitude" value="<?php echo ($_GET['lat']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="latitude" name="latitude">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
-												<label>Latitude</label>
-												<input class="form-control">
+												<label for="longitude">Longitude</label>
+												<?php if (isset($_GET['long'])) :?>
+												<input type="text" class="form-control" id="longitude" name="longitude" value="<?php echo ($_GET['long']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="longitude" name="longitude">
+												<?php endif ?>
 											</div>
 										</div>
                             		</div>
@@ -326,44 +345,72 @@
 									<div class="add-listing-container">
 										<div class="form-row">
 											<div class="form-group col-md-4">
-												<label>Phone</label>
-												<input class="form-control">
+												<label for="phone-1"><i class="fa fa-phone-square"></i> Phone 1</label>
+												<?php if (isset($_GET['phone_1'])) :?>
+												<input type="text" class="form-control" id="phone-1" name="phone_1" value="<?php echo ($_GET['phone_1']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="phone-1" name="phone_1">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
-												<label>Website</label>
-												<input class="form-control">
+												<label for="phone-2"><i class="fa fa-phone-square"></i> Phone 2 (Optional)</label>
+												<?php if (isset($_GET['phone_2'])) :?>
+												<input type="text" class="form-control" id="phone-2" name="phone_2" value="<?php echo ($_GET['phone_2']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="phone-2" name="phone_2">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
-												<label>E-mail</label>
-												<input class="form-control">
+												<label for="phone-3"><i class="fa fa-phone-square"></i> Phone 3 (Optional)</label>
+												<?php if (isset($_GET['phone_3'])) :?>
+												<input type="text" class="form-control" id="phone-3" name="phone_3" value="<?php echo ($_GET['phone_3']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="phone-3" name="phone_3">
+												<?php endif ?>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="website"><i class="fa fa-link fa-fw"></i> Website (Optional)</label>
+												<?php if (isset($_GET['web'])) :?>
+												<input type="text" class="form-control" id="website" name="website" value="<?php echo ($_GET['web']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="website" name="website">
+												<?php endif ?>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="email"><i class="fa fa-envelope fa-fw"></i> E-mail (Optional)</label>
+												<?php if (isset($_GET['email'])) :?>
+												<input type="email" class="form-control" id="email" name="email" value="<?php echo ($_GET['email']); ?>">
+												<?php else :?>
+												<input type="email" class="form-control" id="email" name="email">
+												<?php endif ?>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="form-group col-md-4">
-												<label><i class="fab fa-facebook-square fa-fw"></i> Facebook</label>
-												<input class="form-control">
+												<label for="facebook"><i class="fab fa-facebook-square fa-fw"></i> Facebook (Optional)</label>
+												<?php if (isset($_GET['fb'])) :?>
+												<input type="text" class="form-control" id="facebook" name="facebook" value="<?php echo ($_GET['fb']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="facebook" name="facebook">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
-												<label><i class="fab fa-twitter-square fa-fw"></i> Twitter</label>
-												<input class="form-control">
+												<label for="twitter"><i class="fab fa-twitter-square fa-fw"></i> Twitter (Optional)</label>
+												<?php if (isset($_GET['twi'])) :?>
+												<input type="text" class="form-control" id="twitter" name="twitter" value="<?php echo ($_GET['twi']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="twiiter" name="twitter">
+												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
-												<label><i class="fab fa-instagram-square fa-fw"></i> Instagram</label>
-												<input class="form-control">
-											</div>
-										</div>
-										<div class="form-row">
-											<div class="form-group col-md-4">
-												<label><i class="fab fa-youtube-square fa-fw"></i> YouTube</label>
-												<input class="form-control">
-											</div>
-											<div class="form-group col-md-4">
-												<label><i class="fab fa-skype fa-fw"></i> Skype</label>
-												<input class="form-control">
-											</div>
-											<div class="form-group col-md-4">
-												<label><i class="fab fa-whatsapp-square fa-fw"></i> WhatsApp</label>
-												<input class="form-control">
+												<label for="instagram"><i class="fab fa-instagram-square fa-fw"></i> Instagram (Optional)</label>
+												<?php if (isset($_GET['inst'])) :?>
+												<input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo ($_GET['inst']); ?>">
+												<?php else :?>
+												<input type="text" class="form-control" id="instagram" name="instagram">
+												<?php endif ?>
 											</div>
 										</div>
 									</div>
@@ -374,18 +421,23 @@
 										<span>Opening Hours</span>
 										<div class="switch">
 											<div class="custom-control custom-switch">
-												<input type="checkbox" class="custom-control-input" id="opening-hours-switch">
+												<input type="checkbox" class="custom-control-input" id="opening-hours-switch" name="opening_hours_switch">
 												<label class="custom-control-label" for="opening-hours-switch"></label>
 											</div>
 										</div>
 									</div>
 									<div class="add-listing-container">
+										<p><span class="star">* </span>Toggle the switch if you wish to have your listing's opening and closing hours displayed on the listing page</p>
 										<div class="monday">
 											<label>Monday</label>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-monday" data-target-input="nearest">
-														<input type="text" id="monday-open" class="form-control datetimepicker-input" data-target="#opening-monday" disabled/>
+														<?php if (isset($_GET['mon_op'])) :?>
+														<input type="text" id="monday-open" class="form-control datetimepicker-input" name="monday_open" data-target="#opening-monday" value="<?php echo ($_GET['mon_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="monday-open" class="form-control datetimepicker-input" name="monday_open" data-target="#opening-monday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-monday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -393,7 +445,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-monday" data-target-input="nearest">
-														<input type="text" id="monday-close" class="form-control datetimepicker-input" data-target="#closing-monday" disabled/>
+														<?php if (isset($_GET['mon_cl'])) :?>
+														<input type="text" id="monday-close" class="form-control datetimepicker-input" name="monday_close" data-target="#closing-monday" value="<?php echo ($_GET['mon_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="monday-close" class="form-control datetimepicker-input" name="monday_close" data-target="#closing-monday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-monday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -408,7 +464,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-tuesday" data-target-input="nearest">
-														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" data-target="#opening-tuesday" disabled/>
+														<?php if (isset($_GET['tue_op'])) :?>
+														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" name="tuesday_open" data-target="#opening-tuesday" value="<?php echo ($_GET['tue_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" name="tuesday_open" data-target="#opening-tuesday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-tuesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -416,7 +476,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-tuesday" data-target-input="nearest">
-														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" data-target="#closing-tuesday" disabled/>
+														<?php if (isset($_GET['tue_cl'])) :?>
+														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" name="tuesday_close" data-target="#closing-tuesday" value="<?php echo ($_GET['tue_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" name="tuesday_close" data-target="#closing-tuesday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-tuesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -431,7 +495,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-wednesday" data-target-input="nearest">
-														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" data-target="#opening-wednesday" disabled/>
+														<?php if (isset($_GET['wed_op'])) :?>
+														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" name="wednesday_open" data-target="#opening-wednesday" value="<?php echo ($_GET['wed_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" name="wednesday_open" data-target="#opening-wednesday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-wednesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -439,7 +507,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-wednesday" data-target-input="nearest">
-														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" data-target="#closing-wednesday" disabled/>
+														<?php if (isset($_GET['wed_cl'])) :?>
+														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" name="wednesday_close" data-target="#closing-wednesday" value="<?php echo ($_GET['wed_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" name="wednesday_close" data-target="#closing-wednesday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-wednesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -454,7 +526,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-thursday" data-target-input="nearest">
-														<input type="text" id="thursday-open" class="form-control datetimepicker-input" data-target="#opening-thursday" disabled/>
+														<?php if (isset($_GET['thur_op'])) :?>
+														<input type="text" id="thursday-open" class="form-control datetimepicker-input" name="thursday_open" data-target="#opening-thursday" value="<?php echo ($_GET['thur_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="thursday-open" class="form-control datetimepicker-input" name="thursday_open" data-target="#opening-thursday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-thursday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -462,7 +538,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-thursday" data-target-input="nearest">
-														<input type="text" id="thursday-close" class="form-control datetimepicker-input" data-target="#closing-thursday" disabled/>
+														<?php if (isset($_GET['thur_cl'])) :?>
+														<input type="text" id="thursday-close" class="form-control datetimepicker-input" name="thursday_close" data-target="#closing-thursday" value="<?php echo ($_GET['thur_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="thursday-close" class="form-control datetimepicker-input" name="thursday_close" data-target="#closing-thursday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-thursday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -477,7 +557,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-friday" data-target-input="nearest">
-														<input type="text" id="friday-open" class="form-control datetimepicker-input" data-target="#opening-friday" disabled/>
+														<?php if (isset($_GET['fri_op'])) :?>
+														<input type="text" id="friday-open" class="form-control datetimepicker-input" name="friday_open" data-target="#opening-friday" value="<?php echo ($_GET['fri_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="friday-open" class="form-control datetimepicker-input" name="friday_open" data-target="#opening-friday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-friday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -485,7 +569,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-friday" data-target-input="nearest">
-														<input type="text" id="friday-close" class="form-control datetimepicker-input" data-target="#closing-friday" disabled/>
+														<?php if (isset($_GET['fri_cl'])) :?>
+														<input type="text" id="friday-close" class="form-control datetimepicker-input" name="friday_close" data-target="#closing-friday" value="<?php echo ($_GET['fri_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="friday-close" class="form-control datetimepicker-input" name="friday_close" data-target="#closing-friday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-friday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -500,7 +588,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-saturday" data-target-input="nearest">
-														<input type="text" id="saturday-open" class="form-control datetimepicker-input" data-target="#opening-saturday" disabled/>
+														<?php if (isset($_GET['sat_op'])) :?>
+														<input type="text" id="saturday-open" class="form-control datetimepicker-input" name="saturday_open" data-target="#opening-saturday" value="<?php echo ($_GET['sat_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="saturday-open" class="form-control datetimepicker-input" name="saturday_open" data-target="#opening-saturday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-saturday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -508,7 +600,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-saturday" data-target-input="nearest">
-														<input type="text" id="saturday-close" class="form-control datetimepicker-input" data-target="#closing-saturday" disabled/>
+														<?php if (isset($_GET['sat_cl'])) :?>
+														<input type="text" id="saturday-close" class="form-control datetimepicker-input" name="saturday_close" data-target="#closing-saturday" value="<?php echo ($_GET['sat_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="saturday-close" class="form-control datetimepicker-input" name="saturday_close" data-target="#closing-saturday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-saturday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -523,7 +619,11 @@
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-sunday" data-target-input="nearest">
-														<input type="text" id="sunday-open" class="form-control datetimepicker-input" data-target="#opening-sunday" disabled/>
+														<?php if (isset($_GET['sun_op'])) :?>
+														<input type="text" id="sunday-open" class="form-control datetimepicker-input" name="sunday_open" data-target="#opening-sunday" value="<?php echo ($_GET['sun_op']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="sunday-open" class="form-control datetimepicker-input" name="sunday_open" data-target="#opening-sunday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-sunday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -531,7 +631,11 @@
 												</div>
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="closing-sunday" data-target-input="nearest">
-														<input type="text" id="sunday-close" class="form-control datetimepicker-input" data-target="#closing-sunday" disabled/>
+														<?php if (isset($_GET['sun_cl'])) :?>
+														<input type="text" id="sunday-close" class="form-control datetimepicker-input" name="sunday_close" data-target="#closing-sunday" value="<?php echo ($_GET['sun_cl']); ?>" disabled/>
+														<?php else :?>
+														<input type="text" id="sunday-close" class="form-control datetimepicker-input" name="sunday_close" data-target="#closing-sunday" disabled/>
+														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-sunday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
 														</div>
@@ -542,7 +646,7 @@
 										</div>
 									</div>
 								</div>
-
+								<!--
 								<div class="add-listing-section pricing shadow">
 									<div class="add-listing-headline">
 										<span>Pricing</span>
@@ -554,6 +658,7 @@
 										</div>
 									</div>
 									<div class="add-listing-container">
+										<p><span class="star">* </span>Toggle the switch if you wish to have any products displayed on the listing page</p>
 										<div class="form-group" id="items-container">
 										
 										</div>
@@ -561,74 +666,104 @@
 											<button class="btn btn-primary pricing-input" type="button" id="add-item" disabled>Add Item</button>
 											<button class="btn btn-primary pricing-input" type="button" id="add-category" disabled>Add Category</button>
 										</div>
-										<span>* The items entered will appear in the pricing table on the listing page</span>
+									</div>
+								</div>
+								
+								Ticket Pricing
+								<div class="add-listing-section pricing shadow">
+									<div class="add-listing-headline">
+										<span>Ticket Pricing</span>
+										<div class="switch">
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="pricing-switch">
+												<label class="custom-control-label" for="pricing-switch"></label>
+											</div>
+										</div>
+									</div>
+									<div class="add-listing-container">
+										<div class="form-group" id="items-container">
+									
+										</div>
+										<div class="controls">
+											<button class="btn btn-primary pricing-input" type="button" id="add-item" disabled>Add Item</button>
+											<button class="btn btn-primary pricing-input" type="button" id="add-category" disabled>Add Category</button>
+										</div>
+										<span>* The items entered will appear on the booking page of the event</span>
+									</div>
+								</div>
+								-->
+
+								<div class="add-listing-section amenities shadow">
+									<div class="add-listing-headline">
+										<span>Amenities</span>
+										<div class="switch">
+											<div class="custom-control custom-switch">
+												<input type="checkbox" class="custom-control-input" id="amenities-switch">
+												<label class="custom-control-label" for="amenities-switch"></label>
+											</div>
+										</div>
+									</div>
+									<div class="add-listing-container">
+										<p><span class="star">* </span>Toggle the switch if you wish to have any products displayed on the listing page</p>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input amenity" name="wi_fi" id="wi-fi" type="checkbox" value="wi-fi" disabled>
+											<label class="form-check-label" for="wi-fi">Free Wi-FI</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input amenity" name="pets" id="pets-allowed" type="checkbox" value="pets" disabled>
+											<label class="form-check-label" for="pets-allowed">Pets Allowed</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input amenity" name="smoking" id="smoking-allowed" type="checkbox" value="smoking" disabled>
+											<label class="form-check-label" for="smoking-allowed">Smoking Allowed</label>
+										</div>
 									</div>
 								</div>
 
-                        <!-- Ticket Pricing
-                        <div class="add-listing-section pricing shadow">
-                        	<div class="add-listing-headline">
-                            	<span>Ticket Pricing</span>
-                            	<div class="switch">
-                              		<div class="custom-control custom-switch">
-                                		<input type="checkbox" class="custom-control-input" id="pricing-switch">
-                                		<label class="custom-control-label" for="pricing-switch"></label>
-                              		</div>
-                            	</div>
-                          	</div>
-                          	<div class="add-listing-container">
-                            	<div class="form-group" id="items-container">
-                              
-                            	</div>
-								<div class="controls">
-									<button class="btn btn-primary pricing-input" type="button" id="add-item" disabled>Add Item</button>
-									<button class="btn btn-primary pricing-input" type="button" id="add-category" disabled>Add Category</button>
-								</div>
-								<span>* The items entered will appear on the booking page of the event</span>
-                          	</div>
-                        </div>
-                        -->
+                        		<button class="btn btn-primary" type="submit" name="submit-listing"><i class="fa fa-arrow-circle-right fa-fw"></i> Submit Listing</button>
 
-                        <div class="add-listing-section amenities shadow">
-                        	<div class="add-listing-headline">
-                            	<span>Amenities</span>
-                            	<div class="switch">
-                              		<div class="custom-control custom-switch">
-                                		<input type="checkbox" class="custom-control-input" id="amenities-switch">
-                                		<label class="custom-control-label" for="amenities-switch"></label>
-                              		</div>
-                            	</div>
-                          	</div>
-							<div class="add-listing-container">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input amenity" id="wi-fi" type="checkbox" value="option1" disabled>
-									<label class="form-check-label" for="wi-fi">Free Wi-FI</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input amenity" id="pets-allowed" type="checkbox" value="option1" disabled>
-									<label class="form-check-label" for="pets-allowed">Pets Allowed</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input amenity" id="smoking-allowed" type="checkbox" value="option1" disabled>
-									<label class="form-check-label" for="smoking-allowed">Smoking Allowed</label>
-								</div>
-							</div>
-                        </div>
+                    		</form>
 
-                        <button class="btn btn-primary"><i class="fa fa-arrow-circle-right fa-fw"></i> Submit Listing</button>
+                		</div>
+            		</div>
+        		</div>
+			</div>
+		</div>
+	</div>	
+	<!-- Map -->
 
-                    </form>
-
-                </div>
-                
-            </div>
-
-        </div>
+	<div class="form-row item" hidden>
+		<div class="form-group col-md-3">
+			<input class="form-control pricing-input" type="text" name="item_name" placeholder="Name">
+		</div>
+		<div class="form-group col-md-2">
+			<input class="form-control pricing-input" type="text" name="item_price" placeholder="Price">
+		</div>
+		<div class="form-group col-md-6">
+			<input class="form-control pricing-input" type="text" name="item_description" placeholder="Description">
+		</div>
+		<div class="form-group col-md-1">
+			<button type="button" class="btn btn-danger pricing-input" id="remove-item"><i class="fa fa-minus-circle"></i></button>
+		</div>
+	</div>
+	<div class="form-row category" hidden>
+		<div class="form-group col-md-11">
+			<input class="form-control pricing-input" type="text" name="item_category" placeholder="Category">
+		</div>
+		<div class="form-group col-md-1">
+			<button type="button" class="btn btn-danger pricing-input" id="remove-category"><i class="fa fa-minus-circle"></i></button>
+		</div>
+	</div>
 
     <script>
 			
 		var mymap = L.map('map').setView([-15.386283, 28.399378], 17);
-		var marker = L.marker([-15.386283, 28.399378]).addTo(mymap);
+		var marker = L.marker([-15.386283, 28.399378], { draggable: true }).addTo(mymap);
+
+		marker.on('dragend', function (e) {
+			document.getElementById('latitude').value = marker.getLatLng().lat;
+			document.getElementById('longitude').value = marker.getLatLng().lng;
+		});
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -640,107 +775,113 @@
 		zoomOffset: -1
 		}).addTo(mymap);
 
-		
-
     </script>
+
+	<!-- /.Map -->
+
+	<!-- Clear time fields -->
 
     <script>
-function ClearFieldsMonday() {
+	function ClearFieldsMonday() {
+		document.getElementById("monday-open").value = "";
+		document.getElementById("monday-close").value = "";
+	}
 
-document.getElementById("monday-open").value = "";
-document.getElementById("monday-close").value = "";
-}
+	function ClearFieldsTuesday() {
+		document.getElementById("tuesday-open").value = "";
+		document.getElementById("tuesday-close").value = "";
+	}
 
-function ClearFieldsTuesday() {
-  document.getElementById("tuesday-open").value = "";
-  document.getElementById("tuesday-close").value = "";
-}
+	function ClearFieldsWednesday() {
+		document.getElementById("wednesday-open").value = "";
+		document.getElementById("wednesday-close").value = "";
+	}
 
-function ClearFieldsWednesday() {
-  document.getElementById("wednesday-open").value = "";
-  document.getElementById("wednesday-close").value = "";
-}
+	function ClearFieldsThursday() {
+		document.getElementById("thursday-open").value = "";
+		document.getElementById("thursday-close").value = "";
+	}
 
-function ClearFieldsThursday() {
-  document.getElementById("thursday-open").value = "";
-  document.getElementById("thursday-close").value = "";
-}
+	function ClearFieldsFriday() {
+		document.getElementById("friday-open").value = "";
+		document.getElementById("friday-close").value = "";
+	}
 
-function ClearFieldsFriday() {
-  document.getElementById("friday-open").value = "";
-  document.getElementById("friday-close").value = "";
-}
+	function ClearFieldsSaturday() {
+		document.getElementById("saturday-open").value = "";
+		document.getElementById("saturday-close").value = "";
+	}
 
-function ClearFieldsSaturday() {
-  document.getElementById("saturday-open").value = "";
-  document.getElementById("saturday-close").value = "";
-}
+	function ClearFieldsSunday() {
+		document.getElementById("sunday-open").value = "";
+		document.getElementById("sunday-close").value = "";
+	}
 
-function ClearFieldsSunday() {
-  document.getElementById("sunday-open").value = "";
-  document.getElementById("sunday-close").value = "";
-}
     </script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- /.Clear time fields -->
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+	<!-- Page level plugins -->
+	<script src="vendor/chart.js/Chart.min.js"></script>
 
-  <script type="text/javascript">
-            $(function () {
-                $('#opening-monday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-monday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-tuesday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-tuesday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-wednesday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-wednesday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-thursday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-thursday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-friday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-friday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-saturday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-saturday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#opening-sunday').datetimepicker({
-                    format: 'LT'
-                });
-                $('#closing-sunday').datetimepicker({
-                    format: 'LT'
-                });
+	<!-- Page level custom scripts -->
+	<script src="js/demo/chart-area-demo.js"></script>
+	<script src="js/demo/chart-pie-demo.js"></script>
+
+	<!-- Time picker fields -->
+  	<script type="text/javascript">
+        $(function () {
+            $('#opening-monday').datetimepicker({
+                format: 'LT'
             });
-        </script>
+            $('#closing-monday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-tuesday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-tuesday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-wednesday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-wednesday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-thursday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-thursday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-friday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-friday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-saturday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-saturday').datetimepicker({
+                format: 'LT'
+            });
+            $('#opening-sunday').datetimepicker({
+                format: 'LT'
+            });
+            $('#closing-sunday').datetimepicker({
+                format: 'LT'
+            });
+        });
+    </script>
+	<!-- /.Time picker fields -->
 
 </body>
 

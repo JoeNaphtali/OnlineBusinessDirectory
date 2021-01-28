@@ -33,22 +33,22 @@ if (isset($_POST['register'])) {
         exit();
     }
     // Display an error if the user did not enter a last name
-    if (empty($last_name)) {
+    else if (empty($last_name)) {
         header("Location: ../register/index.php?error=nolastname&fname=".$first_name."&email=".$email);
         exit();
     }
     // Display an error if the user did not enter an email address
-    if (empty($email)) {
+    else if (empty($email)) {
         header("Location: ../register/index.php?error=noemail&fname=".$first_name."&lname=".$last_name);
         exit();
     }
     // Display an error if the user did not enter a password
-    if (empty($password)) {
+    else if (empty($password)) {
         header("Location: ../register/index.php?error=nopassword&fname=".$first_name."&lname=".$last_name."&email=".$email);
         exit();
     }
     // Display an error if the user did not repeat their password
-    if (empty($password_repeat)) {
+    else if (empty($password_repeat)) {
         header("Location: ../register/index.php?error=norepeat&fname=".$first_name."&lname=".$last_name."&email=".$email);
         exit();
     }

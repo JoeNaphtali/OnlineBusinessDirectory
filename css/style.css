@@ -10,6 +10,63 @@ body {
 
 /* Navigation Bar */
 
+.badge-counter {
+    position: absolute;
+    transform: scale(.7);
+    transform-origin: top right;
+    right: 4px;
+    margin-top: 14px;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #e74a3b;
+}
+
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .35rem;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-cart {
+    text-decoration: none;
+    color: #fff;
+    background-color: #DB4437;
+    padding: 10px 7px 6px 6px;
+    border-radius: 50%;
+    font-size: 16px;
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    line-height: 34px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.clear-navbar .btn-cart {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.clear-navbar.scrolled .btn-cart {
+    background-color: #DB4437;
+}
+
+.btn-cart:hover {
+    color: #fff;
+    background-color: #DB4437;
+}
+
 .btn-myaccount:after {
     bottom: -6px;
     right: -6px;
@@ -117,13 +174,6 @@ body {
     border-radius: 50px;
 }
 
-.btn-cart {
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-}
-
 .clear-navbar .btn-login {
     background: rgba(255,255,255,0.15);
     color: #fff;
@@ -196,6 +246,10 @@ body {
 }
 
 @media only screen and (max-width: 991px) {
+
+    .clear-navbar .btn-cart {
+        background-color: #DB4437;
+    }
 
     .navbar .current a {
         border-bottom: none !important;
@@ -337,7 +391,6 @@ body {
     min-height: 100px;
     border: 2px solid #dddddd;
     margin-top: 15px;
-
     display: flex;
     align-items: center;
     justify-content: center;

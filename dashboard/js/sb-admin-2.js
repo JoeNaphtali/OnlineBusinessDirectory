@@ -67,8 +67,8 @@
 
   $(document).ready(function(){
 
-    var item_row = '<div class="form-row item"><div class="form-group col-md-3"><input class="form-control pricing-input" type="text" name="item-name" placeholder="Name"></div><div class="form-group col-md-2"><input class="form-control pricing-input" type="text" name="price" placeholder="Price"></div><div class="form-group col-md-6"><input class="form-control pricing-input" type="text" name="description" placeholder="Description"></div><div class="form-group col-md-1"><button type="button" class="btn btn-danger pricing-input" id="remove-item"><i class="fa fa-minus-circle"></i></button></div></div>';
-    var category_row = '<div class="form-row category"><div class="form-group col-md-11"><input class="form-control pricing-input" type="text" name="item-name" placeholder="Category"></div><div class="form-group col-md-1"><button type="button" class="btn btn-danger pricing-input" id="remove-category"><i class="fa fa-minus-circle"></i></button></div></div>'
+    var item_row = '<div class="form-row item"><div class="form-group col-md-3"><input class="form-control pricing-input" type="text" name="item_name" placeholder="Name"></div><div class="form-group col-md-2"><input class="form-control pricing-input" type="text" name="item_price" placeholder="Price"></div><div class="form-group col-md-6"><input class="form-control pricing-input" type="text" name="item_description" placeholder="Description"></div><div class="form-group col-md-1"><button type="button" class="btn btn-danger pricing-input" id="remove-item"><i class="fa fa-minus-circle"></i></button></div></div>';
+    var category_row = '<div class="form-row category"><div class="form-group col-md-11"><input class="form-control pricing-input" type="text" name="item_category" placeholder="Category"></div><div class="form-group col-md-1"><button type="button" class="btn btn-danger pricing-input" id="remove-category"><i class="fa fa-minus-circle"></i></button></div></div>'
 
     $("#add-item").click(function(){
       $("#items-container").append(item_row);

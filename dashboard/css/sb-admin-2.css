@@ -11276,6 +11276,11 @@ body.sidebar-toggled footer.sticky-footer {
   z-index: 100;
 }
 
+.opening-hours-switch {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .add-listing {
 margin-bottom: 30px;
 }
@@ -11343,6 +11348,10 @@ width: 100%;
 
 .image-preview__image {
   width: 100%;
+}
+
+.star {
+  color: red;
 }
 
 /* End of Forms */

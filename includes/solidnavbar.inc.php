@@ -1,10 +1,19 @@
-        <nav class="navbar navbar-light solid-navbar navbar-expand-lg justify-content-center fixed-top" data-aos="fade-down">
+        <nav class="navbar navbar-light solid-navbar navbar-expand-lg fixed-top" data-aos="fade-down">
 			<a href="../index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
 			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<?php 
 				if (isset($_SESSION['login'])) {
+					/*<div class='dropdown dropdown-mobile'>
+							<a class='btn-cart text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>
+								<i class='fa fa-shopping-cart'></i>
+								<span class='badge badge-danger badge-counter'>3+</span>
+							</a>
+							<div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
+							<a class='dropdown-item' href='#'>LOL</a>
+							</div>
+						</div>*/
 					echo "<div class='navbar-mobile-buttons'>
 					<div class='dropdown dropdown-mobile'>
 						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
@@ -45,7 +54,17 @@
 				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
 					<?php
 					if (isset($_SESSION['login'])) {
-						echo '<div class="navbar-buttons"><div class="dropdown no-arrow cart"><div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
+						/*<div class="dropdown">
+							<a class="btn-cart text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+								<i class="fa fa-shopping-cart"></i>
+								<span class="badge badge-danger badge-counter">3+</span>
+							</a>
+							<div class="dropdown-menu user-dropdown-menu" id="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">LOL</a>
+							</div>
+						</div>*/
+						echo '<div class="navbar-buttons">
+						<div class="dropdown"><a class="btn-myaccount dropdown-toggle text-decoration-none" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">';
 						if ($profile_picture_status == true) {
 							$filename = "../img/profile_pictures/profile_picture_user_".$user_id."*";
 							$fileinfo = glob($filename);

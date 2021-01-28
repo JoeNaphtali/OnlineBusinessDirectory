@@ -38,12 +38,7 @@ $sql = "CREATE TABLE user(
     user_password VARCHAR(255) NOT NULL,
     profile_picture_status BOOLEAN NOT NULL,
     phone_number VARCHAR(255),
-    bio TEXT,
-    website VARCHAR(255),
-    facebook VARCHAR(255),
-    twitter VARCHAR(255),
-    instagram VARCHAR(255),
-    linkedin VARCHAR(255)
+    bio TEXT
 )";
 //Display success message if table is created
 if($conn->query($sql)===TRUE) {
@@ -79,6 +74,7 @@ $sql = "CREATE TABLE listing(
     overview TEXT NOT NULL,
     rating NUMERIC,
     listing_address VARCHAR(255),
+    friendly_address VARCHAR(255),
     latitude VARCHAR(255),
     longtitude VARCHAR(255),
     website VARCHAR(255),
@@ -86,10 +82,6 @@ $sql = "CREATE TABLE listing(
     twitter VARCHAR(255),
     facebook VARCHAR(255),
     instagram VARCHAR(255),
-    event_start_date DATE,
-    event_end_date DATE,
-    start_time TIME,
-    end_time TIME,
     FOREIGN KEY (category_id) REFERENCES listing_category(id),
     FOREIGN KEY (user__id) REFERENCES user(id)
 )";
@@ -102,13 +94,30 @@ else {
     echo "There was an error creating the 'listing' table: ".$conn->error;
 }
 
+// CREATE DAYS TABLE
+
+$sql = "CREATE TABLE days_of_week (
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    day_of_week VARCHAR(255) NOT NULL
+)";
+//Display success message if table is created
+if($conn->query($sql)===TRUE) {
+    echo "The 'days_of_week' table was created succesfully | ";
+}
+//Display error message if table is not created
+else {
+    echo "There was an error creating the 'days_of_week' table: ".$conn->error;
+}
+
 // CREATE OPENING HOURS TABLE
 
 $sql = "CREATE TABLE opening_hours(
     listing_id INT(11) NOT NULL,
-    day_of_week VARCHAR(255) NOT NULL,
-    opening_hour TIME NOT NULL,
-    closing TIME NOT NULL
+    day_of_week_id VARCHAR(255) NOT NULL,
+    opening_time TIME NOT NULL,
+    closing_time TIME NOT NULL,
+    openclose_status BOOLEAN,
+    FOREIGN KEY (listing_id) REFERENCES listing(id)
 )";
 //Display success message if table is created
 if($conn->query($sql)===TRUE) {
@@ -117,6 +126,24 @@ if($conn->query($sql)===TRUE) {
 //Display error message if table is not created
 else {
     echo "There was an error creating the 'opening_hours' table: ".$conn->error;
+}
+
+// CREATE EVENT DATE TABLE
+
+$sql = "CREATE TABLE event_date_time(
+    event_date date NOT NULL,
+    start_time time NOT NULL,
+    end_time time NOT NULL,
+    listing_id INT(11) NOT NULL,
+    FOREIGN KEY (listing_id) REFERENCES listing(id)
+)";
+//Display success message if table is created
+if($conn->query($sql)===TRUE) {
+    echo "The 'event_date_time' table was created succesfully | ";
+}
+//Display error message if table is not created
+else {
+    echo "There was an error creating the 'event_date_time' table: ".$conn->error;
 }
 
 // CREATE AMENITY TABLE
@@ -195,10 +222,10 @@ else {
 $sql = "CREATE TABLE product(
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     listing_id INT(11) NOT NULL,
-    category_id INT(11) NOT NULL,
+    category_id INT(11),
     product_name VARCHAR(255) NOT NULL,
     product_description VARCHAR(255) NOT NULL,
-    price VARCHAR(255) NOT NULL,
+    product_price VARCHAR(255) NOT NULL,
     FOREIGN KEY (listing_id) REFERENCES listing(id),
     FOREIGN KEY (category_id) REFERENCES product_category(id)
     )";
@@ -251,7 +278,7 @@ $sql = "CREATE TABLE article(
     user__id INT(11) NOT NULL,
     category_id INT(11) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    header_photo BOOLEAN NOT NULL,
+    header_photo_status BOOLEAN NOT NULL,
     post_date DATETIME NOT NULL,
     content TEXT NOT NULL,
     comment_count INT(11),
@@ -313,11 +340,37 @@ $sql = "INSERT INTO user (first_name, last_name, email, user_password, profile_p
         VALUES ('Joseph', 'Wamulume', 'josephwamulume@gmail.com', '$hashed_password', false)";
 // Display success message if user was added
 if($conn->query($sql)===TRUE) {
-    echo "The default user was added succesfully | DONE!";
+    echo "The default user was added succesfully | ";
 }
 // Display error message if user was not added
 else {
     echo "There was an error adding the default user: ".$conn->error;
+}
+
+// INSERT LISTING CATEGORIES
+
+$sql = "INSERT INTO listing_category (category) 
+        VALUES ('Event'), ('Food&Drink'), ('Shopping'), ('Accomodation'), ('Travel')";
+// Display success message if user was added
+if($conn->query($sql)===TRUE) {
+    echo "The default categories were added succesfully | DONE!";
+}
+// Display error message if user was not added
+else {
+    echo "There was an error adding the default categories: ".$conn->error;
+}
+
+// INSERT DAYS INTO 'DAYS_OF_WEEK' TABLE
+
+$sql = "INSERT INTO days_of_week (day_of_week) 
+        VALUES ('Monday'), ('Tuesday'), ('Wednesday'), ('Thursday'), ('Friday'), ('Saturday'), ('Sunday')";
+// Display success message if user was added
+if($conn->query($sql)===TRUE) {
+    echo "The days were added succesfully | DONE!";
+}
+// Display error message if user was not added
+else {
+    echo "There was an error adding the days: ".$conn->error;
 }
 
 // Close connection string

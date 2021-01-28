@@ -282,7 +282,7 @@
 
 		<script>
 			
-			const profilePicture = document.getElementById("profile_picture");
+			const profilePicture = document.getElementById("photo");
 			const previewContainer = document.getElementById("imagePreview");
 			const previewImage = previewContainer.querySelector(".image-preview__image");
 			const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");

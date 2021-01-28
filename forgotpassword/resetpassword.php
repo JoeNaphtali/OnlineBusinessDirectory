@@ -61,12 +61,15 @@
 			$email = $_GET['email'];
 			
             if (empty($selector) || empty($validator) || empty($email)) {
+				// If variables are empty, display error message to user
 				echo '<div class="text-center error-message">
-				<p class="text-white">Could validate your reset request. Please submit your request.</p>
+				<p class="text-white">Could not validate your reset request. Please submit your request.</p>
 				</div>';
+				// Terminate execution of script
 				exit();
             }
             else {
+				// Check if the values of the selector and validator variables are hexadecimal 'digits'
                 if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false) {
         ?>
 

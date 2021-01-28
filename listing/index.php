@@ -3,7 +3,7 @@
 	session_start();
 	
 	// Database Connection
-	include "..includes/dbh.inc.php";
+	include "../includes/dbh.inc.php";
 	
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {

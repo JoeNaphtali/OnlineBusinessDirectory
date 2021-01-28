@@ -179,7 +179,7 @@
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
-						<!-- Nav Item - Messages -->
+						<!-- Return to home -->
 						<li class="nav-item mx-1">
 							<a class="nav-link" href="../index.php">
 								<span class="mr-2 d-none d-lg-inline text-gray-600 small">Back to home page</span><i class="fas fa-home fa-fw"></i>
