@@ -168,24 +168,14 @@
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
-						<!-- Nav Item - Messages -->
-						<li class="nav-item dropdown no-arrow mx-1">
-							<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-home fa-fw"></i>
+						<!-- Return to home -->
+						<li class="nav-item mx-1">
+							<a class="nav-link" href="../index.php">
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">Back to home page</span><i class="fas fa-home fa-fw"></i>
 							</a>
 						</li>
 
-						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-600 small">Joseph Wamulume</span>
-								<img class="img-profile rounded-circle" src="../img/user-profile-avatar.jpg">
-							</a>
-						</li>
-
-          			</ul>
+					</ul>
 
 				</nav>
 				<!-- End of Topbar -->
@@ -199,39 +189,63 @@
 					</div>
 
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th style="width: 43%;">Name</th>
-											<th style="width: 43%;">Category</th>
-											<th style="width: 14%;">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Burger House</td>
-											<td>Eat & Drink</td>
-											<td>
-												<a href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-												<a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-											</td>
-										</tr>
-										<tr>
-											<td>Burger House</td>
-											<td>Eat & Drink</td>
-											<td>
-											<a href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-											<a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+					<!-- Content Row -->
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="shadow my-listings">
+								<div class="row no-gutters listing-item-horizontal">
+    								<div class="col-lg-4">
+        								<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
+        								</div>
+    								</div>
+    								<div class="listing-details listing-details-horizontal col-lg-8">
+										<div class="listing-details-horizontal-body">
+											<a href="../listing/index.php"><h2 class="card-title">Burger House</h2></a>
+											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> Plot No. 1086, Off Simon Mwansa Kapwepwe Rd</div>
+											<div class="phone"><i class="fa fa-phone fa-fw"></i> +260 975 944 213</div>
+											<div class="listing-item-buttons">
+												<a class="btn btn-large btn-edit bg-success" href="#">
+													<i class="fa fa-pencil-alt fa-fw"></i> Edit
+												</a>
+												<a class="btn btn-large btn-delete bg-danger" href="#">
+													<i class="fa fa-trash-alt fa-fw"></i> Delete
+												</a>
+												<a class="btn btn-large btn-statistics bg-info" href="#">
+													<i class="fa fa-chart-bar fa-fw"></i> Analytics
+												</a>
+
+												<a class="btn btn-small btn-edit bg-success" href="#">
+													<i class="fa fa-pencil-alt fa-fw"></i>
+												</a>
+												<a class="btn btn-small btn-delete bg-danger" href="#">
+													<i class="fa fa-trash-alt fa-fw"></i>
+												</a>
+												<a class="btn btn-small btn-statistics bg-info" href="#">
+													<i class="fa fa-chart-bar fa-fw"></i>
+												</a>
+											</div>
+										</div>
+										<div class="listing-item-horizontal-footer">
+											<div class="listing-rating text-muted">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-half-alt"></i>
+												<span> (1 review)</span>
+											</div>
+											<div class="listing-views text-muted">
+												<i class="fa fa-eye"></i>	
+												<span>78</span>										
+											</div>
+										</div>
+    								</div>
+									
+								</div>
 							</div>
 						</div>
+
 					</div>
 
 				</div>
@@ -296,6 +310,22 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- Set Background Image -->
+  <script>
+  	$('.set-bg').each(function () {
+    	var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(window).scroll(function(){
+        $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+    });
+  </script>
 
 </body>
 

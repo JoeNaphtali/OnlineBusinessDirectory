@@ -86,6 +86,8 @@
       $(this).closest('.category').remove();
     });
 
+    
+
   });
 
   // Close any open menu accordions when window is resized below 768px

@@ -168,7 +168,7 @@
 			</div>
 
 		</ul>
-		<!-- End of Sidebar -->
+		<!--  /.Sidebar -->
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -212,8 +212,10 @@
 
 						<div class="col-md-12">
 
+							<!-- 'Add Listing' Form -->
 							<form class="add-listing" method="POST" action="../includes/addlisting.inc.php">
 
+								<!-- Basic Information -->
 								<div class="add-listing-section basic-info shadow">
 									<div class="add-listing-headline">
 										<span>Basic Information</span>
@@ -263,7 +265,8 @@
 										-->
                             		</div>
                         		</div>
-
+								
+								<!-- Location Information -->
 								<div class="add-listing-section location shadow">
 									<div class="add-listing-headline">
 										<span>Location</span>
@@ -337,7 +340,8 @@
 										</div>
                             		</div>
                         		</div>
-
+								
+								<!-- Contact Information -->
 								<div class="add-listing-section contact-information shadow">
 									<div class="add-listing-headline">
 										<span>Contact Information</span>
@@ -416,6 +420,7 @@
 									</div>
 								</div>
 
+								<!-- Opening Hours -->
 								<div class="add-listing-section opening-hours shadow">
 									<div class="add-listing-headline">
 										<span>Opening Hours</span>
@@ -646,7 +651,7 @@
 										</div>
 									</div>
 								</div>
-								<!--
+								<!-- Product Pricing 
 								<div class="add-listing-section pricing shadow">
 									<div class="add-listing-headline">
 										<span>Pricing</span>
@@ -667,9 +672,9 @@
 											<button class="btn btn-primary pricing-input" type="button" id="add-category" disabled>Add Category</button>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								
-								Ticket Pricing
+								<!-- Ticket Pricing
 								<div class="add-listing-section pricing shadow">
 									<div class="add-listing-headline">
 										<span>Ticket Pricing</span>
@@ -690,9 +695,9 @@
 										</div>
 										<span>* The items entered will appear on the booking page of the event</span>
 									</div>
-								</div>
-								-->
+								</div> -->
 
+								<!-- Amenities -->								
 								<div class="add-listing-section amenities shadow">
 									<div class="add-listing-headline">
 										<span>Amenities</span>
@@ -729,32 +734,12 @@
         		</div>
 			</div>
 		</div>
+		<!-- /.Content Wrapper -->
+
 	</div>	
-	<!-- Map -->
+	<!-- /.Page Wrapper -->
 
-	<div class="form-row item" hidden>
-		<div class="form-group col-md-3">
-			<input class="form-control pricing-input" type="text" name="item_name" placeholder="Name">
-		</div>
-		<div class="form-group col-md-2">
-			<input class="form-control pricing-input" type="text" name="item_price" placeholder="Price">
-		</div>
-		<div class="form-group col-md-6">
-			<input class="form-control pricing-input" type="text" name="item_description" placeholder="Description">
-		</div>
-		<div class="form-group col-md-1">
-			<button type="button" class="btn btn-danger pricing-input" id="remove-item"><i class="fa fa-minus-circle"></i></button>
-		</div>
-	</div>
-	<div class="form-row category" hidden>
-		<div class="form-group col-md-11">
-			<input class="form-control pricing-input" type="text" name="item_category" placeholder="Category">
-		</div>
-		<div class="form-group col-md-1">
-			<button type="button" class="btn btn-danger pricing-input" id="remove-category"><i class="fa fa-minus-circle"></i></button>
-		</div>
-	</div>
-
+	<!-- Leaflet Map Script -->
     <script>
 			
 		var mymap = L.map('map').setView([-15.386283, 28.399378], 17);
@@ -777,49 +762,43 @@
 
     </script>
 
-	<!-- /.Map -->
-
 	<!-- Clear time fields -->
-
     <script>
-	function ClearFieldsMonday() {
-		document.getElementById("monday-open").value = "";
-		document.getElementById("monday-close").value = "";
-	}
+		function ClearFieldsMonday() {
+			document.getElementById("monday-open").value = "";
+			document.getElementById("monday-close").value = "";
+		}
 
-	function ClearFieldsTuesday() {
-		document.getElementById("tuesday-open").value = "";
-		document.getElementById("tuesday-close").value = "";
-	}
+		function ClearFieldsTuesday() {
+			document.getElementById("tuesday-open").value = "";
+			document.getElementById("tuesday-close").value = "";
+		}
 
-	function ClearFieldsWednesday() {
-		document.getElementById("wednesday-open").value = "";
-		document.getElementById("wednesday-close").value = "";
-	}
+		function ClearFieldsWednesday() {
+			document.getElementById("wednesday-open").value = "";
+			document.getElementById("wednesday-close").value = "";
+		}
 
-	function ClearFieldsThursday() {
-		document.getElementById("thursday-open").value = "";
-		document.getElementById("thursday-close").value = "";
-	}
+		function ClearFieldsThursday() {
+			document.getElementById("thursday-open").value = "";
+			document.getElementById("thursday-close").value = "";
+		}
 
-	function ClearFieldsFriday() {
-		document.getElementById("friday-open").value = "";
-		document.getElementById("friday-close").value = "";
-	}
+		function ClearFieldsFriday() {
+			document.getElementById("friday-open").value = "";
+			document.getElementById("friday-close").value = "";
+		}
 
-	function ClearFieldsSaturday() {
-		document.getElementById("saturday-open").value = "";
-		document.getElementById("saturday-close").value = "";
-	}
+		function ClearFieldsSaturday() {
+			document.getElementById("saturday-open").value = "";
+			document.getElementById("saturday-close").value = "";
+		}
 
-	function ClearFieldsSunday() {
-		document.getElementById("sunday-open").value = "";
-		document.getElementById("sunday-close").value = "";
-	}
-
+		function ClearFieldsSunday() {
+			document.getElementById("sunday-open").value = "";
+			document.getElementById("sunday-close").value = "";
+		}
     </script>
-
-	<!-- /.Clear time fields -->
 
 	<!-- Core plugin JavaScript-->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -881,7 +860,6 @@
             });
         });
     </script>
-	<!-- /.Time picker fields -->
 
 </body>
 
