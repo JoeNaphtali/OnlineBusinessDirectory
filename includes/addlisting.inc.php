@@ -109,7 +109,7 @@ if (isset($_POST['submit-listing'])) {
 
     $monday_open = $_POST['monday_open'];
     $monday_close = $_POST['monday_close'];
-    $monday_status = false;
+    $monday_status = true;
 
     if (empty($monday_open) && !empty($monday_close)) {
         header("Location: ../dashboard/addlisting.php?error=noopenmon");
@@ -213,13 +213,13 @@ if (isset($_POST['submit-listing'])) {
         $sunday_status = false;
     }
 
-    $monday = '1';
-    $tuesday = '2';
-    $wednesday = '3';
-    $thursday = '4';
-    $friday = '5';
-    $saturday = '6';
-    $sunday = '7';
+    $monday = 'Mon';
+    $tuesday = 'Tue';
+    $wednesday = 'Wed';
+    $thursday = 'Thu';
+    $friday = 'Fri';
+    $saturday = 'Sat';
+    $sunday = 'Sun';
 
     $item_category = $_POST['item_category'];
     $item_name = $_POST['item_name'];
@@ -246,7 +246,11 @@ if (isset($_POST['submit-listing'])) {
 
     $last_id = mysqli_insert_id($conn);
 
-    $sql = "INSERT INTO listing_phone_number (listing_id, phone_number) VALUES (?, ?)";
+    $sql = "INSERT INTO listing_phone_number (listing_id, phone_number, number_rank) VALUES (?, ?, ?)";
+
+    $rank1 = 1;
+    $rank2 = 2;
+    $rank3 = 3;
 
     $stmt = mysqli_stmt_init($conn);
     // Display error if there is an sql syntax error in the 'INSERT INTO' statement
@@ -256,15 +260,15 @@ if (isset($_POST['submit-listing'])) {
     }
     else {
     // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "ss", $last_id, $phone_1);
+    mysqli_stmt_bind_param($stmt, "sss", $last_id, $phone_1, $rank1);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
     // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "ss", $last_id, $phone_2);
+    mysqli_stmt_bind_param($stmt, "sss", $last_id, $phone_2, $rank2);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
     // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "ss", $last_id, $phone_3);
+    mysqli_stmt_bind_param($stmt, "sss", $last_id, $phone_3, $rank3);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
     }
@@ -301,7 +305,7 @@ if (isset($_POST['submit-listing'])) {
         }
     }
 
-    $sql = "INSERT INTO opening_hours (listing_id, day_of_week_id, opening_time, closing_time, openclose_status) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO opening_hours (listing_id, weekday, opening_time, closing_time, openclose_status) VALUES (?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
     // Display error if there is an sql syntax error in the 'INSERT INTO' statement

@@ -113,9 +113,9 @@ else {
 
 $sql = "CREATE TABLE opening_hours(
     listing_id INT(11) NOT NULL,
-    day_of_week_id VARCHAR(255) NOT NULL,
-    opening_time TIME NOT NULL,
-    closing_time TIME NOT NULL,
+    weekday VARCHAR(255) NOT NULL,
+    opening_time VARCHAR(255) NOT NULL,
+    closing_time VARCHAR(255) NOT NULL,
     openclose_status BOOLEAN,
     FOREIGN KEY (listing_id) REFERENCES listing(id)
 )";
@@ -168,6 +168,7 @@ else {
 $sql = "CREATE TABLE listing_phone_number(
     listing_id INT(11) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
+    number_rank INT(11) NOT NULL,
     FOREIGN KEY (listing_id) REFERENCES listing(id),
     CONSTRAINT PK_listing_phone_number PRIMARY KEY (listing_id, phone_number)
     )";
@@ -350,7 +351,7 @@ else {
 // INSERT LISTING CATEGORIES
 
 $sql = "INSERT INTO listing_category (category) 
-        VALUES ('Event'), ('Food&Drink'), ('Shopping'), ('Accomodation'), ('Travel')";
+        VALUES ('Food & Drinks'), ('Shopping'), ('Accomodation & Travel'), ('Salon, Barber & Spa'), ('Home Services'), ('Car Services')";
 // Display success message if user was added
 if($conn->query($sql)===TRUE) {
     echo "The default categories were added succesfully | DONE!";

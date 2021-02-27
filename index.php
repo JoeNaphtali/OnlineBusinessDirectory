@@ -260,11 +260,38 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="top-businesses-tab">
+								<?php
+									// Put category ID's into corresponding variables 
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Food & Drinks'");
+									while ($row = mysqli_fetch_array($results)) {
+										$foodDrinkId = $row['id'];
+									}
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Shopping'");
+									while ($row = mysqli_fetch_array($results)) {
+										$ShoppingId = $row['id'];
+									}
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Accomodation & Travel'");
+									while ($row = mysqli_fetch_array($results)) {
+										$accomodationTravelId = $row['id'];
+									}
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Salon, Barber & Spa'");
+									while ($row = mysqli_fetch_array($results)) {
+										$salonBarberId = $row['id'];
+									}
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Home Services'");
+									while ($row = mysqli_fetch_array($results)) {
+										$homeServicesId = $row['id'];
+									}
+									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Car Services'");
+									while ($row = mysqli_fetch_array($results)) {
+										$carServicesId = $row['id'];
+									}
+								?>
 								<ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
 									<li class="nav-item">
 										<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
 											<span class="fa fa-utensils"></span>
-											Restaurants
+											Food & Drinks
 										</a>
 									</li>
 									<li class="nav-item">
@@ -276,7 +303,7 @@
 									<li class="nav-item">
 										<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
 											<span class="fa fa-bed"></span>
-											Hotels & Travel
+											Accomodation & Travel
 										</a>
 									</li>
 									<li class="nav-item">
@@ -294,31 +321,71 @@
 									<li class="nav-item">
 										<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
 											<span class="fa fa-car-side"></span>
-											Car Hire
+											Car Services
 										</a>
 									</li>
 								</ul>
 							</div>
 							<div class="tab-content">
+								<!-- Food & Drinks Tab -->
 								<div class="tab-pane active" id="tabs-1" role="tabpanel">
 									<div class="row">
+										<?php
+										// Select the top 6 listings under the 'Food & Drinks' category and sort them by their review rating
+										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $foodDrinkId");
+										// Check if the query returns any rows
+										if (mysqli_num_rows($results)==0) {
+											// If the query returns no rows, display relevant error message
+											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+										}
+										else {
+											while ($row = mysqli_fetch_array($results)) {
+												$listing_id = $row['id'];															
+										?>
 										<div class="col-lg-4 col-md-6">
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
 														<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
 													</div>
-													<div class="listing-badge open">
-														Open
-													</div>
+													<?php
+													// Set timezone
+													date_default_timezone_set("Africa/Lusaka"); 
+													// Returns the current date time
+													$now   = new DateTime(); 
+													// Returns the current day in string format
+													$day = $now->format('D');
+													// Select the opening and closing hours for the current day
+													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+													// Check if the query return any results
+													if (mysqli_num_rows($results_opening_hours)>0) {
+														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+														// Check if the current time falls between the opening and closing times
+														if($now >= $openingtime && $now <= $closingtime){
+															// If the current time is between opening and closing times, display the 'Open' badge
+															echo "<div class='listing-badge open'>Open</div>";
+														} else {
+															// If the current time is not between opening and closing times, display the 'Closed' badge
+															echo "<div class='listing-badge closed'>Closed</div>";
+														}
+													}
+													?>
 													<div class="bookmark">
 														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
 													</div>
 												</div>
 												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title">Burger House</h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> Plot No. 1086, Off Simon Mwansa Kapwepwe Rd</div>
-													<div><i class="fa fa-phone fa-fw"></i> +260 975 944 213</div>
+													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+													<?php 
+													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+													$row_phone = mysqli_fetch_array($results_phone)
+													?>
+													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
 												</div>
 												<div class="card-footer listing-rating text-muted">
 													<i class="fa fa-star"></i>
@@ -327,11 +394,14 @@
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star-half-alt"></i>
 													<span> (1 review)</span>
+													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 												</div>
-											</div>
+											</div>				
 										</div>
+										<?php }} ?>
 									</div>							
 								</div>
+								<!-- Shopping Tab -->
 								<div class="tab-pane" id="tabs-2" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -339,6 +409,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Accomodation & Travel Tab -->
 								<div class="tab-pane" id="tabs-3" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -346,6 +417,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Salon, Barber & Spa Tab -->
 								<div class="tab-pane" id="tabs-4" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -353,6 +425,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Home Services Tab -->
 								<div class="tab-pane" id="tabs-5" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">
@@ -360,6 +433,7 @@
 										</div>
 									</div>
 								</div>
+								<!-- Car Services Tab -->
 								<div class="tab-pane" id="tabs-6" role="tabpanel">
 									<div class="row">
 										<div class="col-lg-4 col-md-6">

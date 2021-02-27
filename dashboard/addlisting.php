@@ -711,15 +711,15 @@
 									<div class="add-listing-container">
 										<p><span class="star">* </span>Toggle the switch if you wish to have any products displayed on the listing page</p>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input amenity" name="wi_fi" id="wi-fi" type="checkbox" value="wi-fi" disabled>
+											<input class="form-check-input amenity" name="wi_fi" id="wi-fi" type="checkbox" value="Wi-Fi" disabled>
 											<label class="form-check-label" for="wi-fi">Free Wi-FI</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input amenity" name="pets" id="pets-allowed" type="checkbox" value="pets" disabled>
+											<input class="form-check-input amenity" name="pets" id="pets-allowed" type="checkbox" value="Pet Friendly" disabled>
 											<label class="form-check-label" for="pets-allowed">Pets Allowed</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input amenity" name="smoking" id="smoking-allowed" type="checkbox" value="smoking" disabled>
+											<input class="form-check-input amenity" name="smoking" id="smoking-allowed" type="checkbox" value="Smoking" disabled>
 											<label class="form-check-label" for="smoking-allowed">Smoking Allowed</label>
 										</div>
 									</div>

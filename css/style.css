@@ -1391,6 +1391,10 @@ body {
     background-color: #54ba1d;
 }
 
+.listing-badge.closed {
+    background-color: #DB4437;
+}
+
 .listing-item-small .listing-details {
     position: absolute;
     left: 20px;
@@ -1402,6 +1406,11 @@ body {
 
 .listing-item {
     overflow: hidden;
+    transition: transform 0.4s;
+}
+
+.listing-item:hover {
+    transform: translate(0px, -7px);
 }
 
 .listing-item-horizontal {
@@ -1447,6 +1456,15 @@ body {
     font-size: 24px;
 }
 
+.listing-details a {
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+}
+
+.listing-details a:hover {
+    color: #DB4437;
+}
+
 .listing-details-horizontal {
     background-color: #fff;
     z-index: 110;
@@ -1455,6 +1473,18 @@ body {
 
 .listing-details .location {
     padding-bottom: 10px;
+}
+
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
 }
 
 /* End of Listing Item */

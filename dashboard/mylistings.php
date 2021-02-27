@@ -194,6 +194,16 @@
 
 						<div class="col-md-12">
 							<div class="shadow my-listings">
+								<?php 
+									// Select all listing from the 'listings' that match the logged in user's id
+									$results = mysqli_query($conn, "SELECT * FROM listing WHERE user__id = $user_id");
+									if (mysqli_num_rows($results)==0) {
+										echo "<p>There are no listings for this account. Click <a href='addlisting.php'>here<a/> to add a listing.</p>";
+									}
+									else {
+										while ($row = mysqli_fetch_array($results)) {
+											$listing_id = $row['id'];															 
+								?>
 								<div class="row no-gutters listing-item-horizontal">
     								<div class="col-lg-4">
         								<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
@@ -201,9 +211,13 @@
     								</div>
     								<div class="listing-details listing-details-horizontal col-lg-8">
 										<div class="listing-details-horizontal-body">
-											<a href="../listing/index.php"><h2 class="card-title">Burger House</h2></a>
-											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> Plot No. 1086, Off Simon Mwansa Kapwepwe Rd</div>
-											<div class="phone"><i class="fa fa-phone fa-fw"></i> +260 975 944 213</div>
+											<a href="../listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+											<?php $results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+												while ($row_phone = mysqli_fetch_array($results_phone)) {
+											?>
+											<div class="phone"><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+											<?php } ?>
 											<div class="listing-item-buttons">
 												<a class="btn btn-large btn-edit bg-success" href="#">
 													<i class="fa fa-pencil-alt fa-fw"></i> Edit
@@ -243,6 +257,7 @@
     								</div>
 									
 								</div>
+								<?php }} ?>
 							</div>
 						</div>
 
