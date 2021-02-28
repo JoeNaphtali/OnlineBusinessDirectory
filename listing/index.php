@@ -8,10 +8,11 @@
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
 		$user_id = $_SESSION['user_id'];
-		// Retrieve user from 'user' table
+		// Retrieve user details from 'user' table
 		$results = mysqli_query($conn, "SELECT * FROM user WHERE id = $user_id");
 		$row = mysqli_fetch_array($results);
 
+		// Store user details in relevant variables
 		$first_name = $row['first_name'];
 		$last_name = $row['last_name'];
 		$email = $row['email'];
@@ -58,6 +59,11 @@
 		crossorigin=""></script>
 		<!-- Bar filler -->
 		<script src="../js/jquery.barfiller.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 	</head>
 
@@ -165,6 +171,7 @@
         <div class="container">
 			<div class="row">
 				<div class="col-lg-8">
+					<!-- Description/Overview Section -->
 					<div class="listing-overview margin-bottom-30">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
@@ -176,7 +183,8 @@
 						<?php echo $row["overview"];?>
 						<div class="listing-links-container">		
 							<ul class="social-links">
-								<?php 
+								<?php
+								// Display relevant social media links if the selected listing has any 
 								if ($row["facebook"] != "") {
 									$facebook_link = $row["facebook"];
 									echo "<li><a href='https://$facebook_link' target='_blank' class='social-links-fb text-decoration-none'><i class='fab fa-facebook-square'></i> Facebook</a></li>";
@@ -190,22 +198,17 @@
 									echo "<li><a href='https://$twitter_link' target='_blank' class='social-links-tt text-decoration-none'><i class='fab fa-twitter'></i> Twitter</a></li>";
 								}
 								?>
-								<!--<li>
-									<a href="#" target="_blank" class="social-links-yt text-decoration-none"><i class="fab fa-youtube"></i> YouTube</a>
-								</li>
-								<li>
-									<a href="#" target="_blank" class="social-links-ig text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
-								</li>
-								<li>
-									<a href="#" target="_blank" class="social-links-tt text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
-								</li>-->
 							</ul>
 							<div class="clearfix"></div>				
 						</div>
 					</div>
-					<?php 
+					<!-- Amenities Section -->
+					<?php
+						// Select all amenities that belong to the selected listing 
 						$results_amenity = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id = $listing_id");
+						// Check if the query returns any rows
 						if (mysqli_num_rows($results_amenity) > 0) {
+							// If the the query return row (amenities for this listing exist), display the 'Amenities' section
 							echo "
 							<div class='listing-amenities'>
 								<div class='row blog-section-title-row'>
@@ -270,6 +273,7 @@
 							</div>
 						</div>
 					</div>-->
+					<!-- Location Section -->
 					<div class="listing-location margin-bottom-40">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
@@ -280,6 +284,7 @@
 						</div>
 						<div id="listing-map"></div>
 					</div>
+					<!-- Rating Section -->
 					<div class="listing-rating margin-bottom-40">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
@@ -340,6 +345,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
+					<!-- Contact Information Card -->
 					<div class="card contact-information margin-bottom-30">
 						<div class="card-header">
 							<h4 class="margin-bottom-0">Contant Information</h4>
@@ -347,6 +353,7 @@
 						<div class="card-body">
 							<ul class="list-style-none margin-bottom-0">
 								<?php 
+								// Check if the listing contains a website link, and display the link if it exists
 								if ($row["website"] != "") {
 									$website_link = $row["website"];
 									echo "<li><i class='fa fa-external-link-alt fa-fw'></i><a href='https://$website_link' class='text-decoration-none'> $website_link</a></li>";
@@ -355,12 +362,14 @@
 								<li>
 									<i class="fa fa-phone fa-fw"></i>
 									<?php 
+									// Select all phone numbers from the 'listing_phone_number' table that match the selected listing
 									$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 									$row_phone = mysqli_fetch_array($results_phone)
 									?>
 									<a href="tel:<?php echo $row_phone['phone_number']; ?>" class="text-decoration-none"> <?php echo $row_phone['phone_number']; ?></a>
 								</li>
 								<?php 
+								// Check if the listing contains an email address, and display the email address if it exists
 								if ($row["email"] != "") {
 									$email_link = $row["email"];
 									echo "<li class='border-none'><i class='fa fa-envelope fa-fw'></i><a href='mailto:$email_link' class='text-decoration-none'> $email_link</a></li>";
@@ -369,416 +378,372 @@
 							</ul>
 						</div>
 					</div>
-					<!--
-					<div class="margin-bottom-30">
-						<button class="btn btn-primary width-100">Make Booking</button>
-					</div>
-					-->
+					<!-- Opening Hours Card -->
 					<?php
-					// Set timezone
-					date_default_timezone_set("Africa/Lusaka"); 
-					// Returns the current date time
-					$now   = new DateTime(); 
-					// Returns the current day in string format
-					$day = $now->format('D');
-					// Select the opening and closing hours for the current day
-					$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-					// Check if the query return any results
-					if (mysqli_num_rows($results_opening_hours)>0) {
-						$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-						// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-						$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-						// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-						$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-						// Check if the current time falls between the opening and closing times
-						if($now >= $openingtime && $now <= $closingtime){
-							// If the current time is between opening and closing times, display the opening hours card with the 'Open' badge
-							echo "
-							<div class='card listing-opening-hours margin-bottom-30'>
-								<div class='card-header'>
-									<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
-								</div>
-								<div class='card-body'>
-									<div class='listing-badge open'>
-										Open
+						// Set timezone
+						date_default_timezone_set("Africa/Lusaka"); 
+						// Returns the current date time
+						$now   = new DateTime(); 
+						// Returns the current day in string format
+						$day = $now->format('D');
+						// Select the opening and closing hours for the current day
+						$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+						// Check if the query return any results
+						if (mysqli_num_rows($results_opening_hours)>0) {
+							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+							// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+							$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+							// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+							$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+							// Check if the current time falls between the opening and closing times
+							if($now >= $openingtime && $now <= $closingtime){
+								// If the current time is between opening and closing times, display the opening hours card with the 'Open' badge
+								echo "
+								<div class='card listing-opening-hours margin-bottom-30'>
+									<div class='card-header'>
+										<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
 									</div>
-									<ul class='list-style-none'>
-							";
-							// Monday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$mon_open = $row_opening_hours['opening_time'];
-								$mon_close = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>$mon_open - $mon_close</span>
-								</li>
+									<div class='card-body'>
+										<div class='listing-badge open'>
+											Open
+										</div>
+										<ul class='list-style-none'>
 								";
-							}
-							else {
+								// Monday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$mon_open = $row_opening_hours['opening_time'];
+									$mon_close = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>$mon_open - $mon_close</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Monday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Tuesday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Tue'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Tuesday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Tuesday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Wednesday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Wed'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Wednesday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Wednesday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Thursday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Thu'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Thursday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Thursday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Friday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Fri'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Friday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Friday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Saturday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sat'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Saturday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Saturday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Sunday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sun'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Sunday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Sunday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+							} else {
+								// If the current time is not between opening and closing times, display the opening hours card with the 'Closed' badge
 								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Monday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Tuesday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Tue'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Tuesday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Tuesday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Wednesday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Wed'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Wednesday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Wednesday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Thursday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Thu'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Thursday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Thursday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Friday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Fri'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Friday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Friday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Saturday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sat'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Saturday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Saturday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Sunday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sun'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Sunday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Sunday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-						} else {
-							// If the current time is not between opening and closing times, display the opening hours card with the 'Closed' badge
-							echo "
-							<div class='card listing-opening-hours margin-bottom-30'>
-								<div class='card-header'>
-									<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
-								</div>
-								<div class='card-body'>
-									<div class='listing-badge closed'>
-										Closed
+								<div class='card listing-opening-hours margin-bottom-30'>
+									<div class='card-header'>
+										<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
 									</div>
-									<ul class='list-style-none'>
-							";
-							// Monday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
+									<div class='card-body'>
+										<div class='listing-badge closed'>
+											Closed
+										</div>
+										<ul class='list-style-none'>
 								";
+								// Monday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Monday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Tuesday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Tue'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Tuesday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Tuesday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Wednesday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Wed'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Wednesday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Wednesday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Thursday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Thu'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Thursday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Thursday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Friday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Fri'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Friday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Friday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Saturday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sat'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Saturday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Saturday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
+								// Sunday
+								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sun'");
+								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+								if ($row_opening_hours['openclose_status'] == 1) {
+									$openingtime = $row_opening_hours['opening_time'];
+									$closingtime = $row_opening_hours['closing_time'];
+									echo "
+									<li>
+										<span class='day'>Sunday</span>
+										<span class='time'>$openingtime - $closingtime</span>
+									</li>
+									";
+								}
+								else {
+									echo "
+									<li>
+										<span class='day'>Sunday</span>
+										<span class='time'>Closed</span>
+									</li>
+									";
+								}
 							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Monday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Tuesday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Tue'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Tuesday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Tuesday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Wednesday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Wed'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Wednesday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Wednesday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Thursday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Thu'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Thursday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Thursday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Friday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Fri'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Friday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Friday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Saturday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sat'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Saturday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Saturday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
-							// Sunday
-							$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Sun'");
-							$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-							if ($row_opening_hours['openclose_status'] == 1) {
-								$openingtime = $row_opening_hours['opening_time'];
-								$closingtime = $row_opening_hours['closing_time'];
-								echo "
-								<li>
-									<span class='day'>Sunday</span>
-									<span class='time'>$openingtime - $closingtime</span>
-								</li>
-								";
-							}
-							else {
-								echo "
-								<li>
-									<span class='day'>Sunday</span>
-									<span class='time'>Closed</span>
-								</li>
-								";
-							}
+							echo "</ul></div></div>";
 						}
-						echo "</ul></div></div>";
-					}
-					?>					
-					<!--<div class="card listing-opening-hours margin-bottom-30">
-						<div class="card-header">
-							<h4 class="margin-bottom-0 text-center">Opening Hours</h4>
-						</div>
-						<div class="card-body">
-							<div class="listing-badge open">
-								Open
-							</div>
-							<ul class="list-style-none">
-								<li>
-									<span class="day">Monday</span>
-									<span class="time">09:00 AM - 05:00 PM</span>
-								</li>
-								<li>
-									<span class="day">Tuesday</span>
-									<span class="time">09:00 AM - 05:00 PM</span>
-								</li>
-								<li>
-									<span class="day">Wednesday</span>
-									<span class="time">09:00 AM - 05:00 PM</span>
-								</li>
-								<li>
-									<span class="day">Thursday</span>
-									<span class="time">09:00 AM - 05:00 PM</span>
-								</li>
-								<li>
-									<span class="day">Friday</span>
-									<span class="time">09:00 AM - 05:00 PM</span>
-								</li>
-								<li>
-									<span class="day">Saturday</span>
-									<span class="time">Closed</span>
-								</li>
-								<li>
-									<span class="day">Sunday</span>
-									<span class="time">Closed</span>
-								</li>
-							</ul>
-						</div>
-					</div>-->
+					?>
 				</div>
 			</div>
-
+			
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="leave-review margin-bottom-40">
@@ -788,20 +753,20 @@
 									<h2>Leave a review</h2>
 								</div>
 							</div>
-						</div>
+						</div>						
 						<div class="review-form">
-							<form>
-								<div class="listing-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
+							<form method="POST" action="../includes/submitreview.inc.php">
+								<div class="margin-bottom-5">Your Rating </div>
+								<div class="listing-rating margin-bottom-5">
+									<div id="rateYo" data-rateyo-half-star="true"></div>
 								</div>
 								<div class="form-group">
-									<textarea class="form-control" placeholder="We thank you for your feedback...."></textarea>
+									<input hidden type="text" value="<?php echo $listing_id ?>" id="user-id" class="form-control" name="user-id">
+									<input hidden type="text" value="<?php echo $user_id ?>" id="listing-id" class="form-control" name="listing-id">
+									<input hidden type="text" id="review-rating" class="form-control" name="rating">
+									<textarea required class="form-control" rows="8" placeholder="We thank you for your feedback..." name="feedback"></textarea>
 								</div>
-								<button class="btn btn-primary form-control">Submit</button>
+								<button class="btn btn-primary form-control" id="submit-review" type="submit" name="submit-review">Submit</button>
 							</form>
 						</div>
 					</div>
@@ -824,34 +789,51 @@
 						</div>
 					</div>
 					-->
+					<?php
+					// Select all the reviews from the 'review' table that belong to the selected listing
+					$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+					$number_of_reviews = mysqli_num_rows($reviews);
+					?>
 					<div class="listing-reviews">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
 								<div class="section-title">
-									<h2>Reviews (1)</h2>
+									<h2>Reviews (<?php echo $number_of_reviews ?>)</h2>
 								</div>
 							</div>
 						</div>
 						<div>
+							<?php 
+							while ($review_row = mysqli_fetch_array($reviews)) {
+							?>
 							<ul class="comment-list">
 								<li class="comment">
 									<div class="vcard bio">
 										<img src="../img/user-profile-avatar.jpg" alt="Image">
 									</div>
 									<div class="comment-body">
-										<h3>Joseph Wamulume</h3>
-										<div class="meta">July 7, 2020 at 5:21pm</div>
+										<?php
+										$author_id = $review_row['user__id'];
+										$author = mysqli_query($conn, "SELECT * FROM user WHERE id=$author_id");
+										$author_row = mysqli_fetch_array($author);
+										$author_fullname = $author_row['first_name'] . " " . $author_row['last_name'];
+										?>
+										<h3><?php echo $author_fullname ?></h3>
+										<?php
+										$time = new DateTime($review_row['submission_date']);
+										$date = $time->format('jS F');
+										$year = $time->format('Y');
+										$time = $time->format('H:i');
+										?>
+										<div class="meta"><?php echo $date ?>, <?php echo $year ?></div>
 										<div class="listing-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-half-alt"></i>
+											<div class="lmao" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+										<p><?php echo $review_row['feedback'] ?></p>
 									</div>
 								</li>
 							</ul>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -861,7 +843,7 @@
         
 		<!-- /.Content -->
 
-		<!-- Footer
+		<!-- Footer -->
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
@@ -907,7 +889,7 @@
 			</div>
 		</div>
 
-		/.Footer -->
+		<!-- /.Footer -->
 
 		<script>
 

@@ -1004,7 +1004,7 @@ body {
 }
 
 .blog-section-title-row {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .categories-widget {
@@ -1595,8 +1595,8 @@ body {
     margin-bottom: 10px;
 }
 
-.margin-bottom-10 {
-    margin-bottom: 0;
+.margin-bottom-5 {
+    margin-bottom: 5px;
 }
 
 .margin-top-62 {

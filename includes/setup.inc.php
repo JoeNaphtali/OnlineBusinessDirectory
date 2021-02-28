@@ -181,26 +181,6 @@ else {
     echo "There was an error creating the 'listing_phone_number' table: ".$conn->error;
 }
 
-// CREATE REVIEW TABLE
-
-$sql = "CREATE TABLE review(
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user__id INT(11) NOT NULL,
-    listing_id INT(11) NOT NULL,
-    review TEXT NOT NULL,
-    rating NUMERIC NOT NULL,
-    FOREIGN KEY (user__id) REFERENCES user(id),
-    FOREIGN KEY (listing_id) REFERENCES listing(id)
-    )";
-//Display success message if table is created
-if($conn->query($sql)===TRUE) {
-    echo "The 'review' table was created succesfully | ";
-}
-//Display error message if table is not created
-else {
-    echo "There was an error creating the 'review' table: ".$conn->error;
-}
-
 // CREATE PRODUCT CATEGORY TABLE
 
 $sql = "CREATE TABLE product_category(
@@ -255,6 +235,27 @@ if($conn->query($sql)===TRUE) {
 // Display error message if table was not created
 else {
     echo "There was an error creating the 'bookmark' table: ".$conn->error;
+}
+
+// CREATE REVIEW TABLE
+
+$sql = "CREATE TABLE review(
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user__id INT(11) NOT NULL,
+    listing_id INT(11) NOT NULL,
+    submission_date DATETIME NOT NULL,
+    feedback TEXT NOT NULL,
+    rating DECIMAL NOT NULL,
+    FOREIGN KEY (user__id) REFERENCES user(id),
+    FOREIGN KEY (listing_id) REFERENCES listing(id)
+)";
+// Display success message if table is created
+if($conn->query($sql)===TRUE) {
+    echo "The 'review' table was created succesfully | ";
+}
+// Display error message if table was not created
+else {
+    echo "There was an error creating the 'review' table: ".$conn->error;
 }
 
 // CREATE ARTICLE CATEGORY TABLE

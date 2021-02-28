@@ -74,3 +74,16 @@ $(document).ready(function () {
     });
 
 });
+
+$(function () {
+ 
+    var $rateYo = $("#rateYo").rateYo();
+    var $lmao = $(".lmao").rateYo();
+
+    $("#submit-review").click(function () {
+        /* get rating */
+        var rating = $rateYo.rateYo("rating");
+        document.getElementById("review-rating").value = rating;
+    });
+
+});
