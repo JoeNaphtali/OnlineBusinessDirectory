@@ -77,8 +77,8 @@ $(document).ready(function () {
 
 $(function () {
  
-    var $rateYo = $("#rateYo").rateYo();
-    var $lmao = $(".lmao").rateYo();
+    var $rateYo = $("#read-write-rating").rateYo();
+    var $lmao = $(".read-only-rating").rateYo();
 
     $("#submit-review").click(function () {
         /* get rating */

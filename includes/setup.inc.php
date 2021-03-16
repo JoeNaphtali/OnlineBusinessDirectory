@@ -73,6 +73,8 @@ $sql = "CREATE TABLE listing(
     category_id INT(11) NOT NULL,
     overview TEXT NOT NULL,
     rating NUMERIC,
+    province VARCHAR(255),
+    city_town VARCHAR(255),
     listing_address VARCHAR(255),
     friendly_address VARCHAR(255),
     latitude VARCHAR(255),

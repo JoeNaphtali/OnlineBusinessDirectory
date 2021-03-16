@@ -178,48 +178,44 @@
 
 		<!-- Content -->
 
-		<div class="fs-container">
+		<div class="container">
 			<div class="fs-inner-container search-container">
 				<section class="search">
-					<form id="search-form-form">
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<input type="text" class="form-control" placeholder="What are you looking for?">
-							</div>
-							<div class="form-group col-md-6">
-								<input type="text" class="form-control" placeholder="Location">
-							</div>
-						</div>
-						<div class="form-group">
-							<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-							<select class="form-control" name="" id="">
-								<option value="">All Categories</option>
-								<option value="">Hotels</option>
-								<option value="">Restaurant</option>
-								<option value="">Eat &amp; Drink</option>
-								<option value="">Events</option>
-								<option value="">Fitness</option>
-								<option value="">Others</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<button class="btn btn-search">Search</button>
-						</div>
-						<div class="dropdown-panel distance-radius">
-							<a href="#" class="dropdown-panel-toggle">Distance Radius <i class="fa fa-chevron-down"></i></a>
-							<div class="dropdown-panel-content">
-								<div class="form-group">
-									<span>Distance Radius</span>
-									<input disabled class="distanceRangeInput" type="range" name="distanceRangeInput" id="distanceRangeInput" value="50" min="1" max="100" oninput="distanceRangeOutput.value = distanceRangeInput.value">
-									<output name="distanceRangeOutput" id="distanceRangeOutput">50</output>
+					<!-- Search Form -->
+					<div class="form-search-wrap p-2">
+              			<form method="post">
+                			<div class="row align-items-center">
+								<div class="col-md-12 col-lg-4 no-sm-border border-right input">
+									<input type="text" class="form-control" placeholder="What are you looking for?">
 								</div>
-								<label for="enableDistanceRadius">Enable</label>
-								<input id="enableDistanceRadius" type="checkbox">
-							</div>
-						</div>
-					</form>
+								<div class="col-md-12 col-lg-3 no-sm-border border-right input">
+									<div class="wrap-icon">
+										<input type="text" class="form-control" placeholder="Location">
+									</div>
+								</div>
+								<div class="col-md-12 col-lg-3 input">
+									<div class="select-wrap">
+										<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+										<select class="form-control" name="" id="">
+											<option value="">All Categories</option>
+											<option value="">Hotels</option>
+											<option value="">Restaurant</option>
+											<option value="">Eat &amp; Drink</option>
+											<option value="">Events</option>
+											<option value="">Fitness</option>
+											<option value="">Others</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12 col-lg-2 text-right">
+									<input type="submit" class="btn text-white btn-primary" value="Search">
+								</div>
+                  			</div>
+              			</form>
+					</div>
+					<!-- ./Search Form -->
 				</section>
-				<section class="listings-container padding-top-30">
+				<section class="listings-container">
 					<div class="sort-by padding-left-right-30">
 						<div class="sort-listing">
 							<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
@@ -232,25 +228,73 @@
 							</select>
 						</div>
 					</div>
-					<div class="padding-left-right-30 margin-bottom-15 margin-top-15">
-						Showing results for 'food'
-					</div>
+					<?php
+						if (isset($_POST['submit-search'])) {
+							$search = mysqli_real_escape_string($conn, $_POST['search']);
+							$sql = "SELECT listing.* FROM listing INNER JOIN listing_category ON listing.category_id = listing_category.id WHERE listing_name LIKE '%$search%' OR listing_category.category LIKE '%$search%'";
+							$result = mysqli_query($conn, $sql);
+							$queryResults = mysqli_num_rows($result);
+							
+							if ($queryResults == 0) {
+								$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
+											There are no listings for "<?php echo $search?>"
+							  			</div>';
+								eval("?> $str <?php ");
+							} else {
+								$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
+											Showing results for "<?php echo $search ?>"
+							  			</div>';
+								eval("?> $str <?php ");
+					?>
 					<div class="listings padding-left-right-30">
 						<div class="row">
-							<div class="col-xl-6 col-xl-6">
-								<div class="card mb-4 listing-item listing-item-small shadow">
-									<div class="listing-item-pic set-bg" data-setbg="../img/listing/list-1.jpg">
+							<?php
+							while ($row = mysqli_fetch_assoc($result)) {
+								$listing_id = $row['id']; // Store listing id in listing_id variable
+							?>
+							<div class="col-lg-4 col-lg-4">
+								<div class="card mb-4 listing-item listing-item-small shadow position-relative">
+									<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
 										<div class="listing-details">
-											<h2 class="card-title">Burger House</h2>
-											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> 14320 Keenes Mill Rd. Cottondale, Alabama(AL)</div>
-											<div><i class="fa fa-phone fa-fw"></i> (+12) 345-678-910</div>
+											<h2 class="card-title"><?php echo $row["listing_name"]; ?></h2>
+											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+											<?php 
+												$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+												$row_phone = mysqli_fetch_array($results_phone)
+											?>
+											<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+											<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
 										<div class="listing-category category">
-											<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
+											<span><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</span>
+											<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
-										<div class="listing-badge open">
-											Open
-										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
 										<div class="bookmark">
 											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
 										</div>
@@ -262,65 +306,11 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star-half-alt"></i>
 										<span> (1 review)</span>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-xl-6">
-								<div class="card mb-4 listing-item listing-item-small shadow">
-									<div class="listing-item-pic set-bg" data-setbg="../img/listing/list-1.jpg">
-										<div class="listing-details">
-											<h2 class="card-title">Burger House</h2>
-											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> 14320 Keenes Mill Rd. Cottondale, Alabama(AL)</div>
-											<div><i class="fa fa-phone fa-fw"></i> (+12) 345-678-910</div>
-										</div>
-										<div class="listing-category category">
-											<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
-										</div>
-										<div class="listing-badge open">
-											Open
-										</div>
-										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-										</div>
-									</div>
-									<div class="card-footer listing-rating text-muted">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-alt"></i>
-										<span> (1 review)</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-6 col-xl-6">
-								<div class="card mb-4 listing-item listing-item-small shadow">
-									<div class="listing-item-pic set-bg" data-setbg="../img/listing/list-1.jpg">
-										<div class="listing-details">
-											<h2 class="card-title">Burger House</h2>
-											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> 14320 Keenes Mill Rd. Cottondale, Alabama(AL)</div>
-											<div><i class="fa fa-phone fa-fw"></i> (+12) 345-678-910</div>
-										</div>
-										<div class="listing-category category">
-											<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
-										</div>
-										<div class="listing-badge open">
-											Open
-										</div>
-										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-										</div>
-									</div>
-									<div class="card-footer listing-rating text-muted">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-alt"></i>
-										<span> (1 review)</span>
-									</div>
-								</div>
-							</div>
+							<?php }}} ?>
 						</div>
 					</div>
 					<div class="copyrights">
@@ -328,9 +318,6 @@
 					</div>
 				</section>
 
-			</div>
-			<div class="fs-inner-container map-container">
-				<div id="map"></div>
 			</div>
 		</div>
 

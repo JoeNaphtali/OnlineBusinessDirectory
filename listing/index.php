@@ -114,22 +114,22 @@
 										$row_category = mysqli_fetch_array($results_category);
 										// Display relevant category badge for the selected listing category
 										if ($row_category["category"] == "Food & Drinks") {
-											echo "<a href='#'><i class='fa fa-utensils fa-fw stroke-transparent'></i> Food & Drinks</a>";
+											echo "<span><i class='fa fa-utensils fa-fw stroke-transparent'></i> Food & Drinks</span>";
 										}
 										else if ($row_category["category"] == "Shopping") {
-											echo "<a href='#'><i class='fa fa-shopping-cart fa-fw stroke-transparent'></i> Shopping</a>";
+											echo "<span><i class='fa fa-shopping-cart fa-fw stroke-transparent'></i> Shopping</span>";
 										}
 										else if ($row_category["category"] == "Accomodation & Travel") {
-											echo "<a href='#'><i class='fa fa-bed fa-fw stroke-transparent'></i> Accomodation & Travel</a>";
+											echo "<span><i class='fa fa-bed fa-fw stroke-transparent'></i> Accomodation & Travel</span>";
 										}
 										else if ($row_category["category"] == "Salon, Barber & Spa") {
-											echo "<a href='#'><i class='fa fa-spa fa-fw stroke-transparent'></i> Salon, Barber & Spa</a>";
+											echo "<span><i class='fa fa-spa fa-fw stroke-transparent'></i> Salon, Barber & Spa</span>";
 										}
 										else if ($row_category["category"] == "Home Services") {
-											echo "<a href='#'><i class='fa fa-home fa-fw stroke-transparent'></i> Home Services</a>";
+											echo "<span><i class='fa fa-home fa-fw stroke-transparent'></i> Home Services</span>";
 										}
 										else if ($row_category["category"] == "Car Services") {
-											echo "<a href='#'><i class='fa fa-car-side fa-fw stroke-transparent'></i> Car Services</a>";
+											echo "<span><i class='fa fa-car-side fa-fw stroke-transparent'></i> Car Services</span>";
 										}
 										?>
 									</span>
@@ -758,7 +758,7 @@
 							<form method="POST" action="../includes/submitreview.inc.php">
 								<div class="margin-bottom-5">Your Rating </div>
 								<div class="listing-rating margin-bottom-5">
-									<div id="rateYo" data-rateyo-half-star="true"></div>
+									<div id="read-write-rating" data-rateyo-half-star="true"></div>
 								</div>
 								<div class="form-group">
 									<input hidden type="text" value="<?php echo $listing_id ?>" id="user-id" class="form-control" name="user-id">
@@ -827,7 +827,7 @@
 										?>
 										<div class="meta"><?php echo $date ?>, <?php echo $year ?></div>
 										<div class="listing-rating">
-											<div class="lmao" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
+											<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
 										</div>
 										<p><?php echo $review_row['feedback'] ?></p>
 									</div>

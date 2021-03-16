@@ -739,7 +739,7 @@
 	</div>	
 	<!-- /.Page Wrapper -->
 
-	<!-- Leaflet Map Script -->
+	<!-- Leaflet Map Script	-->
     <script>
 			
 		var mymap = L.map('map').setView([-15.386283, 28.399378], 17);
@@ -761,6 +761,19 @@
 		}).addTo(mymap);
 
     </script>
+
+	<!-- Google Map
+	<script>
+		function initMap() {
+			var location = {lat: -25.363, lng: 131.044};
+			var map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 4,
+				center: location
+			});
+		}
+	</script> -->
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5KcYk33GCMh1iuJrYzxynDb9Fx2Tfbaw&callback=initMap"></script>
 
 	<!-- Clear time fields -->
     <script>

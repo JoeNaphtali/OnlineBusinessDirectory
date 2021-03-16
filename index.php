@@ -205,10 +205,10 @@
 						</div>
 						<!-- Header Search Form -->
 						<div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-              				<form method="post">
+              				<form method="post" action="directory/index.php">
                 				<div class="row align-items-center">
 									<div class="col-md-12 col-lg-4 no-sm-border border-right input">
-										<input type="text" class="form-control" placeholder="What are you looking for?">
+										<input type="text" name="search" class="form-control" placeholder="What are you looking for?">
 									</div>
 									<div class="col-md-12 col-lg-3 no-sm-border border-right input">
 										<div class="wrap-icon">
@@ -230,7 +230,7 @@
 										</div>
 									</div>
 									<div class="col-md-12 col-lg-2 text-right">
-										<input type="submit" class="btn text-white btn-primary" value="Search">
+										<input type="submit" name="submit-search" class="btn text-white btn-primary" value="Search">
 									</div>
                   				</div>
               				</form>
@@ -353,7 +353,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
+														<span><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</span>
 													</div>
 													<?php
 													// Set timezone
@@ -428,7 +428,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</a>
+														<span><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</span>
 													</div>
 													<?php
 													// Set timezone
@@ -503,7 +503,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-bed fa-fw stroke-transparent"></i> Accomodation & Travel</a>
+														<span><i class="fa fa-bed fa-fw stroke-transparent"></i> Accomodation & Travel</span>
 													</div>
 													<?php
 													// Set timezone
@@ -578,7 +578,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-spa fa-fw stroke-transparent"></i> Salon, Barber & Spa Tab</a>
+														<span><i class="fa fa-spa fa-fw stroke-transparent"></i> Salon, Barber & Spa Tab</span>
 													</div>
 													<?php
 													// Set timezone
@@ -653,7 +653,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-home fa-fw stroke-transparent"></i> Home Services</a>
+														<span><i class="fa fa-home fa-fw stroke-transparent"></i> Home Services</span>
 													</div>
 													<?php
 													// Set timezone
@@ -728,7 +728,7 @@
 											<div class="card mb-4 listing-item shadow">
 												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
 													<div class="listing-category category">
-														<a href="#"><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Services</a>
+														<span><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Services</span>
 													</div>
 													<?php
 													// Set timezone

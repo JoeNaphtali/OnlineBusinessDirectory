@@ -228,8 +228,8 @@ if (isset($_POST['submit-listing'])) {
 
     $user_id = $_SESSION['user_id'];
 
-    $sql = "INSERT INTO listing (user__id, listing_name, category_id, overview, listing_address, friendly_address, latitude, longtitude, website, email, twitter, facebook, instagram)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO listing (user__id, listing_name, category_id, overview, province, city_town, listing_address, friendly_address, latitude, longtitude, website, email, twitter, facebook, instagram)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
     // Display error if there is an sql syntax error in the 'INSERT INTO' statement
@@ -239,7 +239,7 @@ if (isset($_POST['submit-listing'])) {
     }
     else {
     // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "sssssssssssss", $user_id, $listing_name, $category_id, $description, $address, $friendly_address, $latitude, $longitude, $website, $email, $twitter, $facebook, $instagram);
+    mysqli_stmt_bind_param($stmt, "sssssssssssssss", $user_id, $listing_name, $category_id, $description, $citytown, $province, $address, $friendly_address, $latitude, $longitude, $website, $email, $twitter, $facebook, $instagram);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
     }
