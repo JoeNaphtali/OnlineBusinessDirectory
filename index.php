@@ -205,27 +205,27 @@
 						</div>
 						<!-- Header Search Form -->
 						<div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-              				<form method="post" action="directory/index.php">
+              				<form method="post" action="includes/search.inc.php">
                 				<div class="row align-items-center">
 									<div class="col-md-12 col-lg-4 no-sm-border border-right input">
-										<input type="text" name="search" class="form-control" placeholder="What are you looking for?">
+										<input type="text" name="keyword_search" class="form-control" placeholder="What are you looking for?" required>
 									</div>
 									<div class="col-md-12 col-lg-3 no-sm-border border-right input">
 										<div class="wrap-icon">
-											<input type="text" class="form-control" placeholder="Location">
+											<input type="text" name="location_search" class="form-control" placeholder="Location">
 										</div>
 									</div>
 									<div class="col-md-12 col-lg-3 input">
 										<div class="select-wrap">
 											<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-											<select class="form-control" name="" id="">
-												<option value="">All Categories</option>
-												<option value="">Hotels</option>
-												<option value="">Restaurant</option>
-												<option value="">Eat &amp; Drink</option>
-												<option value="">Events</option>
-												<option value="">Fitness</option>
-												<option value="">Others</option>
+											<select class="form-control" name="listing_category[]" id="">
+												<option selected value="">All Categories</option>
+												<?php
+												$results = mysqli_query($conn, "SELECT * FROM listing_category");
+												while ($row = mysqli_fetch_array($results)) {
+												?>
+												<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
+												<?php } ?>
 											</select>
 										</div>
 									</div>

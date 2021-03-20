@@ -135,14 +135,29 @@
 									</span>
 								</h2>
 								<div class="listing-hero-widget">
+									<?php
+									$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+									$number_of_reviews = mysqli_num_rows($reviews);
+									?>
 									<div class="listing-hero-widget-rating listing-rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-alt"></i>
+										<?php 
+										$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+										while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 									</div>
-									<div>1 Review</div>
+									<?php if ($number_of_reviews < 0):?>
+									<div><?php echo $number_of_reviews ?> Reviews</div>
+									<?php endif ?>
+									<?php if ($number_of_reviews == 1): ?>
+									<div><?php echo $number_of_reviews ?> Review</div>
+									<?php endif ?>
+									<?php if ($number_of_reviews > 1): ?>
+									<div><?php echo $number_of_reviews ?> Reviews</div>
+									<?php endif ?>
 									<!--
 									<div class="listing-hero-widget-date">
 										<span>
@@ -296,46 +311,67 @@
 						<div class="listing-rating-overview">
 							<div class="row">
 								<div class="col-md-4 text-center">
-									<span class="numerical-rating margin-bottom-10">4.5</span>
+									<span class="numerical-rating margin-bottom-10"><?php echo $average ?></span>
 									<div class="listing-rating margin-bottom-10">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-alt"></i>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 									</div>
-									<span class="total-ratings text-muted"><i class="fa fa-user fa-fw"></i> 7,882 total</span>
+									<span class="total-ratings text-muted"><i class="fa fa-user fa-fw"></i> <?php echo $number_of_reviews ?></span>
 								</div>
 								<div class="col-md-8">
 									<ul class="rating-bars listing-rating list-style-none margin-bottom-0">
 										<li class="margin-bottom-10">
 											<i class="fa fa-star fa-fw"></i> 5
 											<span class="progress">
-												<span class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">5,353</span>
+												<?php 
+												$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id AND rating = 5");
+												$five_star = mysqli_num_rows($reviews);
+												$percentage = ($five_star/$number_of_reviews)*100;
+												?>
+												<span class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $five_star ?></span>
 											</span>
 										</li>
 										<li class="margin-bottom-10">
 											<i class="fa fa-star fa-fw"></i> 4
 											<span class="progress">
-												<span class="progress-bar bg-success" role="progressbar" style="width: 47%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1,511</span>
+												<?php 
+												$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id AND rating = 4");
+												$four_star = mysqli_num_rows($reviews);
+												$percentage = ($four_star/$number_of_reviews)*100;
+												?>
+												<span class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $four_star ?></span>
 											</span>
 										</li>
 										<li class="margin-bottom-10">
 											<i class="fa fa-star fa-fw"></i> 3
 											<span class="progress">
-												<span class="progress-bar bg-success" role="progressbar" style="width: 17%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">431</span>
+												<?php 
+												$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id AND rating = 3");
+												$three_star = mysqli_num_rows($reviews);
+												$percentage = ($three_star/$number_of_reviews)*100;
+												?>
+												<span class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $three_star ?></span>
 											</span>
 										</li>
 										<li class="margin-bottom-10">
 											<i class="fa fa-star fa-fw"></i> 2
 											<span class="progress">
-												<span class="progress-bar bg-success" role="progressbar" style="width: 10%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">161</span>
+												<?php 
+												$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id AND rating = 2");
+												$two_star = mysqli_num_rows($reviews);
+												$percentage = ($two_star/$number_of_reviews)*100;
+												?>
+												<span class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $two_star ?></span>
 											</span>
 										</li>
 										<li>
 											<i class="fa fa-star fa-fw"></i> 1
 											<span class="progress">
-												<span class="progress-bar bg-success" role="progressbar" style="width: 15%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">426</span>
+												<?php 
+												$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id AND rating = 1");
+												$one_star = mysqli_num_rows($reviews);
+												$percentage = ($one_star/$number_of_reviews)*100;
+												?>
+												<span class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $one_star ?></span>
 											</span>
 										</li>
 									</ul>
@@ -756,13 +792,43 @@
 						</div>						
 						<div class="review-form">
 							<form method="POST" action="../includes/submitreview.inc.php">
-								<div class="margin-bottom-5">Your Rating </div>
-								<div class="listing-rating margin-bottom-5">
+								<div class="margin-bottom-10">Your Rating </div>
+								<div class="listing-rating">
 									<div id="read-write-rating" data-rateyo-half-star="true"></div>
 								</div>
+								<?php if (isset($_SESSION['login'])): ?>
+								<div class="form-row" hidden>
+								<?php else: ?>
+								<div class="form-row">
+								<?php endif ?>
+				            		<div class="form-group col-md-6">
+										<?php if (isset($_SESSION['login'])): ?>
+										<input class="form-control" hidden value="<?php echo $first_name ?>" placeholder="First Name" type="text" name="first_name" required>
+										<?php else: ?>
+										<input class="form-control" placeholder="First Name" type="text" name="first_name" required>
+										<?php endif ?>
+									</div>
+									<div class="form-group col-md-6">
+										<?php if (isset($_SESSION['login'])): ?>
+										<input class="form-control" hidden value="<?php echo $last_name ?>" placeholder="Last Name" type="text" name="last_name" required>
+										<?php else: ?>
+										<input class="form-control" placeholder="Last Name" type="text" name="last_name" required>
+										<?php endif ?>
+									</div>
+								</div>
+								<?php if (isset($_SESSION['login'])): ?>
+								<div class="form-group" hidden>
+								<?php else: ?>
 								<div class="form-group">
-									<input hidden type="text" value="<?php echo $listing_id ?>" id="user-id" class="form-control" name="user-id">
-									<input hidden type="text" value="<?php echo $user_id ?>" id="listing-id" class="form-control" name="listing-id">
+								<?php endif ?>
+									<?php if (isset($_SESSION['login'])): ?>
+									<input class="form-control" hidden value="<?php echo $email ?>" placeholder="Email Address" type="email" name="email" required>
+									<?php else: ?>
+									<input class="form-control" placeholder="Email Address" type="email" name="email" required>
+									<?php endif ?>
+								</div>
+								<div class="form-group">
+									<input hidden type="text" value="<?php echo $listing_id ?>" id="listing-id" class="form-control" name="listing_id">
 									<input hidden type="text" id="review-rating" class="form-control" name="rating">
 									<textarea required class="form-control" rows="8" placeholder="We thank you for your feedback..." name="feedback"></textarea>
 								</div>
@@ -801,7 +867,7 @@
 									<h2>Reviews (<?php echo $number_of_reviews ?>)</h2>
 								</div>
 							</div>
-						</div>
+						</div>					
 						<div>
 							<?php 
 							while ($review_row = mysqli_fetch_array($reviews)) {
@@ -813,21 +879,24 @@
 									</div>
 									<div class="comment-body">
 										<?php
-										$author_id = $review_row['user__id'];
-										$author = mysqli_query($conn, "SELECT * FROM user WHERE id=$author_id");
-										$author_row = mysqli_fetch_array($author);
-										$author_fullname = $author_row['first_name'] . " " . $author_row['last_name'];
+										$author_fullname = $review_row['first_name'] . " " . $review_row['last_name'];
 										?>
-										<h3><?php echo $author_fullname ?></h3>
-										<?php
-										$time = new DateTime($review_row['submission_date']);
-										$date = $time->format('jS F');
-										$year = $time->format('Y');
-										$time = $time->format('H:i');
-										?>
-										<div class="meta"><?php echo $date ?>, <?php echo $year ?></div>
-										<div class="listing-rating">
-											<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
+										<div class="row">
+											<div class="col-sm-6">
+												<h3><?php echo $author_fullname ?></h3>
+												<?php
+												$time = new DateTime($review_row['submission_date']);
+												$date = $time->format('jS F');
+												$year = $time->format('Y');
+												$time = $time->format('H:i');
+												?>
+												<div class="meta"><?php echo $date ?>, <?php echo $year ?> at <?php echo $time ?></div>
+											</div>
+											<div class="col-sm-6">
+												<div class="listing-rating">
+													<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
+												</div>
+											</div>
 										</div>
 										<p><?php echo $review_row['feedback'] ?></p>
 									</div>

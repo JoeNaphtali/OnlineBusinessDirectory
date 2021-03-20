@@ -17,6 +17,10 @@
 		$email = $row['email'];
 		$profile_picture_status = $row['profile_picture_status'];
 	}
+	
+	if (!isset($_GET['keyword_search'])) {
+		header("Location: ../index.php");
+	}
 ?>
 
 <html lang="en">
@@ -178,37 +182,61 @@
 
 		<!-- Content -->
 
+		<?php
+		
+		function reverse_mysqli_real_escape_string($str) {
+			return strtr($str, [
+				'\0'   => "\x00",
+				'\n'   => "\n",
+				'\r'   => "\r",
+				'\\\\' => "\\",
+				"\'"   => "'",
+				'\"'   => '"',
+				'\Z' => "\x1a"
+			]);
+		}
+
+		?>
+
 		<div class="container">
-			<div class="fs-inner-container search-container">
+			<div class="fs-inner-container search-container"> 
 				<section class="search">
 					<!-- Search Form -->
 					<div class="form-search-wrap p-2">
-              			<form method="post">
+              			<form method="post" action="../includes/search.inc.php">
                 			<div class="row align-items-center">
 								<div class="col-md-12 col-lg-4 no-sm-border border-right input">
-									<input type="text" class="form-control" placeholder="What are you looking for?">
+									<?php if (isset($_GET['keyword_search'])):?>
+									<input type="text" class="form-control" name="keyword_search" value="<?php echo reverse_mysqli_real_escape_string(($_GET['keyword_search'])); ?>" placeholder="What are you looking for?">
+									<?php else :?>
+									<input type="text" class="form-control" name="keyword_search" placeholder="What are you looking for?">
+									<?php endif ?>
 								</div>
 								<div class="col-md-12 col-lg-3 no-sm-border border-right input">
 									<div class="wrap-icon">
-										<input type="text" class="form-control" placeholder="Location">
+										<?php if (isset($_GET['location_search'])):?>
+										<input type="text" class="form-control" name="location_search" value="<?php echo reverse_mysqli_real_escape_string(($_GET['location_search'])); ?>" placeholder="Location">
+										<?php else :?>
+										<input type="text" class="form-control" name="location_search" placeholder="Location">
+										<?php endif ?>
 									</div>
 								</div>
 								<div class="col-md-12 col-lg-3 input">
 									<div class="select-wrap">
 										<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-										<select class="form-control" name="" id="">
-											<option value="">All Categories</option>
-											<option value="">Hotels</option>
-											<option value="">Restaurant</option>
-											<option value="">Eat &amp; Drink</option>
-											<option value="">Events</option>
-											<option value="">Fitness</option>
-											<option value="">Others</option>
+										<select class="form-control" name="listing_category[]" id="">
+											<option selected value="">All Categories</option>
+											<?php
+											$results = mysqli_query($conn, "SELECT * FROM listing_category");
+											while ($row = mysqli_fetch_array($results)) {
+											?>
+											<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
+											<?php } ?>
 										</select>
 									</div>
 								</div>
 								<div class="col-md-12 col-lg-2 text-right">
-									<input type="submit" class="btn text-white btn-primary" value="Search">
+									<input type="submit" name="submit-search" class="btn text-white btn-primary" value="Search">
 								</div>
                   			</div>
               			</form>
@@ -229,22 +257,44 @@
 						</div>
 					</div>
 					<?php
-						if (isset($_POST['submit-search'])) {
-							$search = mysqli_real_escape_string($conn, $_POST['search']);
-							$sql = "SELECT listing.* FROM listing INNER JOIN listing_category ON listing.category_id = listing_category.id WHERE listing_name LIKE '%$search%' OR listing_category.category LIKE '%$search%'";
-							$result = mysqli_query($conn, $sql);
-							$queryResults = mysqli_num_rows($result);
-							
-							if ($queryResults == 0) {
-								$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
-											There are no listings for "<?php echo $search?>"
-							  			</div>';
-								eval("?> $str <?php ");
-							} else {
-								$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
-											Showing results for "<?php echo $search ?>"
-							  			</div>';
-								eval("?> $str <?php ");
+
+						
+						if (!empty($_GET['keyword_search']) AND empty($_GET['location_search']) AND empty($_GET['listing_category'])) {
+							$keyword_search = $_GET['keyword_search'];
+							$sql = "SELECT * FROM listing WHERE listing_name LIKE '%$keyword_search%' OR keywords LIKE '%$keyword_search%'";
+						}
+						else if (!empty($_GET['keyword_search']) AND !empty($_GET['location_search']) AND empty($_GET['listing_category'])) {
+							$keyword_search = $_GET['keyword_search'];
+							$location_search = $_GET['location_search'];
+							$sql = "SELECT * FROM listing WHERE listing_name LIKE '%$keyword_search%' OR keywords LIKE '%$keyword_search%' AND city_town LIKE '%$location_search%'";
+						}
+						else if (!empty($_GET['keyword_search']) AND empty($_GET['location_search']) AND !empty($_GET['listing_category'])) {
+							$keyword_search = $_GET['keyword_search'];
+							$listing_category = $_GET['listing_category'];
+							$sql = "SELECT listing.* FROM listing INNER JOIN listing_category ON listing.category_id = listing_category.id WHERE listing_name LIKE '%$keyword_search%' OR keywords LIKE '%$keyword_search%' AND listing_category.id = $listing_category";
+						}
+						else if (!empty($_GET['keyword_search']) AND !empty($_GET['location_search']) AND !empty($_GET['listing_category'])) {
+							$keyword_search = $_GET['keyword_search'];
+							$location_search = $_GET['location_search'];
+							$listing_category = $_GET['listing_category'];
+							$sql = "SELECT listing.* FROM listing INNER JOIN listing_category ON listing.category_id = listing_category.id WHERE listing_name LIKE '%$keyword_search%' OR keywords LIKE '%$keyword_search%' AND city_town LIKE '%$location_search%' AND listing_category.id = $listing_category";
+						}
+						
+						$result = mysqli_query($conn, $sql);
+						$queryResults = mysqli_num_rows($result);
+
+						$keyword_search = reverse_mysqli_real_escape_string($keyword_search);
+
+						if ($queryResults == 0) {
+							$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
+										There are no listings for "<?php echo $keyword_search?>"
+						  			</div>';
+							eval("?> $str <?php ");
+						} else {
+							$str = '<div class="padding-left-right-30 margin-bottom-25 margin-top-15">
+										Showing results for "<?php echo $keyword_search ?>"
+						  			</div>';
+							eval("?> $str <?php ");
 					?>
 					<div class="listings padding-left-right-30">
 						<div class="row">
@@ -310,7 +360,8 @@
 									</div>
 								</div>
 							</div>
-							<?php }}} ?>
+							<?php }
+							} ?>
 						</div>
 					</div>
 					<div class="copyrights">

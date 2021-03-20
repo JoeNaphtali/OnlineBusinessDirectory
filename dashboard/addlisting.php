@@ -245,6 +245,11 @@
 											</div>
                                 		</div>
 										<div class="form-group">
+											<label for="keywords">Keywords (Optional)</label>
+											<i class="fa fa-question-circle fa-fw" data-toggle="tooltip" title="Maximum of 15 keywords related to your business, separated by a comma. These keywords will help users search for your listing."></i>
+											<input type="text" class="form-control" id="keywords" name="keywords">
+										</div>
+										<div class="form-group">
 											<label for="description">Description</label>
 											<?php if (isset($_GET['desc'])): ?>
 											<textarea class="form-control" id="summernote" name="description"><?php echo ($_GET['desc']); ?></textarea>
@@ -312,7 +317,8 @@
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
-												<label for="friendly-address">Friendly Address</label>
+												<label for="friendly-address">Friendly Address (Optional)</label>
+												<i class="fa fa-question-circle fa-fw" data-toggle="tooltip" title="A human readable address e.g A place near where your listing is located."></i>
 												<?php if (isset($_GET['faddress'])) :?>
 												<input type="text" class="form-control" id="friendly-address" name="friendly_address" value="<?php echo ($_GET['faddress']); ?>">
 												<?php else :?>
@@ -873,6 +879,12 @@
             });
         });
     </script>
+
+	<script>
+	$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>
 
 </body>
 

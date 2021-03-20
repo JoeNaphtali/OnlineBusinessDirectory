@@ -12,8 +12,10 @@
 		date_default_timezone_set("Africa/Lusaka");
 
         // Declare Variables
-        $listing_id = $_POST['listing-id'];
-        $user_id = $_POST['user-id'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $listing_id = $_POST['listing_id'];
         $rating = $_POST['rating'];
         $feedback = $_POST['feedback'];
         $date = date('Y-m-d H:i');
@@ -25,8 +27,8 @@
             exit();
         }
         else {
-            $sql = "INSERT INTO review (user__id, listing_id, submission_date, feedback, rating)
-            VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO review (first_name, last_name, email, listing_id, submission_date, feedback, rating)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = mysqli_stmt_init($conn);
             // Display error if there is an sql syntax error in the 'INSERT INTO' statement
@@ -36,7 +38,7 @@
             }
             else {
             // Bind the variables to a prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssss", $user_id, $listing_id, $date, $feedback, $rating);
+            mysqli_stmt_bind_param($stmt, "sssssss", $first_name, $last_name, $email, $listing_id, $date, $feedback, $rating);
             // Execute prepared statement
             mysqli_stmt_execute($stmt);
             }

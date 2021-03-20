@@ -72,7 +72,7 @@ $sql = "CREATE TABLE listing(
     listing_name VARCHAR(255) NOT NULL,
     category_id INT(11) NOT NULL,
     overview TEXT NOT NULL,
-    rating NUMERIC,
+    keywords TEXT,
     province VARCHAR(255),
     city_town VARCHAR(255),
     listing_address VARCHAR(255),
@@ -243,12 +243,13 @@ else {
 
 $sql = "CREATE TABLE review(
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user__id INT(11) NOT NULL,
     listing_id INT(11) NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT NOT NULL,
     submission_date DATETIME NOT NULL,
     feedback TEXT NOT NULL,
     rating DECIMAL NOT NULL,
-    FOREIGN KEY (user__id) REFERENCES user(id),
     FOREIGN KEY (listing_id) REFERENCES listing(id)
 )";
 // Display success message if table is created
