@@ -48,7 +48,9 @@
 
 		<!-- Main Navigation -->
 
-		<?php include '../includes/solidnavbar.inc.php' ?>
+		<nav class="navbar navbar-light solid-navbar navbar-expand fixed-top" data-aos="fade-down">
+			<a href="../index.php" class="navbar-brand js-scroll-trigger">FindUs</a>
+		</nav>
 
 		<!-- /.Main Navigation -->
 

@@ -241,8 +241,45 @@ body {
     margin-left: 15px;
 }
 
+.navbar-mobile-btn {
+    display: none;
+    padding: 10px 6px 6px 6px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%!important;
+}
+
 .navbar-mobile-buttons {
     display: none;
+}
+
+@media only screen and (max-width: 425px) {
+    .navbar-mobile-btn {
+        display: block!important;
+    }
+
+    .btn-addlisting {
+        display: none;
+    }
+
+    .btn-login {
+        display: none;
+    }
+    .clear-navbar {
+        background-color: #FED800;
+    }
+
+    .clear-navbar .nav-item a {
+        color: #000!important;
+    }
+    
+    .clear-navbar .navbar-brand {
+        color: #000!important;
+    }
+
+    .clear-navbar .current a {
+        border-bottom: none!important;
+    }
 }
 
 @media only screen and (max-width: 991px) {
@@ -273,10 +310,6 @@ body {
         color: #fff;
     }
 
-    .navbar .btn {
-        border-radius: 5px!important;
-    }
-
     .clear-navbar .btn-addlisting:hover {
         background-color: #661349;
         color: #fff;
@@ -287,21 +320,9 @@ body {
         color: #fff;
     }
 
-    .navbar {
-        display: inline-block!important;
-    }
-
     .navbar-mobile-buttons {
         float: right;
         display: block;
-    }
-
-    .navbar-buttons {
-        display: none;
-    }
-
-    .navbar-brand {
-        display: none!important;
     }
 
     .btn-myaccount:after {
@@ -332,32 +353,6 @@ body {
 
     .dropdown {
         height: 36px;
-    }
-
-    .btn-login {
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .btn-addlisting {
-        margin-left: 0px;
-        border-radius: 5px;
-    }
-
-    .clear-navbar {
-        background-color: #FED800;
-    }
-
-    .clear-navbar .nav-item a {
-        color: #000!important;
-    }
-    
-    .clear-navbar .navbar-brand {
-        color: #000!important;
-    }
-
-    .clear-navbar .current a {
-        border-bottom: none!important;
     }
 
     .solid-navbar .current a {
@@ -1432,6 +1427,11 @@ body {
     color: #fff;
     padding-right: 70px;
     z-index: 50;
+}
+
+.card-footer .read-only-rating {
+    float: left;
+    margin-right: 5px;
 }
 
 .listing-item {

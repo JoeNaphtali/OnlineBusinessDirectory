@@ -54,6 +54,10 @@
 		<script type="text/javascript" src="js/typed.js"></script>
 		<!-- Animate On Scroll -->
 		<script type="text/javascript" src="js/aos.js"></script>
+		<!-- RateYo CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+		<!-- RateYo JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 	</head>
 
@@ -61,65 +65,10 @@
 
 		<!-- Main Navigation -->
 
-		<nav class="navbar navbar-light clear-navbar navbar-expand-lg fixed-top" data-aos="fade-down">
-			<a href="index.php" class="navbar-brand d-flex w-50 mr-auto js-scroll-trigger">FindUs</a>
-			<button class="navbar-toggler hamburger-icon" type="button" data-toggle="collapse" data-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<?php
-				// Check if the session variable 'login' exists (if the user is logged in) 
-				if (isset($_SESSION['login'])) {
-						/*<div class='dropdown dropdown-mobile'>
-							<a class='btn-cart text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>
-								<i class='fa fa-shopping-cart'></i>
-								<span class='badge badge-danger badge-counter'>3+</span>
-							</a>
-							<div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
-							<a class='dropdown-item' href='#'>LOL</a>
-							</div>
-						</div>*/
-					echo "<div class='navbar-mobile-buttons'>
-					<div class='dropdown dropdown-mobile'>
-						<a href='#' class='btn-myaccount dropdown-toggle text-decoration-none' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href='#'>";
-						// Check if the user had a profile picture
-						if ($profile_picture_status == true) {
-							// If user has a profile picture, get the file path of the profile picture
-							$filename = "img/profile_pictures/profile_picture_user_".$user_id."*";
-							$fileinfo = glob($filename);
-							$fileext = explode("_".$user_id.".", $fileinfo[0]);
-							$fileactualext = $fileext[1];
-							// Display profile button with user's profile picture
-							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_".$user_id.".".$fileactualext."?".mt_rand()."'>";
-						}
-						else {
-							// Display profile button with default user image
-							echo "<img class='img-profile rounded-circle' src='img/profile_pictures/profile_picture_user_default.png'>";
-						}
-						echo "</a><div class='dropdown-menu user-dropdown-menu' id='dropdown-menu' aria-labelledby='navbarDropdown'>
-							<a class='dropdown-item' href='dashboard/index.php'><i class='fa fa-cog fa-fw'></i> Dashboard</a>
-							<a class='dropdown-item' href='dashboard/mylistings.php'><i class='fa fa-layer-group fa-fw'></i> My Listings</a>
-							<a class='dropdown-item' href='dashboard/myprofile.php'><i class='fa fa-user fa-fw'></i> My Profile</a>
-							<form action='includes/logout.inc.php' method='post'>
-								<button class='dropdown-item' name='logout'><i class='fa fa-sign-out-alt fa-fw'></i> Log out</button>
-							</form>
-						</div>
-					</div>
-				</div>";
-				}
-			?>
-			<div class="navbar-collapse collapse w-100" id="navbar">
-				<ul class="navbar-nav w-100 justify-content-center">
-					<li class="nav-item current">
-						<a class="nav-link" href="index.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="directory/index.php">Directory</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="blog/index.php">Blog</a>
-					</li>
-				</ul>
-				<div class="nav navbar-nav ml-auto w-100 justify-content-end">
+		<nav class="navbar navbar-light clear-navbar navbar-expand fixed-top" data-aos="fade-down">
+			<a href="index.php" class="navbar-brand js-scroll-trigger">FindUs</a>
+			<div class="navbar-collapse collapse" id="navbar">
+				<div class="nav navbar-nav ml-auto">
 					<?php
 					if (isset($_SESSION['login'])) {
 						/*<div class="dropdown">
@@ -157,17 +106,18 @@
 					</div>';
 					}
 					else {
-						echo '<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>
-						';
+						echo '<a class="btn btn-login" href="login/index.php"><i class="fa fa-sign-in-alt fa-fw"></i> Login</a>';
+						echo '<a class="btn btn-login navbar-mobile-btn" href="login/index.php"><i class="fa fa-sign-in-alt"></i></a>';
 					}
 					?>
 					<?php
 					if (isset($_SESSION['login'])) {
 						echo '<a class="btn btn-addlisting" href="dashboard/addlisting.php"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>';
+						echo '<a class="btn btn-addlisting navbar-mobile-btn" href="dashboard/addlisting.php"><i class="fa fa-plus-circle"></i></a>';
 					}
 					else {
-						echo '<a class="btn btn-addlisting" data-toggle="modal" data-target="#login-prompt"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>
-						';
+						echo '<a class="btn btn-addlisting" data-toggle="modal" data-target="#login-prompt"><i class="fa fa-plus-circle fa-fw"></i> Add Listing</a>';
+						echo '<a class="btn btn-addlisting navbar-mobile-btn" data-toggle="modal" data-target="#login-prompt" href="dashboard/addlisting.php"><i class="fa fa-plus-circle"></i></a>';
 					}
 					?>
 				</div>
@@ -395,12 +345,25 @@
 													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
 												</div>
 												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
+													<?php 
+													$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+													$number_of_reviews = mysqli_num_rows($reviews);
+													$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+													while ($row_sum = mysqli_fetch_array($rating_sum)) {
+														$sum = $row_sum['rating_sum'];
+														$average = round($sum/$number_of_reviews, 1);
+														$average = number_format($average, 1, '.', '');
+													}?>
+													<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+													<?php if ($number_of_reviews < 0):?>
+													<span> (<?php echo $number_of_reviews ?> reviews)</span>
+													<?php endif ?>
+													<?php if ($number_of_reviews == 1): ?>
+													<span> (<?php echo $number_of_reviews ?> review)</span>
+													<?php endif ?>
+													<?php if ($number_of_reviews > 1): ?>
+													<span> (<?php echo $number_of_reviews ?> reviews)</span>
+													<?php endif ?>
 													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 												</div>
 											</div>				

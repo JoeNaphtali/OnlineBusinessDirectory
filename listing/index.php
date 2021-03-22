@@ -59,10 +59,9 @@
 		crossorigin=""></script>
 		<!-- Bar filler -->
 		<script src="../js/jquery.barfiller.js"></script>
-
-		<!-- Latest compiled and minified CSS -->
+		<!-- RateYo CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-		<!-- Latest compiled and minified JavaScript -->
+		<!-- RateYo JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
 	</head>
