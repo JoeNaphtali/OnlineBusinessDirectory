@@ -784,7 +784,7 @@ body {
     z-index: 101;
 }
 
-.bookmark a {
+.bookmark span {
     text-decoration: none;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.25);
@@ -800,7 +800,7 @@ body {
     text-decoration: none;
 }
 
-.bookmark a:hover {
+.bookmark .active {
     background-color: #d13628;
 }
 
@@ -2153,11 +2153,11 @@ body {
 }
 
 .listing-hero-btns .btn.btn-bookmark {
-    background-color: #d13628;
+    background: rgba(255,255,255,0.25);
 }
 
-.listing-hero-btns .btn.btn-bookmark:hover {
-    background-color: #b6271a;
+.listing-hero-btns .btn.btn-bookmark.active {
+    background: #d13628;
 }
 
 .listing-hero-btns .btn i {

@@ -2,8 +2,8 @@
     // Start Session
 	session_start();
 	
-	// Database Connection
-	include "includes/dbh.inc.php";
+	// Database Connection and Bookmarking Script
+	include "includes/bookmark.inc.php";
 	
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
@@ -302,7 +302,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">
@@ -392,7 +396,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">
@@ -482,7 +490,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">
@@ -572,7 +584,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">
@@ -662,7 +678,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">
@@ -752,7 +772,11 @@
 										}
 										?>
 										<div class="bookmark">
-											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+											<?php if (userBookmarked($row['id'])): ?>
+											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php else: ?>
+											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="card-body listing-details">

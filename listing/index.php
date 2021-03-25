@@ -2,8 +2,8 @@
     // Start Session
 	session_start();
 	
-	// Database Connection
-	include "../includes/dbh.inc.php";
+	// Database Connection and Bookmarking Script
+	include "../includes/bookmark.inc.php";
 	
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
@@ -239,8 +239,12 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="listing-hero-btns">						
-							<a href="#" class="btn btn-share"><i class="fa fa-share-alt"></i> Share</a>
-							<a href="#" class="btn btn-bookmark"><i class="fa fa-heart"></i> Bookmark</a>
+							<span class="btn btn-share"><i class="fa fa-share-alt"></i> Share</span>
+							<?php if (userBookmarked($row['id'])): ?>
+							<span class="btn btn-bookmark active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+							<?php else: ?>
+							<span class="btn btn-bookmark inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
