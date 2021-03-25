@@ -27,7 +27,7 @@
 
     <head>
 
-        <title>Directory | FindUs</title>
+        <title>Search | FindUs</title>
         <meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<!-- Font Awesome -->
@@ -93,7 +93,7 @@
 
 		?>
 
-		<div class="container">
+		<div class="container margin-bottom-30">
 			<div class="fs-inner-container search-container"> 
 				<section class="search">
 					<!-- Search Form -->
@@ -143,11 +143,10 @@
 						<div class="sort-listing">
 							<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
 							<select class="" name="" id="">
-								<option value="">Top Rated</option>
+								<option value="">Highest Rated</option>
 								<option value="">Most Reviews</option>
-								<option value="">Most Views</option>
-								<option value="">Newest Listings</option>
-								<option value="">Old Listings</option>
+								<option value="">Most Viewed</option>
+								<option value="">Recently Added</option>
 							</select>
 						</div>
 					</div>
@@ -199,7 +198,7 @@
 							?>
 							<div class="col-lg-4 col-lg-4">
 								<div class="card mb-4 listing-item listing-item-small shadow position-relative">
-									<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
+									<div class="listing-item-pic set-bg set-bg-dark" data-setbgdark="../img/restaurant.jpg">
 										<div class="listing-details">
 											<h2 class="card-title"><?php echo $row["listing_name"]; ?></h2>
 											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
@@ -208,11 +207,11 @@
 												$row_phone = mysqli_fetch_array($results_phone)
 											?>
 											<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-											<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+											<a href="../listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
 										<div class="listing-category category">
 											<span><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</span>
-											<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+											<a href="../listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
 										<?php
 										// Set timezone
@@ -245,18 +244,20 @@
 										</div>
 									</div>
 									<div class="card-footer listing-rating text-muted">
-										<?php 
+									<?php 
 										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
 										$number_of_reviews = mysqli_num_rows($reviews);
-										$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
-										while ($row_sum = mysqli_fetch_array($rating_sum)) {
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
 											$sum = $row_sum['rating_sum'];
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
+											}
 										}?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
-										<?php if ($number_of_reviews < 0):?>
-										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
 										<?php endif ?>
 										<?php if ($number_of_reviews == 1): ?>
 										<span> (<?php echo $number_of_reviews ?> review)</span>
@@ -264,7 +265,7 @@
 										<?php if ($number_of_reviews > 1): ?>
 										<span> (<?php echo $number_of_reviews ?> reviews)</span>
 										<?php endif ?>
-										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+										<a href="../listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 									</div>
 								</div>
 							</div>
@@ -272,30 +273,23 @@
 							} ?>
 						</div>
 					</div>
-					<div class="copyrights">
-						© Joseph Wamulume, 2020. All Rights Reserved.
-					</div>
 				</section>
-
 			</div>
 		</div>
 
 		<!-- /.Content -->
 
-		<!-- Footer
+		<!-- Footer -->
 
 		<div class="pt-5 pb-5 footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
-						<h2>FindUs</h2>
-						<p class="pr-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-						<p class="footer-social-icons"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-						<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-						<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-						<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-						<a href="#"><i class="fab fa-google fa-2x"></i></a>
-						</p>
+						<h2 class="footer-brand">FindUs</h2>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Aliquam vitae ante quis urna iaculis varius ac ac diam. Pellentesque nec leo dui. 
+						Sed tincidunt interdum velit, sed sagittis purus molestie nec. Donec scelerisque enim congue, 
+						ultricies mi ut, blandit mi. In sed nisl eu eros consequat placerat vel vitae ligula.</p>
 					</div>
 					<div class="col-lg-3 col-xs-12 footer-section links">
 						<h4 class="mt-lg-0 mt-sm-3">Links</h4>
@@ -307,28 +301,30 @@
 							<li><a href="#">Privacy Policy</a></li>
 						</ul>
 					</div>
-					<div class="col-lg-4 col-xs-12 footer-section location">
-						<h4 class="mt-lg-0 mt-sm-4">Sign up for our newsletter</h4>
-						<form>
-							<div class="form-group">
-								<label>Email</label>
-								<input class="form-control" type="email" name="email" required>
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-submit" type="submit" name="newsletter-submit">Sign up</button>
-							</div>
-						</form>
+					<div class="col-lg-4 col-xs-12 footer-section contact">
+						<h4 class="mt-lg-0 mt-sm-4">Contact Us</h4>
+						<ul class="m-0 p-0 list-style-none">
+							<li><span>Plot No. 1086 Off Simon Mwansa Kapwepwe Rd</span></li>
+							<li><span>Lusaka, Zambia</span></li>
+							<li><span>Phone: +260 975 944 213, +260 975 944 213</span></li>
+							<li><span>Email: <a href="mailto:josephwamulume@gmail" class="text-decoration-none">josephwamulume@gmail</a></span></li>
+						</ul>
+						<p class="footer-social-icons">
+							<a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+							<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+						</p>
 					</div>
 				</div>
 				<div class="row mt-5">
 					<div class="col copyright">
-					<p class=""><small>© Joseph Wamulume, 2020. All Rights Reserved.</small></p>
+					<p class=""><span>© Joseph Wamulume, 2020. All Rights Reserved.</span></p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		/.Footer -->
+		<!--/ .Footer -->
 
 		<script>
 

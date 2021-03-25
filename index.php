@@ -145,659 +145,655 @@
 
 		<!-- Header -->
 
-		<header class="masthead-home">
-			<div class="container h-100">
-				<div class="row h-100 align-items-center">
-					<div class="col-12 text-center">
-						<div class="text-center header-text">
-							<h1 data-aos="fade-up">Find Nearby <span class="typed-words"></span></h1>
-							<p data-aos="fade-up" class=" w-75 mx-auto">Explore top-rated attractions, activities and more!</p>
-						</div>
-						<!-- Header Search Form -->
-						<div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
-              				<form method="post" action="includes/search.inc.php">
-                				<div class="row align-items-center">
-									<div class="col-md-12 col-lg-4 no-sm-border border-right input">
-										<input type="text" name="keyword_search" class="form-control" placeholder="What are you looking for?" required>
-									</div>
-									<div class="col-md-12 col-lg-3 no-sm-border border-right input">
-										<div class="wrap-icon">
-											<input type="text" name="location_search" class="form-control" placeholder="Location">
+		<div class="main-search-container">
+			<div class="main-search-inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2>Find Nearby <span class="typed-words">Restaurants</span><span class="typed-cursor typed-cursor--blink"></span></h2>
+							<h4>Explore top-rated attractions, activities and more!</h4>
+							<div class="form-search-wrap p-2">
+              					<form method="post" action="includes/search.inc.php">
+                					<div class="row align-items-center">
+										<div class="col-md-12 col-lg-4 no-sm-border border-right input">
+											<input type="text" name="keyword_search" class="form-control" placeholder="What are you looking for?" required>
 										</div>
-									</div>
-									<div class="col-md-12 col-lg-3 input">
-										<div class="select-wrap">
-											<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-											<select class="form-control" name="listing_category[]" id="">
-												<option selected value="">All Categories</option>
-												<?php
-												$results = mysqli_query($conn, "SELECT * FROM listing_category");
-												while ($row = mysqli_fetch_array($results)) {
-												?>
-												<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
-												<?php } ?>
-											</select>
+										<div class="col-md-12 col-lg-3 no-sm-border border-right input">
+											<div class="wrap-icon">
+												<input type="text" name="location_search" class="form-control" placeholder="Location">
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12 col-lg-2 text-right">
-										<input type="submit" name="submit-search" class="btn text-white btn-primary" value="Search">
-									</div>
-                  				</div>
-              				</form>
+										<div class="col-md-12 col-lg-3 input">
+											<div class="select-wrap">
+												<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+												<select class="form-control" name="listing_category[]" id="">
+													<option selected value="">All Categories</option>
+													<?php
+													$results = mysqli_query($conn, "SELECT * FROM listing_category");
+													while ($row = mysqli_fetch_array($results)) {
+													?>
+													<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
+													<?php } ?>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-12 col-lg-2 text-right">
+											<input type="submit" name="submit-search" class="btn text-white btn-primary" value="Search">
+										</div>
+                  					</div>
+              					</form>
+							</div>
 						</div>
-						<!-- ./Header Search Form -->
-						<div class="category-tags" data-aos="fade-up">
-							<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
-                            <a href="#"><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</a>
-                            <a href="#"><i class="fa fa-bed fa-fw stroke-transparent"></i> Accomodation & Travel</a>
-                            <a href="#"><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Services</a>
-						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<h5 class="highlighted-categories-headline">Or browse featured categories:</h5>
+							<div class="category-tags">
+								<a href="#"><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</a>
+								<a href="#"><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</a>
+								<a href="#"><i class="fa fa-bed fa-fw stroke-transparent"></i> Accomodation & Travel</a>
+								<a href="#"><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Services</a>
+							</div>	
+						</div>								
 					</div>
 				</div>
 			</div>
-		</header>
+		</div>
 
 		<!-- /.Header -->
 
 		<!-- Content -->
 
 		<!-- Top Businesses Tabs Panel -->
-		<div class="container-fluid page-section-container">
+		<div class="container-fluid">
 			<div class="row justify-content-center bg-white">
 				<div class="col-lg-10 p-3">
 					<div class="row section-title-row">
 						<div class="col-lg-12">
 							<div class="section-title">
-								<h2>Top Businesses and Services</h2>
+								<h3>Top Businesses and Services</h3>
 								<p>The best businesses and services recommended by your fellow FindUs users</p>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="top-businesses-tab">
-								<?php
-									// Put category ID's into corresponding variables 
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Food & Drinks'");
-									$row = mysqli_fetch_array($results);
-									$foodDrinkId = $row['id'];
-									
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Shopping'");
-									$row = mysqli_fetch_array($results);
-									$shoppingId = $row['id'];
-									
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Accomodation & Travel'");
-									$row = mysqli_fetch_array($results);
-									$accomodationTravelId = $row['id'];
-									
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Salon, Barber & Spa'");
-									$row = mysqli_fetch_array($results);
-									$salonBarberId = $row['id'];
-									
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Home Services'");
-									$row = mysqli_fetch_array($results);
-									$homeServicesId = $row['id'];
-									
-									$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Car Services'");
-									$row = mysqli_fetch_array($results);
-									$carServicesId = $row['id'];
-									
-								?>
-								<ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
-									<li class="nav-item">
-										<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-											<span class="fa fa-utensils"></span>
-											Food & Drinks
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-											<span class="fa fa-shopping-cart"></span>
-											Shopping
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-											<span class="fa fa-bed"></span>
-											Accomodation & Travel
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-											<span class="fa fa-spa"></span>
-											Salon, Barber & Spa
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">
-											<span class="fa fa-home"></span>
-											Home Services
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
-											<span class="fa fa-car-side"></span>
-											Car Services
-										</a>
-									</li>
-								</ul>
+					<div id="listing-nav" class="listing-nav-container">
+						<ul class="listing-nav nav nav-tabs text-center" role="tablist">
+							<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><span class="fa fa-utensils"></span> Restaurants & Nightlife</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><span class="fa fa-shopping-basket"></span> Shopping & Retail</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><span class="fa fa-bed"></span> Lodging & Travel</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"><span class="fa fa-theater-masks"></span> Art, Culture & Entertainment</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab"><span class="fa fa-home"></span> Real Estate</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab"><span class="fa fa-car-alt"></span> Auto Sales & Service</a></li>
+						</ul>
+					</div>
+					<?php
+					// Put category ID's into corresponding variables 
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Restaurants & Nightlife'");
+					$row = mysqli_fetch_array($results);
+					$restaurantsNightlifeId = $row['id'];
+					
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Shopping & Retail'");
+					$row = mysqli_fetch_array($results);
+					$shoppingRetail = $row['id'];
+					
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Lodging & Travel'");
+					$row = mysqli_fetch_array($results);
+					$lodgingTravelId = $row['id'];
+					
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Art, Culture & Entertainment'");
+					$row = mysqli_fetch_array($results);
+					$artCultureEntertainmentId = $row['id'];
+					
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Real Estate'");
+					$row = mysqli_fetch_array($results);
+					$realEstate = $row['id'];
+					
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Auto Sales & Services'");
+					$row = mysqli_fetch_array($results);
+					$autoSalesServicesId = $row['id'];
+					?>
+					<div class="tab-content">
+					<!-- Restaurants & Nightlife Tab -->
+					<div class="tab-pane active" id="tabs-1" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Food & Drinks' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $restaurantsNightlifeId");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p class='no-listings'>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span>Restaurants & Nightlife</span>
+										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+										</div>
+									</div>
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
+										?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+									</div>
+									<div class="card-footer listing-rating text-muted">
+										<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+									</div>
+								</div>				
 							</div>
-							<div class="tab-content">
-								<!-- Food & Drinks Tab -->
-								<div class="tab-pane active" id="tabs-1" role="tabpanel">
-									<div class="row">
-										<?php
-										// Select the top 6 listings under the 'Food & Drinks' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $foodDrinkId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
-										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
-										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<?php 
-													$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
-													$number_of_reviews = mysqli_num_rows($reviews);
-													$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
-													while ($row_sum = mysqli_fetch_array($rating_sum)) {
-														$sum = $row_sum['rating_sum'];
-														$average = round($sum/$number_of_reviews, 1);
-														$average = number_format($average, 1, '.', '');
-													}?>
-													<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
-													<?php if ($number_of_reviews < 0):?>
-													<span> (<?php echo $number_of_reviews ?> reviews)</span>
-													<?php endif ?>
-													<?php if ($number_of_reviews == 1): ?>
-													<span> (<?php echo $number_of_reviews ?> review)</span>
-													<?php endif ?>
-													<?php if ($number_of_reviews > 1): ?>
-													<span> (<?php echo $number_of_reviews ?> reviews)</span>
-													<?php endif ?>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>				
+							<?php }} ?>
+						</div>							
+					</div>
+					<!-- Shopping Tab -->
+					<div class="tab-pane" id="tabs-2" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Shopping' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $shoppingRetail");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span></i> Shopping & Retail</span>
 										</div>
-										<?php }} ?>
-									</div>							
-								</div>
-								<!-- Shopping Tab -->
-								<div class="tab-pane" id="tabs-2" role="tabpanel">
-									<div class="row">
 										<?php
-										// Select the top 6 listings under the 'Shopping' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $shoppingId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
 										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
 										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-shopping-cart fa-fw stroke-transparent"></i> Shopping</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>	
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
 										</div>
-										<?php }} ?>
 									</div>
-								</div>
-								<!-- Accomodation & Travel Tab -->
-								<div class="tab-pane" id="tabs-3" role="tabpanel">
-									<div class="row">
-										<?php
-										// Select the top 6 listings under the 'Accomodation & Travel' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $accomodationTravelId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
-										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
 										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-bed fa-fw stroke-transparent"></i> Accomodation & Travel</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>	
-										</div>
-										<?php }} ?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
 									</div>
-								</div>
-								<!-- Salon, Barber & Spa Tab -->
-								<div class="tab-pane" id="tabs-4" role="tabpanel">
-									<div class="row">
-										<?php
-										// Select the top 6 listings under the 'Salon, Barber & Spa Tab' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $salonBarberId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
-										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
-										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-spa fa-fw stroke-transparent"></i> Salon, Barber & Spa Tab</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>	
-										</div>
-										<?php }} ?>
+									<div class="card-footer listing-rating text-muted">
+									<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 									</div>
-								</div>
-								<!-- Home Services Tab -->
-								<div class="tab-pane" id="tabs-5" role="tabpanel">
-									<div class="row">
-										<?php
-										// Select the top 6 listings under the 'Home Services' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $homeServicesId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
-										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
-										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-home fa-fw stroke-transparent"></i> Home Services</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>	
-										</div>
-										<?php }} ?>
-									</div>
-								</div>
-								<!-- Car Services Tab -->
-								<div class="tab-pane" id="tabs-6" role="tabpanel">
-									<div class="row">
-										<?php
-										// Select the top 6 listings under the 'Car Services' category and sort them by their review rating
-										$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $carServicesId");
-										// Check if the query returns any rows
-										if (mysqli_num_rows($results)==0) {
-											// If the query returns no rows, display relevant error message
-											echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
-										}
-										else {
-											while ($row = mysqli_fetch_array($results)) {
-												$listing_id = $row['id']; // Store listing id in listing_id variable															
-										?>
-										<div class="col-lg-4 col-md-6">
-											<!-- Listing Item -->
-											<div class="card mb-4 listing-item shadow">
-												<div class="listing-item-pic set-bg" data-setbg="img/listing/list-1.jpg">
-													<div class="listing-category category">
-														<span><i class="fa fa-car-side fa-fw stroke-transparent"></i> Car Services</span>
-													</div>
-													<?php
-													// Set timezone
-													date_default_timezone_set("Africa/Lusaka"); 
-													// Returns the current date time
-													$now   = new DateTime(); 
-													// Returns the current day in string format
-													$day = $now->format('D');
-													// Select the opening and closing hours for the current day
-													$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
-													// Check if the query return any results
-													if (mysqli_num_rows($results_opening_hours)>0) {
-														$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-														// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
-														$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
-														// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
-														$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
-														// Check if the current time falls between the opening and closing times
-														if($now >= $openingtime && $now <= $closingtime){
-															// If the current time is between opening and closing times, display the 'Open' badge
-															echo "<div class='listing-badge open'>Open</div>";
-														} else {
-															// If the current time is not between opening and closing times, display the 'Closed' badge
-															echo "<div class='listing-badge closed'>Closed</div>";
-														}
-													}
-													?>
-													<div class="bookmark">
-														<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
-													</div>
-												</div>
-												<div class="card-body listing-details">
-													<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-													<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
-													<?php 
-													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
-													$row_phone = mysqli_fetch_array($results_phone)
-													?>
-													<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
-												</div>
-												<div class="card-footer listing-rating text-muted">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-half-alt"></i>
-													<span> (1 review)</span>
-													<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
-												</div>
-											</div>	
-										</div>
-										<?php }} ?>
-									</div>
-								</div>							
+								</div>	
 							</div>
+							<?php }} ?>
 						</div>
 					</div>
+					<!-- Accomodation & Travel Tab -->
+					<div class="tab-pane" id="tabs-3" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Accomodation & Travel' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $lodgingTravelId");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span>Lodging & Travel</span>
+										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+										</div>
+									</div>
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
+										?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+									</div>
+									<div class="card-footer listing-rating text-muted">
+									<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+									</div>
+								</div>	
+							</div>
+							<?php }} ?>
+						</div>
+					</div>
+					<!-- Salon, Barber & Spa Tab -->
+					<div class="tab-pane" id="tabs-4" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Salon, Barber & Spa Tab' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $artCultureEntertainmentId");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span>Art, Culture & Entertainment</span>
+										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+										</div>
+									</div>
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
+										?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+									</div>
+									<div class="card-footer listing-rating text-muted">
+									<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+									</div>
+								</div>	
+							</div>
+							<?php }} ?>
+						</div>
+					</div>
+					<!-- Home Services Tab -->
+					<div class="tab-pane" id="tabs-5" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Home Services' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $realEstate");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span>Real Estate</span>
+										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+										</div>
+									</div>
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
+										?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+									</div>
+									<div class="card-footer listing-rating text-muted">
+									<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+									</div>
+								</div>	
+							</div>
+							<?php }} ?>
+						</div>
+					</div>
+					<!-- Car Services Tab -->
+					<div class="tab-pane" id="tabs-6" role="tabpanel">
+						<div class="row">
+							<?php
+							// Select the top 6 listings under the 'Car Services' category and sort them by their review rating
+							$results = mysqli_query($conn, "SELECT * FROM listing WHERE category_id = $autoSalesServicesId");
+							// Check if the query returns any rows
+							if (mysqli_num_rows($results)==0) {
+								// If the query returns no rows, display relevant error message
+								echo "<p>There are currently no listings for this category. Please select a different tab.</p>";
+							}
+							else {
+								while ($row = mysqli_fetch_array($results)) {
+									$listing_id = $row['id']; // Store listing id in listing_id variable															
+							?>
+							<div class="col-lg-4 col-md-6">
+								<!-- Listing Item -->
+								<div class="card mb-4 listing-item shadow">
+									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+										<div class="listing-category category">
+											<span>Auto Sales & Service</span>
+										</div>
+										<?php
+										// Set timezone
+										date_default_timezone_set("Africa/Lusaka"); 
+										// Returns the current date time
+										$now   = new DateTime(); 
+										// Returns the current day in string format
+										$day = $now->format('D');
+										// Select the opening and closing hours for the current day
+										$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
+										// Check if the query return any results
+										if (mysqli_num_rows($results_opening_hours)>0) {
+											$row_opening_hours = mysqli_fetch_array($results_opening_hours);
+											// Covert the opening time string from the database to a DateTime format and store it in the 'opening_time' variable		
+											$openingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['opening_time'])));
+											// Covert the closing time string from the database to a DateTime format and store it in the 'closing_time' variable
+											$closingtime = new DateTime(date('H:i:s',strtotime($row_opening_hours['closing_time'])));
+											// Check if the current time falls between the opening and closing times
+											if($now >= $openingtime && $now <= $closingtime){
+												// If the current time is between opening and closing times, display the 'Open' badge
+												echo "<div class='listing-badge open'>Open</div>";
+											} else {
+												// If the current time is not between opening and closing times, display the 'Closed' badge
+												echo "<div class='listing-badge closed'>Closed</div>";
+											}
+										}
+										?>
+										<div class="bookmark">
+											<a href="#"><i class="fa fa-heart stroke-transparent"></i></a>
+										</div>
+									</div>
+									<div class="card-body listing-details">
+										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<?php 
+										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+										$row_phone = mysqli_fetch_array($results_phone)
+										?>
+										<div><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
+									</div>
+									<div class="card-footer listing-rating text-muted">
+									<?php 
+										$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+										$number_of_reviews = mysqli_num_rows($reviews);
+										if ($number_of_reviews > 0) {
+											$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											}
+										}?>
+										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+										<span> (No reviews)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews == 1): ?>
+										<span> (<?php echo $number_of_reviews ?> review)</span>
+										<?php endif ?>
+										<?php if ($number_of_reviews > 1): ?>
+										<span> (<?php echo $number_of_reviews ?> reviews)</span>
+										<?php endif ?>
+										<a href="listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
+									</div>
+								</div>	
+							</div>
+							<?php }} ?>
+						</div>
+					</div>							
 				</div>
-			</div>
-		</div>
-
-		<!-- Latest News and Articles -->
-		<div class="container-fluid page-section-container">
-			<div class="row justify-content-center bg-white">
-				<div class="col-lg-10 p-3">
-					<div class="row section-title-row">
-						<div class="col-lg-12">
-							<div class="section-title">
-								<h2>Latest News & Articles</h2>
-								<p>Read the latest news, articles, tips and more from our blog</p>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div>
-								<div class="row latest-blog-posts">
-									<div class="col-lg-4 col-md-6">
-										<div class="card mb-4 blog-item shadow">
-											<div class="blog-item-pic set-bg" data-setbg="img/blog/blog-large.jpg">
-												<div class="blog-item-date">
-													<span class="month">Jul</span>
-													<span class="day">05</span>
-												</div>
-												<div class="blog-item-category category">
-													<a href="#"><i class="fa fa-folder-open fa-fw stroke-transparent"></i> Travel</a>
-												</div>
-												<div class="bookmark">
-													<a href="#"><i class="fa fa-glasses stroke-transparent"></i></a>
-												</div>
-											</div>
-											<div class="card-body">
-												<h2 class="card-title">Post Title</h2>
-												<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-												Reiciendis aliquid atque, nulla?</p>
-												<a href="blog/post.php" class="read-more-link">Read More <i class="fa fa-angle-right"></i></a>
-											</div>
-											<div class="card-footer text-muted">
-												By Joseph Wamulume
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -810,14 +806,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
-						<h2>FindUs</h2>
-						<p class="pr-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-						<p class="footer-social-icons"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-						<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-						<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-						<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-						<a href="#"><i class="fab fa-google fa-2x"></i></a>
-						</p>
+						<h2 class="footer-brand">FindUs</h2>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Aliquam vitae ante quis urna iaculis varius ac ac diam. Pellentesque nec leo dui. 
+						Sed tincidunt interdum velit, sed sagittis purus molestie nec. Donec scelerisque enim congue, 
+						ultricies mi ut, blandit mi. In sed nisl eu eros consequat placerat vel vitae ligula.</p>
 					</div>
 					<div class="col-lg-3 col-xs-12 footer-section links">
 						<h4 class="mt-lg-0 mt-sm-3">Links</h4>
@@ -829,22 +822,24 @@
 							<li><a href="#">Privacy Policy</a></li>
 						</ul>
 					</div>
-					<div class="col-lg-4 col-xs-12 footer-section location">
-						<h4 class="mt-lg-0 mt-sm-4">Sign up for our newsletter</h4>
-						<form>
-							<div class="form-group">
-								<label>Email</label>
-								<input class="form-control" type="email" name="email" required>
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-submit" type="submit" name="newsletter-submit">Sign up</button>
-							</div>
-						</form>
+					<div class="col-lg-4 col-xs-12 footer-section contact">
+						<h4 class="mt-lg-0 mt-sm-4">Contact Us</h4>
+						<ul class="m-0 p-0 list-style-none">
+							<li><span>Plot No. 1086 Off Simon Mwansa Kapwepwe Rd</span></li>
+							<li><span>Lusaka, Zambia</span></li>
+							<li><span>Phone: +260 975 944 213, +260 975 944 213</span></li>
+							<li><span>Email: <a href="mailto:josephwamulume@gmail" class="text-decoration-none">josephwamulume@gmail</a></span></li>
+						</ul>
+						<p class="footer-social-icons">
+							<a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+							<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+						</p>
 					</div>
 				</div>
 				<div class="row mt-5">
 					<div class="col copyright">
-					<p class=""><small>© Joseph Wamulume, 2020. All Rights Reserved.</small></p>
+					<p class=""><span>© Joseph Wamulume, 2020. All Rights Reserved.</span></p>
 					</div>
 				</div>
 			</div>

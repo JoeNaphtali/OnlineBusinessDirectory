@@ -93,7 +93,7 @@
 		?>
 
 		<!-- Listing Hero Section -->
-		<section class="listing-hero set-bg" data-setbg="../img/listing/details/listing-hero.jpg">
+		<section class="listing-hero set-bg set-bg" data-setbg="../img/listing/details/listing-hero.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
@@ -112,23 +112,86 @@
 										$results_category = mysqli_query($conn, "SELECT * FROM listing_category WHERE id = $category_id"); 
 										$row_category = mysqli_fetch_array($results_category);
 										// Display relevant category badge for the selected listing category
-										if ($row_category["category"] == "Food & Drinks") {
-											echo "<span><i class='fa fa-utensils fa-fw stroke-transparent'></i> Food & Drinks</span>";
+										if ($row_category["category"] == "Accounting & Tax Services") {
+											echo "<span>Accounting & Tax Services</span>";
 										}
-										else if ($row_category["category"] == "Shopping") {
-											echo "<span><i class='fa fa-shopping-cart fa-fw stroke-transparent'></i> Shopping</span>";
+										else if ($row_category["category"] == "Animals, Safari & Wildlife") {
+											echo "<span>Animals, Safari & Wildlife</span>";
 										}
-										else if ($row_category["category"] == "Accomodation & Travel") {
-											echo "<span><i class='fa fa-bed fa-fw stroke-transparent'></i> Accomodation & Travel</span>";
+										else if ($row_category["category"] == "Arts, Culture & Entertainment") {
+											echo "<span>Arts, Culture & Entertainment</span>";
+										}
+										else if ($row_category["category"] == "Auto Sales & Service") {
+											echo "<span>Auto Sales & Service</span>";
+										}
+										else if ($row_category["category"] == "Banking & Finance") {
+											echo "<span>Banking & Finance</span>";
+										}
+										else if ($row_category["category"] == "Business Services") {
+											echo "<span>Business Services</span>";
+										}
+										else if ($row_category["category"] == "Community Organizations") {
+											echo "<span>Business Services</span>";
+										}
+										else if ($row_category["category"] == "Dentists & Orthodontists") {
+											echo "<span>Dentists & Orthodontists</span>";
+										}
+										else if ($row_category["category"] == "Education") {
+											echo "<span>Education</span>";
+										}
+										else if ($row_category["category"] == "Health & Wellness") {
+											echo "<span>Health & Wellness</span>";
+										}
+										else if ($row_category["category"] == "Health Care") {
+											echo "<span>Health Care</span>";
+										}
+										else if ($row_category["category"] == "Home Improvement") {
+											echo "<span>Home Improvement</span>";
+										}
+										else if ($row_category["category"] == "Insurance") {
+											echo "<span>Insurance</span>";
+										}
+										else if ($row_category["category"] == "Internet & IT Services") {
+											echo "<span>Internet & IT Services</span>";
+										}
+										else if ($row_category["category"] == "Legal Services") {
+											echo "<span>Legal Services</span>";
+										}
+										else if ($row_category["category"] == "Lodging & Travel") {
+											echo "<span>Lodging & Travel</span>";
+										}
+										else if ($row_category["category"] == "Marketing & Advertising") {
+											echo "<span>Marketing & Advertising</span>";
+										}
+										else if ($row_category["category"] == "News & Media") {
+											echo "<span>News & Media</span>";
+										}
+										else if ($row_category["category"] == "Pet Services") {
+											echo "<span>Pet Services</span>";
+										}
+										else if ($row_category["category"] == "Real Estate") {
+											echo "<span>Real Estate</span>";
+										}
+										else if ($row_category["category"] == "Restaurants & Nightlife") {
+											echo "<span>Restaurants & Nightlife</span>";
 										}
 										else if ($row_category["category"] == "Salon, Barber & Spa") {
-											echo "<span><i class='fa fa-spa fa-fw stroke-transparent'></i> Salon, Barber & Spa</span>";
+											echo "<span>Salon, Barber & Spa</span>";
 										}
-										else if ($row_category["category"] == "Home Services") {
-											echo "<span><i class='fa fa-home fa-fw stroke-transparent'></i> Home Services</span>";
+										else if ($row_category["category"] == "Shopping & Retail") {
+											echo "<span>Shopping & Retail</span>";
 										}
-										else if ($row_category["category"] == "Car Services") {
-											echo "<span><i class='fa fa-car-side fa-fw stroke-transparent'></i> Car Services</span>";
+										else if ($row_category["category"] == "Sports & Recreation") {
+											echo "<span>Sports & Recreation</span>";
+										}
+										else if ($row_category["category"] == "Transportation") {
+											echo "<span>Transportation</span>";
+										}
+										else if ($row_category["category"] == "Utilities") {
+											echo "<span>Utilities</span>";
+										}
+										else if ($row_category["category"] == "Wedding, Events & Meetings") {
+											echo "<span>Wedding, Events & Meetings</span>";
 										}
 										?>
 									</span>
@@ -141,15 +204,20 @@
 									<div class="listing-hero-widget-rating listing-rating">
 										<?php 
 										$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
-										while ($row_sum = mysqli_fetch_array($rating_sum)) {
-											$sum = $row_sum['rating_sum'];
-											$average = round($sum/$number_of_reviews, 1);
-											$average = number_format($average, 1, '.', '');
-										}?>
-										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+										if ($number_of_reviews > 0) {
+											while ($row_sum = mysqli_fetch_array($rating_sum)) {
+												$sum = $row_sum['rating_sum'];
+												$average = round($sum/$number_of_reviews, 1);
+												$average = number_format($average, 1, '.', '');
+											}
+										}
+										?>
+										<div class="read-only-rating" id="hero-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 									</div>
-									<?php if ($number_of_reviews < 0):?>
-									<div><?php echo $number_of_reviews ?> Reviews</div>
+									<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+									<div>
+										No Reviews
+									</div>
 									<?php endif ?>
 									<?php if ($number_of_reviews == 1): ?>
 									<div><?php echo $number_of_reviews ?> Review</div>
@@ -184,17 +252,15 @@
 
         <div class="container">
 			<div class="row">
-				<div class="col-lg-8">
-					<!-- Description/Overview Section -->
+				<div class="col-xl-8">
+					<!-- Overview Section -->
 					<div class="listing-overview margin-bottom-30">
-						<div class="row blog-section-title-row">
+						<div class="row">
 							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Description</h2>
-								</div>
+								<h3>Overview</h3>
 							</div>
 						</div>
-						<?php echo $row["overview"];?>
+						<div class="text-justify"><?php echo $row["overview"];?></div>
 						<div class="listing-links-container">		
 							<ul class="social-links">
 								<?php
@@ -216,32 +282,6 @@
 							<div class="clearfix"></div>				
 						</div>
 					</div>
-					<!-- Amenities Section -->
-					<?php
-						// Select all amenities that belong to the selected listing 
-						$results_amenity = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id = $listing_id");
-						// Check if the query returns any rows
-						if (mysqli_num_rows($results_amenity) > 0) {
-							// If the the query return row (amenities for this listing exist), display the 'Amenities' section
-							echo "
-							<div class='listing-amenities'>
-								<div class='row blog-section-title-row'>
-									<div class='col-lg-12'>
-										<div class='section-title'>
-											<h2>Amenities</h2>
-										</div>
-									</div>
-								</div>
-								<ul class='list-style-none'>
-							";
-							while ($row_amenity = mysqli_fetch_array($results_amenity)) {
-								$amenity = $row_amenity['amenity'];
-								echo "<li><i class='fa fa-check-square'></i>$amenity</li>";
-							}
-							echo "</ul>
-							</div>";
-						}
-					?>
 					<!--<div class="listing-pricing">
 						<div class="row blog-section-title-row">
 							<div class="col-lg-12">
@@ -289,28 +329,60 @@
 					</div>-->
 					<!-- Location Section -->
 					<div class="listing-location margin-bottom-40">
-						<div class="row blog-section-title-row">
+						<div class="row">
 							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Location</h2>
-								</div>
+								<h3>Location</h3>
 							</div>
 						</div>
 						<div id="listing-map"></div>
 					</div>
-					<!-- Rating Section -->
-					<div class="listing-rating margin-bottom-40">
-						<div class="row blog-section-title-row">
-							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Rating</h2>
+					<!-- Amenities Section -->
+					<?php
+						// Select all amenities that belong to the selected listing 
+						$results_amenity = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id = $listing_id");
+						// Check if the query returns any rows
+						if (mysqli_num_rows($results_amenity) > 0) {
+							// If the the query return row (amenities for this listing exist), display the 'Amenities' section
+							echo "
+							<div class='listing-amenities'>
+								<div class='row'>
+									<div class='col-lg-12'>
+										<h3>Amenities</h3>
+									</div>
 								</div>
+								<ul class='list-style-none'>
+							";
+							while ($row_amenity = mysqli_fetch_array($results_amenity)) {
+								$amenity = $row_amenity['amenity'];
+								echo "<li><i class='fa fa-check-square'></i>$amenity</li>";
+							}
+							echo "</ul>
+							</div>";
+						}
+					?>
+					<!-- Rating Section
+					<div class="listing-rating margin-bottom-40">
+						<div class="row">
+							<div class="col-lg-12">
+								<h3>Rating</h3>
 							</div>
 						</div>
 						<div class="listing-rating-overview">
 							<div class="row">
 								<div class="col-md-4 text-center">
-									<span class="numerical-rating margin-bottom-10"><?php echo $average ?></span>
+									<?php
+									if ($number_of_reviews > 1) {
+										while ($row_sum = mysqli_fetch_array($rating_sum)) {
+											$sum = $row_sum['rating_sum'];
+											$average = round($sum/$number_of_reviews, 1);
+											$average = number_format($average, 1, '.', '');
+											echo '<span class="numerical-rating margin-bottom-10">'.$average.'</span>';
+										}
+									}
+									else {
+										echo '<span class="margin-bottom-10">There are currently no ratings for this listing.</span>';
+									}
+									?>
 									<div class="listing-rating margin-bottom-10">
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 									</div>
@@ -377,13 +449,13 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
-				<div class="col-lg-4">
+				<div class="col-xl-4">
 					<!-- Contact Information Card -->
 					<div class="card contact-information margin-bottom-30">
 						<div class="card-header">
-							<h4 class="margin-bottom-0">Contant Information</h4>
+							<h4 class="margin-bottom-0">Contact Information</h4>
 						</div>
 						<div class="card-body">
 							<ul class="list-style-none margin-bottom-0">
@@ -436,7 +508,7 @@
 								echo "
 								<div class='card listing-opening-hours margin-bottom-30'>
 									<div class='card-header'>
-										<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
+										<h4 class='margin-bottom-0'>Opening Hours</h4>
 									</div>
 									<div class='card-body'>
 										<div class='listing-badge open'>
@@ -454,27 +526,6 @@
 									<li>
 										<span class='day'>Monday</span>
 										<span class='time'>$mon_open - $mon_close</span>
-									</li>
-									";
-								}
-								else {
-									echo "
-									<li>
-										<span class='day'>Monday</span>
-										<span class='time'>Closed</span>
-									</li>
-									";
-								}
-								// Monday
-								$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'Mon'");
-								$row_opening_hours = mysqli_fetch_array($results_opening_hours);
-								if ($row_opening_hours['openclose_status'] == 1) {
-									$openingtime = $row_opening_hours['opening_time'];
-									$closingtime = $row_opening_hours['closing_time'];
-									echo "
-									<li>
-										<span class='day'>Monday</span>
-										<span class='time'>$openingtime - $closingtime</span>
 									</li>
 									";
 								}
@@ -617,7 +668,7 @@
 								echo "
 								<div class='card listing-opening-hours margin-bottom-30'>
 									<div class='card-header'>
-										<h4 class='margin-bottom-0 text-center'>Opening Hours</h4>
+										<h4 class='margin-bottom-0'>Opening Hours</h4>
 									</div>
 									<div class='card-body'>
 										<div class='listing-badge closed'>
@@ -782,18 +833,16 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="leave-review margin-bottom-40">
-						<div class="row blog-section-title-row">
+						<div class="row">
 							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Leave a review</h2>
-								</div>
+								<h3>Leave a review</h3>
 							</div>
 						</div>						
 						<div class="review-form">
 							<form method="POST" action="../includes/submitreview.inc.php">
 								<div class="margin-bottom-10">Your Rating </div>
 								<div class="listing-rating">
-									<div id="read-write-rating" data-rateyo-half-star="true"></div>
+									<div id="read-write-rating" data-rateyo-full-star="true"></div>
 								</div>
 								<?php if (isset($_SESSION['login'])): ?>
 								<div class="form-row" hidden>
@@ -827,8 +876,8 @@
 									<?php endif ?>
 								</div>
 								<div class="form-group">
-									<input hidden type="text" value="<?php echo $listing_id ?>" id="listing-id" class="form-control" name="listing_id">
-									<input hidden type="text" id="review-rating" class="form-control" name="rating">
+									<input type="text" hidden value="<?php echo $listing_id ?>" id="listing-id" class="form-control" name="listing_id">
+									<input type="text" hidden id="review-rating" class="form-control" name="rating">
 									<textarea required class="form-control" rows="8" placeholder="We thank you for your feedback..." name="feedback"></textarea>
 								</div>
 								<button class="btn btn-primary form-control" id="submit-review" type="submit" name="submit-review">Submit</button>
@@ -859,15 +908,16 @@
 					$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
 					$number_of_reviews = mysqli_num_rows($reviews);
 					?>
-					<div class="listing-reviews">
-						<div class="row blog-section-title-row">
+					<div class="listing-reviews margin-bottom-50">
+						<div class="row">
 							<div class="col-lg-12">
-								<div class="section-title">
-									<h2>Reviews (<?php echo $number_of_reviews ?>)</h2>
-								</div>
+								<h3>Reviews (<?php echo $number_of_reviews ?>)</h3>
 							</div>
 						</div>					
 						<div>
+							<?php if ($number_of_reviews < 1): ?>
+							<span>There are no reviews for this listing yet. Be the first to submit a review!</span>
+							<?php endif ?>
 							<?php 
 							while ($review_row = mysqli_fetch_array($reviews)) {
 							?>
@@ -893,7 +943,7 @@
 											</div>
 											<div class="col-sm-6">
 												<div class="listing-rating">
-													<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
+													<div class="read-only-rating" id="feedback-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $review_row['rating'] ?>"></div>
 												</div>
 											</div>
 										</div>
@@ -917,14 +967,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-xs-12 footer-section about-company">
-						<h2>FindUs</h2>
-						<p class="pr-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
-						<p class="footer-social-icons"><a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-						<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-						<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-						<a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-						<a href="#"><i class="fab fa-google fa-2x"></i></a>
-						</p>
+						<h2 class="footer-brand">FindUs</h2>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Aliquam vitae ante quis urna iaculis varius ac ac diam. Pellentesque nec leo dui. 
+						Sed tincidunt interdum velit, sed sagittis purus molestie nec. Donec scelerisque enim congue, 
+						ultricies mi ut, blandit mi. In sed nisl eu eros consequat placerat vel vitae ligula.</p>
 					</div>
 					<div class="col-lg-3 col-xs-12 footer-section links">
 						<h4 class="mt-lg-0 mt-sm-3">Links</h4>
@@ -936,22 +983,24 @@
 							<li><a href="#">Privacy Policy</a></li>
 						</ul>
 					</div>
-					<div class="col-lg-4 col-xs-12 footer-section location">
-						<h4 class="mt-lg-0 mt-sm-4">Sign up for our newsletter</h4>
-						<form>
-							<div class="form-group">
-								<label>Email</label>
-								<input class="form-control" type="email" name="email" required>
-							</div>
-							<div class="form-group">
-								<button class="btn btn-block btn-submit" type="submit" name="newsletter-submit">Sign up</button>
-							</div>
-						</form>
+					<div class="col-lg-4 col-xs-12 footer-section contact">
+						<h4 class="mt-lg-0 mt-sm-4">Contact Us</h4>
+						<ul class="m-0 p-0 list-style-none">
+							<li><span>Plot No. 1086 Off Simon Mwansa Kapwepwe Rd</span></li>
+							<li><span>Lusaka, Zambia</span></li>
+							<li><span>Phone: +260 975 944 213, +260 975 944 213</span></li>
+							<li><span>Email: <a href="mailto:josephwamulume@gmail" class="text-decoration-none">josephwamulume@gmail</a></span></li>
+						</ul>
+						<p class="footer-social-icons">
+							<a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+							<a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+							<a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+						</p>
 					</div>
 				</div>
 				<div class="row mt-5">
 					<div class="col copyright">
-					<p class=""><small>© Joseph Wamulume, 2020. All Rights Reserved.</small></p>
+					<p class=""><span>© Joseph Wamulume, 2020. All Rights Reserved.</span></p>
 					</div>
 				</div>
 			</div>
@@ -968,7 +1017,7 @@
 		var listing_marker = L.marker([latitude, longtitude]).addTo(listing_map);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
+		maxZoom: 16,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
