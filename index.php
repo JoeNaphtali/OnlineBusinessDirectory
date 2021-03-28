@@ -137,7 +137,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						You must be <a href="login/index.php">logged in</a> in order to add a listing.
+						You must <a href="login/index.php">log in</a> in order to add a listing.
 					</div>
 				</div>
 			</div>

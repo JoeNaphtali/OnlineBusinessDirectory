@@ -3,7 +3,9 @@
 // Database Connection
 require 'dbh.inc.php';
 
-$user__id = $_SESSION['user_id']; // Assign id of current user using a session variable
+if (isset($_SESSION['login'])) {
+    $user__id = $_SESSION['user_id']; // Assign id of current user using a session variable
+}
 
 // If user clicks the 'like' or 'dislike'
 if (isset($_POST['action'])) {
