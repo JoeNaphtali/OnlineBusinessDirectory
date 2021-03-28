@@ -74,6 +74,61 @@
 
 		<!-- /.Main Navigation -->
 
+		<!-- Modals -->
+
+		<div class="modal fade" id="login-prompt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Please log in</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You must <a href="login/index.php">log in</a> in order to add a listing.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="login-prompt-bookmark" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Please log in</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You must <a href="login/index.php">log in</a> in order to bookmark a listing.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Share</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row justify-content-center">
+							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-facebook-square" style="font-size: 60px; display:block;"></i>Facebook</a>
+							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-twitter-square" style="font-size: 60px; display:block;"></i>Twitter</a>
+							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-whatsapp-square" style="font-size: 60px; display:block;"></i>WhatsApp</a>
+							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-reddit-square" style="font-size: 60px; display:block;"></i>Reddit</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- /. Modals -->
+
 		<?php 
 
             // Check if lisiting id exists in URL
@@ -239,11 +294,15 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="listing-hero-btns">						
-							<span class="btn btn-share"><i class="fa fa-share-alt"></i> Share</span>
-							<?php if (userBookmarked($row['id'])): ?>
-							<span class="btn btn-bookmark active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+							<span class="btn btn-share" data-toggle="modal" data-target="#share-modal"><i class="fa fa-share-alt"></i> Share</span>
+							<?php if (isset($_SESSION['login'])): ?>
+								<?php if (userBookmarked($row['id'])): ?>
+								<span class="btn btn-bookmark active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+								<?php else: ?>
+								<span class="btn btn-bookmark inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+								<?php endif ?>
 							<?php else: ?>
-							<span class="btn btn-bookmark inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
+								<span class="btn btn-bookmark-offline" data-toggle="modal" data-target="#login-prompt-bookmark"><i class="fa fa-heart stroke-transparent"></i><span class="bookmark-span"> Bookmark</span></span>
 							<?php endif ?>
 						</div>
 					</div>

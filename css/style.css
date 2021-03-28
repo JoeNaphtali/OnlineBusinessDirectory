@@ -2156,6 +2156,10 @@ body {
     background: rgba(255,255,255,0.25);
 }
 
+.listing-hero-btns .btn.btn-bookmark-offline {
+    background: rgba(255,255,255,0.25);
+}
+
 .listing-hero-btns .btn.btn-bookmark.active {
     background: #d13628;
 }
@@ -2501,3 +2505,4 @@ h3.headline {
         background-color: #f6f6f6!important;
     }
 }
+

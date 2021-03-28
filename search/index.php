@@ -75,6 +75,41 @@
 
 		<!-- /.Main Navigation -->
 
+		<!-- Modals -->
+
+		<div class="modal fade" id="login-prompt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Please log in</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You must <a href="login/index.php">log in</a> in order to add a listing.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="login-prompt-bookmark" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title">Please log in</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						You must <a href="login/index.php">log in</a> in order to bookmark a listing.
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- /. Modals -->
+
 		<!-- Content -->
 
 		<?php
@@ -240,11 +275,15 @@
 										}
 										?>
 										<div class="bookmark">
+										<?php if (isset($_SESSION['login'])): ?>
 											<?php if (userBookmarked($row['id'])): ?>
 											<span class="bookmark-btn active" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
 											<?php else: ?>
 											<span class="bookmark-btn inactive" data-id="<?php echo $row['id']; ?>"><i class="fa fa-heart stroke-transparent"></i></span>
 											<?php endif ?>
+										<?php else: ?>
+											<span class="bookmark-btn-offline" data-toggle="modal" data-target="#login-prompt-bookmark"><i class="fa fa-heart stroke-transparent"></i></span>
+										<?php endif ?>
 										</div>
 									</div>
 									<div class="card-footer listing-rating text-muted">
