@@ -68,6 +68,9 @@
 
 	<body>
 
+	<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="KtPkcmM3"></script>
+
 		<!-- Main Navigation -->
 
 		<?php include '../includes/clearnavbar.inc.php' ?>
@@ -106,7 +109,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal modal-share fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -117,12 +120,24 @@
 					</div>
 					<div class="modal-body">
 						<div class="row justify-content-center">
-							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-facebook-square" style="font-size: 60px; display:block;"></i>Facebook</a>
-							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-twitter-square" style="font-size: 60px; display:block;"></i>Twitter</a>
-							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-whatsapp-square" style="font-size: 60px; display:block;"></i>WhatsApp</a>
-							<a href="#" class="text-center" style="margin-right:10px;"><i class="fab fa-reddit-square" style="font-size: 60px; display:block;"></i>Reddit</a>
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" data-href="https://developers.facebook.com/docs/plugins/" class="text-center margin-right"><i class="fab fa-facebook-square"></i>Facebook</a>
+							<a href="#" class="text-center margin-right"><i class="fab fa-twitter-square"></i>Twitter</a>
+							<a href="#" class="text-center margin-right"><i class="fab fa-whatsapp-square"></i>WhatsApp</a>
+							<a href="#" class="text-center"><i class="fab fa-reddit-square"></i>Reddit</a>
 						</div>
 					</div>
+					<div class="modal-footer">
+                		<div class="row">
+							<div class="input-group">
+								<input id="page-link" type="text" class="form-control">
+								<div class="input-group-append">
+									<button class="btn" type="button" onclick="copyToClipboard()"><i class="fa fa-copy"></i></button>
+									<span id="custom-tooltip">copied!</sapn>
+								</div>
+								<textarea class=visuallyhidden id="box"></textarea>
+							</div>
+						</div>
+            		</div>
 				</div>
 			</div>
 		</div>
@@ -310,6 +325,16 @@
 			</div>
 		</section>
 		<!-- /.Listing Hero Section -->
+
+		<div class="d-flex justify-content-center align-items-center position-relative">
+
+			<div class="toast position-absolute" data-delay="5000">
+				<div class="toast-body">
+					Link copied to clipboard
+				</div>
+			</div>
+
+		</div>
 
 		<!-- Content -->
 
@@ -1070,6 +1095,27 @@
 		</div>
 
 		<!-- /.Footer -->
+
+		<script>
+
+document.getElementById("page-link").value = window.location.href;
+
+			function copyToClipboard() {
+				/* Get the text field */
+				var copyText = document.getElementById("page-link");
+			
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /* For mobile devices */
+			
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+			
+				/* Alert the copied text */
+				$('.toast').toast('show')
+			}
+			
+		</script>
 
 		<script>
 

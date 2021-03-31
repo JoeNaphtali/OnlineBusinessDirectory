@@ -2506,3 +2506,83 @@ h3.headline {
     }
 }
 
+.modal-share .modal-body a {
+    text-decoration: none;
+    color: #000;
+    font-size: .8rem;
+}
+
+.modal-share .modal-body .margin-right {
+    margin-right: 25px;
+}
+
+.modal-share .modal-body a i {
+    font-size: 60px; 
+    display: block;
+}
+
+.modal-share .fa-facebook-square {
+    color: #3b5998;
+}
+
+.modal-share .fa-twitter-square {
+    color: #00acee ;
+}
+
+.modal-share .fa-whatsapp-square {
+    color: #25d366;
+}
+
+.modal-share .fa-reddit-square {
+    color: #FF4301;
+}
+
+.modal-share .modal-footer {
+    display: block!important;
+}
+
+.modal-share .modal-footer button {
+    border: 1px solid #ced4da;
+    border-left: none;
+}
+
+.modal-share .modal-footer input {
+    border-right: none!important;
+}
+
+.modal-share .modal-footer i {
+    color: #353434;
+}
+
+@media (max-width: 350px) {
+    .modal-share .modal-body .margin-right {
+        margin-right: 15px;
+    }
+    .modal-share .modal-body a i {
+        display: block;
+        font-size: 50px;
+    }
+}
+
+.visuallyhidden{position:absolute;clip:rect(1px,1px,1px,1px)}
+.copybutton{background-color:#fff;border:0;outline:0;cursor:pointer;opacity:1;position:absolute;width:40px;height:40px;z-index:9;border-radius:24px}
+.button-tooltip-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    min-height: 30px;
+
+}
+#custom-tooltip {
+    display: none;
+    margin-left: 40px;
+    padding: 5px 12px;
+    background-color: #000000df;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.toast {
+    background-color: rgb(66, 66, 66);
+    color: #fff;
+}
