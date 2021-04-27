@@ -95,25 +95,10 @@
           <span>My Listings</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Blog
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="addlisting.php">
-          <i class="fas fa-fw fa-pencil-alt"></i>
-          <span>Write Blog Post</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="mylistings.php">
-          <i class="fas fa-fw fa-folder-open"></i>
-          <span>My Blog Posts</span></a>
+        <a class="nav-link" href="mybookmarks.php">
+          <i class="fas fa-fw fa-heart"></i>
+          <span>Bookmarks</span></a>
       </li>
 
       <!-- Divider -->
@@ -155,34 +140,24 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-home fa-fw"></i>
-              </a>
-            </li>
+          <!-- Return to home -->
+          <li class="nav-item mx-1">
+            <a class="nav-link" href="../index.php">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Back to home page</span><i class="fas fa-home fa-fw"></i>
+            </a>
+          </li>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Joseph Wamulume</span>
-                <img class="img-profile rounded-circle" src="../img/user-profile-avatar.jpg">
-              </a>
-            </li>
-
-          </ul>
+        </ul>
 
         </nav>
         <!-- End of Topbar -->

@@ -52,6 +52,9 @@
 	<!-- Custom styles for this page -->
 	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+	<!-- RateYo CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
 </head>
 
 <body id="page-top">
@@ -98,25 +101,10 @@
 				<span>My Listings</span></a>
 			</li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Blog
-			</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item">
-				<a class="nav-link" href="addlisting.php">
-				<i class="fas fa-fw fa-pencil-alt"></i>
-				<span>Write Blog Post</span></a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="mylistings.php">
-				<i class="fas fa-fw fa-folder-open"></i>
-				<span>My Blog Posts</span></a>
+				<a class="nav-link" href="mybookmarks.php">
+				<i class="fas fa-fw fa-heart"></i>
+				<span>Bookmarks</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -186,14 +174,13 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">My Listings</h1>
+						<div id="rateYo"></div>
 					</div>
-
 
 					<!-- Content Row -->
 					<div class="row">
 
 						<div class="col-md-12">
-							<div class="shadow my-listings">
 								<?php 
 									// Select all listing from the 'listings' that match the logged in user's id
 									$results = mysqli_query($conn, "SELECT * FROM listing WHERE user__id = $user_id");
@@ -204,12 +191,12 @@
 										while ($row = mysqli_fetch_array($results)) {
 											$listing_id = $row['id'];															 
 								?>
-								<div class="row no-gutters listing-item-horizontal">
-    								<div class="col-lg-4">
-        								<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
-        								</div>
-    								</div>
-    								<div class="listing-details listing-details-horizontal col-lg-8">
+								<div class="row no-gutters shadow listing-item-horizontal">
+									<div class="col-lg-4">
+										<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
+										</div>
+									</div>
+									<div class="listing-details listing-details-horizontal col-lg-8">
 										<div class="listing-details-horizontal-body">
 											<a href="../listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
 											<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
@@ -240,25 +227,41 @@
 												</a>
 											</div>
 										</div>
-										<div class="listing-item-horizontal-footer">
-											<div class="listing-rating text-muted">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star-half-alt"></i>
-												<span> (1 review)</span>
-											</div>
+										<div class="listing-item-horizontal-footer text-muted">
+											<?php 
+											$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+											$number_of_reviews = mysqli_num_rows($reviews);
+											if ($number_of_reviews > 0) {
+												$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+												while ($row_sum = mysqli_fetch_array($rating_sum)) {
+												$sum = $row_sum['rating_sum'];
+												$average = round($sum/$number_of_reviews, 1);
+												$average = number_format($average, 1, '.', '');
+												}
+											}
+											else {
+												$average = 0;
+											}
+											?>
+											<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
+											<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
+											<span> (No reviews)</span>
+											<?php endif ?>
+											<?php if ($number_of_reviews == 1): ?>
+											<span> (<?php echo $number_of_reviews ?> review)</span>
+											<?php endif ?>
+											<?php if ($number_of_reviews > 1): ?>
+											<span> (<?php echo $number_of_reviews ?> reviews)</span>
+											<?php endif ?>
 											<div class="listing-views text-muted">
 												<i class="fa fa-eye"></i>	
-												<span>78</span>										
+												<span><?php echo $row['visits']; ?></span>										
 											</div>
 										</div>
-    								</div>
+									</div>
 									
 								</div>
 								<?php }} ?>
-							</div>
 						</div>
 
 					</div>
@@ -326,6 +329,9 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
+  <!-- RateYo JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
   <!-- Set Background Image -->
   <script>
   	$('.set-bg').each(function () {
@@ -340,6 +346,12 @@
     $(window).scroll(function(){
         $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
     });
+
+	$(function () {
+ 
+		$(".read-only-rating").rateYo();
+
+	});
   </script>
 
 </body>

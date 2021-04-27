@@ -21,7 +21,7 @@ function sendmail($to, $subject, $message) {
     $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
     $address = $to;
     //Recipients
-    $mail->setFrom('noreply@gmail.com', 'Ideas');
+    $mail->setFrom('noreply@gmail.com', 'FindUs');
     $mail->addAddress($address);     // Add a recipient
     $mail->AddReplyTo("finduszambia@gmail.com","Staff");
 

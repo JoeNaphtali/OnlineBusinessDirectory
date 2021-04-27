@@ -245,7 +245,12 @@
 											<a href="../listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
 										<div class="listing-category category">
-											<span><i class="fa fa-utensils fa-fw stroke-transparent"></i> Food & Drinks</span>
+											<?php
+											$category_id = $row["category_id"]; 
+											$results_category = mysqli_query($conn, "SELECT * FROM listing_category WHERE id = $category_id"); 
+											$row_category = mysqli_fetch_array($results_category)
+											?>
+											<span><?php echo $row_category["category"]; ?></span>
 											<a href="../listing/index.php?l_id=<?php echo $row["id"];?>" class="stretched-link"></a>
 										</div>
 										<?php
@@ -297,7 +302,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>

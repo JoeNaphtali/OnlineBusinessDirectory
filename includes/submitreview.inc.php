@@ -5,6 +5,9 @@
         // Database connection
         include '../includes/dbh.inc.php';
 
+        // 'sendemail' function
+        include "sendemail.inc.php";
+
         // Start session in order to use the session variable 'user_id'
         session_start();
 
@@ -16,6 +19,8 @@
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
         $listing_id = $_POST['listing_id'];
+        $listing_name = $_POST['listing_name'];
+        $owner_email = $_POST['owner_email'];
         $rating = $_POST['rating'];
         $feedback = $_POST['feedback'];
         $date = date('Y-m-d H:i');
@@ -42,6 +47,21 @@
             // Execute prepared statement
             mysqli_stmt_execute($stmt);
             }
+            // Send the reset password link(URL) to the user's email address
+            $review_id = mysqli_insert_id($conn);
+            $url = "http://localhost/Online%20Business%20Directory/listing/index.php?l_id=$listing_id#review_id_$review_id";
+            $to       =   $owner_email;
+            $subject  =   "New review on your listing";
+            $message = "<p>$first_name $last_name just submitted a review for '$listing_name'.</p>";
+            $message .= "<p>You can check it out ";
+            $message .= '<a href="'.$url.'">here.</a></p>';
+            $headers = "From: FindUs: <findus@gmail.com>\r\n";
+            $headers .= "Reply-To: findus@gmail.com\r\n";
+            $headers .= "Content-type: text/html\r\n";
+
+            $mailsend =   sendmail($to, $subject, $message, $headers);
+            header("Location: ../listing/index.php?l_id=$listing_id#review_id_$review_id");
+            exit();
         }
         // Close statement
         mysqli_stmt_close($stmt);

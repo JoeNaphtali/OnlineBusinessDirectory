@@ -353,7 +353,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>
@@ -451,7 +455,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>
@@ -549,7 +557,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>
@@ -647,7 +659,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>
@@ -745,7 +761,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>
@@ -843,7 +863,11 @@
 											$average = round($sum/$number_of_reviews, 1);
 											$average = number_format($average, 1, '.', '');
 											}
-										}?>
+										}
+										else {
+											$average = 0;
+										}
+										?>
 										<div class="read-only-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 										<?php if ($number_of_reviews < 0 || empty($number_of_reviews)):?>
 										<span> (No reviews)</span>

@@ -87,7 +87,6 @@ $(function () {
       /* get rating */
       var rating = $rateYo.rateYo("rating");
       document.getElementById("review-rating").value = rating;
-      window.alert("Its " + rating + " Yo!");
     });
    
   });
@@ -102,43 +101,6 @@ $(document).ready(function(){
 
     // if the user clicks the 'bookmark' button
     $('.bookmark-btn').on('click', function(){
-      var listing_id = $(this).data('id');
-      $clicked_btn = $(this);
-      if ($clicked_btn.hasClass('inactive')) {
-        action = 'bookmark';
-      }
-      else if ($clicked_btn.hasClass('active')) {
-        action = 'removebookmark';
-      }
-      $.ajax({
-        type: 'post',
-        data: {
-          'action': action,
-          'listing_id': listing_id
-        },
-        success: function(data){ 
-          var res = JSON.parse(JSON.stringify(data));     
-          if (action == "bookmark") {
-            $clicked_btn.removeClass('inactive');
-            $clicked_btn.addClass('active');
-          } else if(action == "removebookmark") {
-            $clicked_btn.removeClass('active');
-            $clicked_btn.addClass('inactive');
-          }
-  
-          // Change button styling of the dislike button if user is reacting for the second time to an idea
-          $clicked_btn.siblings('i.active').removeClass('active').addClass('inactive');
-        }
-      })
-  
-    });
-  
-  });
-
-  $(document).ready(function(){
-
-    // if the user clicks the 'bookmark' button
-    $('.btn-bookmark').on('click', function(){
       var listing_id = $(this).data('id');
       $clicked_btn = $(this);
       if ($clicked_btn.hasClass('inactive')) {

@@ -117,25 +117,10 @@
 				<span>My Listings</span></a>
 			</li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Blog
-			</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item">
-				<a class="nav-link" href="writepost.php">
-				<i class="fas fa-fw fa-pencil-alt"></i>
-				<span>Write Blog Post</span></a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="myposts.php">
-				<i class="fas fa-fw fa-folder-open"></i>
-				<span>My Blog Posts</span></a>
+				<a class="nav-link" href="mybookmarks.php">
+				<i class="fas fa-fw fa-heart"></i>
+				<span>Bookmarks</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -342,6 +327,22 @@
 												<?php else :?>
 												<input type="text" class="form-control" id="longitude" name="longitude">
 												<?php endif ?>
+											</div>
+										</div>
+                            		</div>
+                        		</div>
+
+								<!-- Picture -->
+								<div class="add-listing-section picture shadow">
+									<div class="add-listing-headline">
+										<span>Picture</span>
+									</div>
+									<div class="add-listing-container">
+										<div class="form-row">
+											<input class="form-control-file" type="file" name="listing_picture" id="listing_picture">
+											<div class="image-preview" id="imagePreview">
+												<img src="" alt="Image Preview" class="image-preview__image">
+												<span class="image-preview__default-text">Image Preview</span>
 											</div>
 										</div>
                             		</div>
@@ -885,6 +886,36 @@
 	$('[data-toggle="tooltip"]').tooltip();   
 	});
 	</script>
+
+<script>
+			
+			const listingPicture = document.getElementById("listing_picture");
+			const previewContainer = document.getElementById("imagePreview");
+			const previewImage = previewContainer.querySelector(".image-preview__image");
+			const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+			listingPicture.addEventListener("change", function() {
+				const file = this.files[0];
+
+				if (file) {
+					const reader = new FileReader();
+					previewDefaultText.style.display = "none";
+					previewImage.style.display = "block";
+
+					reader.addEventListener("load", function() {
+						previewImage.setAttribute("src", this.result);
+					});
+
+					reader.readAsDataURL(file);
+				}
+				else {
+					previewDefaultText.style.display = null;
+					previewImage.style.display = null;
+					previewImage.setAttribute("src", "");
+				}
+			});
+
+		</script>
 
 </body>
 

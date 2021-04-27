@@ -155,6 +155,11 @@
             // Select listing from the 'listing' table
             $results = mysqli_query($conn, "SELECT * FROM listing WHERE id=$listing_id");
 			$row = mysqli_fetch_array($results);
+
+			$owner_id = $row["user__id"];
+			$owner_results = mysqli_query($conn, "SELECT * FROM user WHERE id=$owner_id");
+			$owner_row = mysqli_fetch_array($owner_results);
+			$owner_email = $owner_row["email"];
 			
 			// Get latitude and longitude of listing
 			$latitude = $row["latitude"];
@@ -173,7 +178,10 @@
 							</div>
 							<div class="listing-hero-text">
 								<h2>
-									<?php echo $row["listing_name"];?>
+									<?php 
+									$listing_name = $row["listing_name"];
+									echo $listing_name;
+									?>
 									<span class="category">
 										<?php
 										// Store category id in category_id variable
@@ -330,7 +338,7 @@
 
 			<div class="toast position-absolute" data-delay="5000">
 				<div class="toast-body">
-					Link copied to clipboard
+					Link copied to clipboard!
 				</div>
 			</div>
 
@@ -965,6 +973,8 @@
 								</div>
 								<div class="form-group">
 									<input type="text" hidden value="<?php echo $listing_id ?>" id="listing-id" class="form-control" name="listing_id">
+									<input type="text" hidden value="<?php echo $listing_name ?>" id="listing-name" class="form-control" name="listing_name">
+									<input type="text" hidden value="<?php echo $owner_email ?>" id="owner-email" class="form-control" name="owner_email">
 									<input type="text" hidden id="review-rating" class="form-control" name="rating">
 									<textarea required class="form-control" rows="8" placeholder="We thank you for your feedback..." name="feedback"></textarea>
 								</div>
@@ -1010,7 +1020,7 @@
 							while ($review_row = mysqli_fetch_array($reviews)) {
 							?>
 							<ul class="comment-list">
-								<li class="comment">
+								<li class="comment" id="review_id_<?php echo $review_row['id'] ?>">
 									<div class="vcard bio">
 										<img src="../img/user-profile-avatar.jpg" alt="Image">
 									</div>
@@ -1098,7 +1108,7 @@
 
 		<script>
 
-document.getElementById("page-link").value = window.location.href;
+			document.getElementById("page-link").value = window.location.href;
 
 			function copyToClipboard() {
 				/* Get the text field */

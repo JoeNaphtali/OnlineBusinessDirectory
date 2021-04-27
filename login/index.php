@@ -117,20 +117,23 @@
 							<label>Password</label>
 							<input class="form-control" id="password" type="password" name="password" required>
 						</div>
-						<div class="form-group">
-							<a href="#">Forgot your password?</a>
+						<div class="form-row">
+							<div class=" form-check col-md-6">
+								<input type="checkbox" style="margin-left: 0;" class="form-check-input" id="exampleCheck1">
+								<label class="form-check-label" style="margin-left: 20px;" for="exampleCheck1">Remember me</label>
+							</div>
+							<div class="form-group col-md-6">
+								<a href="../forgotpassword/resetrequest.php" style="float: right;">Forgot your password?</a>
+							</div>
 						</div>
 						<div class="form-group">
 							<button class="btn btn-block btn-submit" type="submit" name="login">Login</button>
 						</div>
 						<div class="form-group">
-							<small>By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
-						</div>
-						<div class="form-group">
 							New to FindUs? <a href="../register/index.php">Register</a>
 						</div>
 						<div class="form-group">
-							<a href="../forgotpassword/resetrequest.php">Forgot your password?</a>
+							<small>By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
 						</div>
 					</form>
                 </div>

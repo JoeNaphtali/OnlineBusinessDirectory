@@ -222,10 +222,10 @@
 							<button class="btn btn-block btn-submit" type="submit" name="register">Register</button>
 						</div>
 						<div class="form-group">
-							<small>By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
+							Already on FindUs? <a href="../login/index.php">Login</a>
 						</div>
 						<div class="form-group">
-							Already on FindUs? <a href="../login/index.php">Login</a>
+							<small>By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</small>
 						</div>
 					</form>
                 </div>
@@ -284,7 +284,7 @@
 
 		<script>
 			
-			const profilePicture = document.getElementById("photo");
+			const profilePicture = document.getElementById("profile_picture");
 			const previewContainer = document.getElementById("imagePreview");
 			const previewImage = previewContainer.querySelector(".image-preview__image");
 			const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");

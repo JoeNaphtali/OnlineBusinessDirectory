@@ -64,7 +64,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #858796;
+  color: #535353;
   text-align: left;
   background-color: #fff;
 }
@@ -2367,7 +2367,7 @@ textarea.form-control {
 }
 
 .btn:hover {
-  color: #858796;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -11378,22 +11378,12 @@ width: 100%;
   bottom: 20px;
 }
 
-.category a {
-  box-shadow: none;
-  font-size: 15px;
-  color: #fff;
-  display: inline-block;
-  padding: 6px 15px 6px;
-  border-radius: 50px;
-  text-decoration: none;
-  background-color: #811D5E;
-}
-
-.category a:hover {
-  background-color: #631548;
-}
-
 /* End of Catergories, Tags and Bookmarks */
+
+.stroke-transparent {
+  -webkit-text-stroke: 1px;
+  -webkit-text-fill-color: transparent;
+}
 
 /* Listing Item */
 
@@ -11578,3 +11568,42 @@ width: 100%;
 }
 
 /* End of My Listings */
+
+.success-message h1 {
+  color: #88B04B;
+  font-weight: 900;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.success-message p {
+  color: #404F5E;
+  font-size:18px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 15px;
+}
+.success-message .checkmark {
+color: #9ABC66;
+font-size: 100px;
+line-height: 200px;
+margin-left:-25px;
+text-align: center;
+}
+
+.image-preview {
+  width: 100%;
+  min-height: 300px;
+  border: 2px solid #dddddd;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+.image-preview__image {
+  display: none;
+  width: 100%;
+}

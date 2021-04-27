@@ -84,6 +84,17 @@ $sql = "CREATE TABLE listing(
     twitter VARCHAR(255),
     facebook VARCHAR(255),
     instagram VARCHAR(255),
+    visits INT(11),
+    total_visit_time DATETIME,
+    website_link_clicks INT(11),
+    twitter_link_clicks INT(11),
+    facebook_link_clicks INT(11),
+    instagram_link_clicks INT(11),
+    web_users INT(11),
+    mobile_users INT(11),
+    twitter_shares INT(11),
+    facebook_shares INT(11),
+    whatsapp_shares INT(11),
     FOREIGN KEY (category_id) REFERENCES listing_category(id),
     FOREIGN KEY (user__id) REFERENCES user(id)
 )";

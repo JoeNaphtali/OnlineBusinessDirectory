@@ -109,25 +109,10 @@
 				<span>My Listings</span></a>
 			</li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">
-				Blog
-			</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item">
-				<a class="nav-link" href="addlisting.php">
-				<i class="fas fa-fw fa-pencil-alt"></i>
-				<span>Write Blog Post</span></a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="mylistings.php">
-				<i class="fas fa-fw fa-folder-open"></i>
-				<span>My Blog Posts</span></a>
+				<a class="nav-link" href="mybookmarks.php">
+				<i class="fas fa-fw fa-heart"></i>
+				<span>Bookmarks</span></a>
 			</li>
 
 			<!-- Divider -->
