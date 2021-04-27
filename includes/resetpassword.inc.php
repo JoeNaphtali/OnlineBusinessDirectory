@@ -30,31 +30,31 @@ if (isset($_POST['reset-password'])) {
         exit();
     }
     // Check if password contains at least one digit
-    else if (!preg_match("/\d/", $new_password)) {
+    else if (!preg_match("/\d/", $password)) {
         // Display error message if password does not contain at least one digit
         header("Location: ../forgotpassword/resetpassword.php?error=passwordnodigit&selector=".$selector."&validator=".$validator."&email=".$email);
         exit();
     }
     // Check if password contains at least one capital letter
-    else if (!preg_match("/[A-Z]/", $new_password)) {
+    else if (!preg_match("/[A-Z]/", $password)) {
         // Display error message if password does not contain at least one capital letter
         header("Location: ../forgotpassword/resetpassword.php?error=passwordnocapitalletter&selector=".$selector."&validator=".$validator."&email=".$email);
         exit();
     }
     // Check if password contains at least one small letter
-    else if (!preg_match("/[a-z]/", $new_password)) {
+    else if (!preg_match("/[a-z]/", $password)) {
         // Display error message if password does not contain at least one small letter
         header("Location: ../forgotpassword/resetpassword.php?error=passwordnosmallletter&selector=".$selector."&validator=".$validator."&email=".$email);
         exit();
     }
     // Check if password contains at least one special character
-    else if (!preg_match("/\W/", $new_password)) {
+    else if (!preg_match("/\W/", $password)) {
         // Display error message if password does not contain at least one special character
         header("Location: ../forgotpassword/resetpassword.php?error=passwordnospecial&selector=".$selector."&validator=".$validator."&email=".$email);
         exit();
     }
     // Check if password contains white space
-    else if (preg_match("/\s/", $new_password)) {
+    else if (preg_match("/\s/", $password)) {
         // Display error message if password contains white space
         header("Location: ../forgotpassword/resetpassword.php?error=passwordwhitespace&selector=".$selector."&validator=".$validator."&email=".$email);
         exit();

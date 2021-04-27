@@ -197,7 +197,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Views</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">348</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">4768</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -216,7 +216,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Reviews</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">7</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">43</div>
                         </div>
                       </div>
                     </div>
@@ -245,50 +245,44 @@
                 </div>
               </div>
 
+            </div>
+
+            <div class="col-xl-6">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Types of users</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> Mobile
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> Web
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> Other
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-6">
               <!-- Bar Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Per Month</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Clicks to links</h6>
                 </div>
                 <div class="card-body">
                   <div class="chart-bar">
                     <canvas id="myBarChart"></canvas>
                   </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-xl-6">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Per Listing</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-6">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Views Per Listing</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
                 </div>
               </div>
             </div>

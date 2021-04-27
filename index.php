@@ -238,7 +238,7 @@
 					</div>
 					<div id="listing-nav" class="listing-nav-container">
 						<ul class="listing-nav nav nav-tabs text-center" role="tablist">
-							<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><span class="fa fa-utensils"></span> Restaurants & Nightlife</a></li>
+							<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><span class="fa fa-utensils"></span> Restaurants & Fast Food</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><span class="fa fa-shopping-basket"></span> Shopping & Retail</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"><span class="fa fa-bed"></span> Lodging & Travel</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"><span class="fa fa-theater-masks"></span> Art, Culture & Entertainment</a></li>
@@ -248,7 +248,7 @@
 					</div>
 					<?php
 					// Put category ID's into corresponding variables 
-					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Restaurants & Nightlife'");
+					$results = mysqli_query($conn, "SELECT * FROM listing_category WHERE category = 'Restaurants & Fast Food'");
 					$row = mysqli_fetch_array($results);
 					$restaurantsNightlifeId = $row['id'];
 					
@@ -291,9 +291,9 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
-											<span>Restaurants & Nightlife</span>
+											<span>Restaurants & Fast Food</span>
 										</div>
 										<?php
 										// Set timezone

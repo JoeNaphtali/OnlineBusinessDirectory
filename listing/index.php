@@ -168,7 +168,7 @@
 		?>
 
 		<!-- Listing Hero Section -->
-		<section class="listing-hero set-bg set-bg" data-setbg="../img/listing/details/listing-hero.jpg">
+		<section class="listing-hero set-bg-dark set-bg" data-setbgdark="../img/listing_pictures/listing_1_hero.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
@@ -250,8 +250,8 @@
 										else if ($row_category["category"] == "Real Estate") {
 											echo "<span>Real Estate</span>";
 										}
-										else if ($row_category["category"] == "Restaurants & Nightlife") {
-											echo "<span>Restaurants & Nightlife</span>";
+										else if ($row_category["category"] == "Restaurants & Fast Food") {
+											echo "<span>Restaurants & Fast Food</span>";
 										}
 										else if ($row_category["category"] == "Salon, Barber & Spa") {
 											echo "<span>Salon, Barber & Spa</span>";

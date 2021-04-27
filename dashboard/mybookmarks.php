@@ -407,7 +407,7 @@
 								?>
 						<div class="col-lg-4 col-lg-4">
                             <div class="card mb-4 listing-item listing-item-small shadow position-relative">
-                                <div class="listing-item-pic set-bg set-bg-dark" data-setbgdark="../img/restaurant.jpg">
+                                <div class="listing-item-pic set-bg set-bg-dark" data-setbgdark="../img/listing_pictures/listing_<?php echo $listing_row['id']; ?>.jpg">
                                     <div class="listing-details">
                                         <h2 class="card-title"><?php echo $listing_row["listing_name"]; ?></h2>
                                         <div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $listing_row['listing_address']; ?></div>

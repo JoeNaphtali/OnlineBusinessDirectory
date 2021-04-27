@@ -366,7 +366,7 @@ else {
 // INSERT LISTING CATEGORIES
 
 $sql = "INSERT INTO listing_category (category) 
-        VALUES ('Accounting & Tax Services'), ('Animals, Safari & Wildlife'), ('Art, Culture & Entertainment'), ('Auto Sales & Services'), ('Banking & Finance'), ('Business Services'), ('Community Organizations'), ('Dentists & Orthodontists'), ('Education'), ('Health & Wellness'), ('Health Care'), ('Home Improvement'), ('Insurance'), ('Internet & IT Services'), ('Legal Services'), ('Lodging & Travel'), ('Marketing & Advertising'), ('News & Media'), ('Pet Services'), ('Real Estate'), ('Restaurants & Nightlife'), ('Salon, Barber & Spa'), ('Shopping & Retail'), ('Sports & Recreation'), ('Transportation'), ('Utilities'), ('Wedding, Events & Meetings')";
+        VALUES ('Accounting & Tax Services'), ('Animals, Safari & Wildlife'), ('Art, Culture & Entertainment'), ('Auto Sales & Services'), ('Banking & Finance'), ('Business Services'), ('Community Organizations'), ('Dentists & Orthodontists'), ('Education'), ('Health & Wellness'), ('Health Care'), ('Home Improvement'), ('Insurance'), ('Internet & IT Services'), ('Legal Services'), ('Lodging & Travel'), ('Marketing & Advertising'), ('News & Media'), ('Pet Services'), ('Real Estate'), ('Restaurants & Fast Food'), ('Salon, Barber & Spa'), ('Shopping & Retail'), ('Sports & Recreation'), ('Transportation'), ('Utilities'), ('Wedding, Events & Meetings')";
 // Display success message if user was added
 if($conn->query($sql)===TRUE) {
     echo "The default categories were added succesfully | DONE!";
