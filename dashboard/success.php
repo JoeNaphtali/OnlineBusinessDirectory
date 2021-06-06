@@ -115,7 +115,7 @@
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link" href="addlisting.php">
 				<i class="fas fa-fw fa-plus-circle"></i>
 				<span>Add Listing</span></a>

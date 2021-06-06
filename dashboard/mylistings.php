@@ -183,7 +183,7 @@
 						<div class="col-md-12">
 								<?php 
 									// Select all listing from the 'listings' that match the logged in user's id
-									$results = mysqli_query($conn, "SELECT * FROM listing WHERE user__id = $user_id");
+									$results = mysqli_query($conn, "SELECT * FROM listing WHERE owner_id = $user_id");
 									if (mysqli_num_rows($results)==0) {
 										echo "<p>There are no listings for this account. Click <a href='addlisting.php'>here<a/> to add a listing.</p>";
 									}
@@ -193,7 +193,7 @@
 								?>
 								<div class="row no-gutters shadow listing-item-horizontal">
 									<div class="col-lg-4">
-										<div class="listing-item-pic set-bg" data-setbg="../img/restaurant.jpg">
+										<div class="listing-item-pic set-bg" data-setbg="../img/listing_pictures/listing_picture_<?php echo $listing_id ?>.jpg">
 										</div>
 									</div>
 									<div class="listing-details listing-details-horizontal col-lg-8">
@@ -206,13 +206,13 @@
 											<div class="phone"><i class="fa fa-phone fa-fw"></i> <?php echo $row_phone['phone_number']; ?></div>
 											<?php } ?>
 											<div class="listing-item-buttons">
-												<a class="btn btn-large btn-edit bg-success" href="#">
+												<a class="btn btn-large btn-edit bg-success" href="editlisting.php?l_id=<?php echo $listing_id;?>">
 													<i class="fa fa-pencil-alt fa-fw"></i> Edit
 												</a>
-												<a class="btn btn-large btn-delete bg-danger" href="#">
+												<a class="btn btn-large btn-delete bg-danger" href="../includes/deletelisting.inc.php?delete=<?php echo $listing_id; ?>">
 													<i class="fa fa-trash-alt fa-fw"></i> Delete
 												</a>
-												<a class="btn btn-large btn-statistics bg-info" href="#">
+												<a class="btn btn-large btn-statistics bg-info" href="analytics.php?l_id=<?php echo $listing_id;?>">
 													<i class="fa fa-chart-bar fa-fw"></i> Analytics
 												</a>
 
@@ -234,9 +234,9 @@
 											if ($number_of_reviews > 0) {
 												$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
 												while ($row_sum = mysqli_fetch_array($rating_sum)) {
-												$sum = $row_sum['rating_sum'];
-												$average = round($sum/$number_of_reviews, 1);
-												$average = number_format($average, 1, '.', '');
+													$sum = $row_sum['rating_sum'];
+													$average = round($sum/$number_of_reviews, 1);
+													$average = number_format($average, 1, '.', '');
 												}
 											}
 											else {
@@ -254,8 +254,12 @@
 											<span> (<?php echo $number_of_reviews ?> reviews)</span>
 											<?php endif ?>
 											<div class="listing-views text-muted">
-												<i class="fa fa-eye"></i>	
-												<span><?php echo $row['visits']; ?></span>										
+												<i class="fa fa-eye"></i>
+												<?php
+												$visits = mysqli_query($conn, "SELECT * FROM analytics WHERE listing_id=$listing_id");
+												$row_visits = mysqli_fetch_array($visits);
+												?>	
+												<span><?php echo $row_visits['visits']; ?></span>									
 											</div>
 										</div>
 									</div>

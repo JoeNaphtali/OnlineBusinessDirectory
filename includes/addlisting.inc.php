@@ -12,7 +12,7 @@ if (isset($_POST['submit-listing'])) {
     // Declare Variables
     $listing_name = $_POST['listing_name'];
 
-    /*$file = $_FILES['listing_picture'];
+    $file = $_FILES['listing_picture'];
 
 	$fileName = $_FILES['listing_picture']['name'];
 	$fileTmpName = $_FILES['listing_picture']['tmp_name'];
@@ -23,7 +23,7 @@ if (isset($_POST['submit-listing'])) {
 	$fileExt = explode('.', $fileName);
 	$fileActualExt = strtolower(end($fileExt));
 
-    $allowed = array('jpg', 'jpeg', 'png');*/
+    $allowed = array('jpg', 'jpeg', 'png');
 
     // Check if 'listing_name' variable is empty
     if (empty($listing_name)) {
@@ -244,33 +244,43 @@ if (isset($_POST['submit-listing'])) {
     $user_id = $_SESSION['user_id'];
 
     $visits = 0;
+    $total_visit_time = 0;
     $website_link_clicks = 0;
     $twitter_link_clicks = 0;
     $facebook_link_clicks = 0;
     $instagram_link_clicks = 0;
-    $web_users = 0;
     $mobile_users = 0;
+    $other_users = 0;
+    $computer_users = 0;
     $twitter_shares = 0;
     $facebook_shares = 0;
     $whatsapp_shares = 0;
 
-    $sql = "INSERT INTO listing (user__id, listing_name, category_id, keywords, overview, province, city_town, listing_address, friendly_address, latitude, longtitude, website, email, twitter, facebook, instagram, visits, website_link_clicks, twitter_link_clicks, facebook_link_clicks, instagram_link_clicks, web_users, mobile_users, twitter_shares, facebook_shares, whatsapp_shares)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sunday_visits = 0;
+    $monday_visits = 0;
+    $tuesday_visits = 0;
+    $wednesday_visits = 0;
+    $thursday_visits = 0;
+    $friday_visits = 0;
+    $saturday_visits = 0;
+
+    $sql = "INSERT INTO listing (owner_id, listing_name, category_id, keywords, overview, province, city_town, listing_address, friendly_address, latitude, longtitude, website, email, twitter, facebook, instagram, website_link_clicks, twitter_link_clicks, facebook_link_clicks, instagram_link_clicks, twitter_shares, facebook_shares, whatsapp_shares)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
     // Display error if there is an sql syntax error in the 'INSERT INTO' statement
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../dashboard/addlisting.php?error=sqlerror");
+    header("Location: ../dashboard/addlisting.php?error=sqlerrorlolol");
     exit();
     }
     else {
     // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssssss", $user_id, $listing_name, $category_id, $keywords, $description, $province, $citytown, $address, $friendly_address, $latitude, $longitude, $website, $email, $twitter, $facebook, $instagram, $visits, $website_link_clicks, $twitter_link_clicks, $facebook_link_clicks, $instagram_link_clicks, $web_users, $mobile_users, $twitter_shares, $facebook_shares, $whatsapp_shares);
+    mysqli_stmt_bind_param($stmt, "sssssssssssssssssssssss", $user_id, $listing_name, $category_id, $keywords, $description, $province, $citytown, $address, $friendly_address, $latitude, $longitude, $website, $email, $twitter, $facebook, $instagram, $website_link_clicks, $twitter_link_clicks, $facebook_link_clicks, $instagram_link_clicks, $twitter_shares, $facebook_shares, $whatsapp_shares);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
     }
     // Check if user uploaded profile picture
-    /*if (($_FILES['listing_picture']['name'])) {
+    if (($_FILES['listing_picture']['name'])) {
         // Check if listing picture the user uploaded is of a valid file type
         if (in_array($fileActualExt, $allowed)) {
             // Check if there were any errors uploading the listing picture
@@ -298,7 +308,7 @@ if (isset($_POST['submit-listing'])) {
             header("Location: ../register/index.php?error=invalidfile&fname=".$first_name."&lname=".$last_name."&email=".$email);
             exit();
         }
-    }*/
+    }
 
     $last_id = mysqli_insert_id($conn);
 
@@ -327,6 +337,21 @@ if (isset($_POST['submit-listing'])) {
     mysqli_stmt_bind_param($stmt, "sss", $last_id, $phone_3, $rank3);
     // Execute prepared statement
     mysqli_stmt_execute($stmt);
+    }
+
+    $sql = "INSERT INTO analytics (listing_id, owner_id, visits, total_visit_time, sun, mon, tue, wed, thu, fri, sat, mobile, other, computer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = mysqli_stmt_init($conn);
+    // Display error if there is an sql syntax error in the 'INSERT INTO' statement
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("Location: ../dashboard/addlisting.php?error=sqlerrorvisits");
+    exit();
+    }
+    else {
+        // Bind varibales the variables 'stmt' and 'name' to a prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "ssssssssssssss", $last_id, $user_id, $visits, $total_visit_time, $sunday_visits, $monday_visits, $tuesday_visits, $wednesday_visits, $thursday_visits, $friday_visits, $saturday_visits, $mobile_users, $other_users, $computer_users);
+        // Execute prepared statement
+        mysqli_stmt_execute($stmt);
     }
 
     $sql = "INSERT INTO amenity (listing_id, amenity) VALUES (?, ?)";

@@ -55,219 +55,219 @@
 	<!-- RateYo CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
-    <style>
-        /* Listing Item */
+  <style>
+      /* Listing Item */
 
-        .listing-badge {
-        float: left;
-        position: absolute;
-        transform: rotate(45deg);
-        right: -64px;
-        top: 22px;
-        text-align: center;
-        width: 200px;
-        font-size: 12.5px;
-        margin: 0;
-        z-index: 109;
-        color: #fff;
-        font-weight: 500;
-        line-height: 28px;
-        }
+      .listing-badge {
+      float: left;
+      position: absolute;
+      transform: rotate(45deg);
+      right: -64px;
+      top: 22px;
+      text-align: center;
+      width: 200px;
+      font-size: 12.5px;
+      margin: 0;
+      z-index: 109;
+      color: #fff;
+      font-weight: 500;
+      line-height: 28px;
+      }
 
-        .listing-badge.open {
-        background-color: #54ba1d;
-        }
+      .listing-badge.open {
+      background-color: #54ba1d;
+      }
 
-        .listing-badge.closed {
-        background-color: #DB4437;
-        }
+      .listing-badge.closed {
+      background-color: #DB4437;
+      }
 
-        .listing-item-small .listing-details {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        color: #fff;
-        padding-right: 70px;
-        z-index: 50;
-        }
+      .listing-item-small .listing-details {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      color: #fff;
+      padding-right: 70px;
+      z-index: 50;
+      }
 
-        .card-footer .read-only-rating {
-        float: left;
-        margin-right: 5px;
-        }
+      .card-footer .read-only-rating {
+      float: left;
+      margin-right: 5px;
+      }
 
-        .listing-item {
-        overflow: hidden;
-        transition: transform 0.4s;
-        }
+      .listing-item {
+      overflow: hidden;
+      transition: transform 0.4s;
+      }
 
-        .listing-item:hover {
-        transform: translate(0px, -7px);
-        }
+      .listing-item:hover {
+      transform: translate(0px, -7px);
+      }
 
-        .listing-item-horizontal {
-        overflow: hidden;
-        border: solid #e7e4e4 1px;
-        border-radius: 5px;
-        margin-bottom: 30px;
-        }
+      .listing-item-horizontal {
+      overflow: hidden;
+      border: solid #e7e4e4 1px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      }
 
-        .listing-item-pic {
-        height: 265px;
-        position: relative;
-        }
+      .listing-item-pic {
+      height: 265px;
+      position: relative;
+      }
 
-        .listing-item-horizontal .listing-item-pic {
-        height: 230px;
-        position: relative;
-        }
+      .listing-item-horizontal .listing-item-pic {
+      height: 230px;
+      position: relative;
+      }
 
-        .listing-item-small .listing-item-pic {
-        height: 230px;
-        position: relative;
-        }
+      .listing-item-small .listing-item-pic {
+      height: 230px;
+      position: relative;
+      }
 
-        .listing-details h2 {
-        font-size: 24px;
-        }
+      .listing-details h2 {
+      font-size: 24px;
+      }
 
-        .listing-details a {
-        text-decoration: none;
-        color: rgb(44, 44, 44);
-        }
+      .listing-details a {
+      text-decoration: none;
+      color: rgb(44, 44, 44);
+      }
 
-        .listing-details a:hover {
-        color: #DB4437;
-        }
+      .listing-details a:hover {
+      color: #DB4437;
+      }
 
-        .listing-details-horizontal {
-        background-color: #fff;
-        z-index: 110;
-        padding: 20px!important;
-        }
+      .listing-details-horizontal {
+      background-color: #fff;
+      z-index: 110;
+      padding: 20px!important;
+      }
 
-        .listing-details .location {
-        padding-bottom: 10px;
-        }
+      .listing-details .location {
+      padding-bottom: 10px;
+      }
 
-        .stretched-link::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1;
-        pointer-events: auto;
-        content: "";
-        background-color: rgba(0,0,0,0);
-        }
+      .stretched-link::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: auto;
+      content: "";
+      background-color: rgba(0,0,0,0);
+      }
 
-        /* End of Listing Item */
+      /* End of Listing Item */
 
-        .category-tags {
-        margin-top: 20px;
-        }
+      .category-tags {
+      margin-top: 20px;
+      }
 
-        .category-tags a {
-        background-color: rgba(255, 255, 255, 0.20);
-        box-shadow: none;
-        font-size: 15px;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 15px 3px;
-        border-radius: 50px;
-        margin-right: 6px;
-        margin-bottom: 10px;
-        text-decoration: none;
-        }
+      .category-tags a {
+      background-color: rgba(255, 255, 255, 0.20);
+      box-shadow: none;
+      font-size: 15px;
+      color: #fff;
+      display: inline-block;
+      padding: 6px 15px 3px;
+      border-radius: 50px;
+      margin-right: 6px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      }
 
-        .category-tags a:hover {
-        color: #fff;
-        background: #811D5E;
-        }
+      .category-tags a:hover {
+      color: #fff;
+      background: #811D5E;
+      }
 
-        .listing-category {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        }
+      .listing-category {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      }
 
-        .listing-item-small .listing-category {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        z-index: 10;
-        }
+      .listing-item-small .listing-category {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      z-index: 10;
+      }
 
-        .category span {
-        box-shadow: none;
-        font-size: 15px;
-        color: #fff;
-        display: inline-block;
-        padding: 6px 15px 6px;
-        border-radius: 50px;
-        text-decoration: none;
-        background-color: #811D5E;
-        }
+      .category span {
+      box-shadow: none;
+      font-size: 15px;
+      color: #fff;
+      display: inline-block;
+      padding: 6px 15px 6px;
+      border-radius: 50px;
+      text-decoration: none;
+      background-color: #811D5E;
+      }
 
-        .blog-item-category {
-        position: absolute;
-        left: 20px;
-        bottom: 20px;
-        }
+      .blog-item-category {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      }
 
-        .bookmark {
-        position: absolute;
-        right: 20px;
-        bottom: 20px;    
-        z-index: 101;
-        }
+      .bookmark {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;    
+      z-index: 101;
+      }
 
-        .bookmark span {
-        text-decoration: none;
-        color: #fff;
-        background-color: rgba(255, 255, 255, 0.25);
-        padding: 6px 6px 6px 6px;
-        border-radius: 50%;
-        font-size: 15px;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        line-height: 34px;
-        text-align: center;
-        display: inline-block;
-        text-decoration: none;
-        }
+      .bookmark span {
+      text-decoration: none;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 6px 6px 6px 6px;
+      border-radius: 50%;
+      font-size: 15px;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      line-height: 34px;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      }
 
-        .bookmark .active {
-        background-color: #d13628;
-        }
+      .bookmark .active {
+      background-color: #d13628;
+      }
 
-        .blog-tags span {
-        font-weight: bold;
-        margin-right: 5px;
-        }
+      .blog-tags span {
+      font-weight: bold;
+      margin-right: 5px;
+      }
 
-        .blog-tags a {
-        font-size: 12px;
-        color: #a8a8a8;
-        font-weight: 700;
-        display: inline-block;
-        background: #f2f2f2;
-        padding: 6px 12px 6px;
-        border-radius: 50px;
-        margin-right: 6px;
-        margin-bottom: 10px;
-        text-decoration: none;
-        }
+      .blog-tags a {
+      font-size: 12px;
+      color: #a8a8a8;
+      font-weight: 700;
+      display: inline-block;
+      background: #f2f2f2;
+      padding: 6px 12px 6px;
+      border-radius: 50px;
+      margin-right: 6px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      }
 
-        .blog-tags a:hover {
-        color: #fff;
-        background: #811D5E;
-        }
+      .blog-tags a:hover {
+      color: #fff;
+      background: #811D5E;
+      }
 
-        /* End of Catergories, Tags and Bookmarks */
-    </style>
+      /* End of Catergories, Tags and Bookmarks */
+  </style>
 
 </head>
 
@@ -397,7 +397,7 @@
 						// Select all listing from the 'listings' that match the logged in user's id
 						$results = mysqli_query($conn, "SELECT * FROM bookmark WHERE user__id = $user_id");
 						if (mysqli_num_rows($results)==0) {
-							echo "<p>There are currently no bookmarks for this account.";
+							echo "<p style='margin-left: 14px;'>There are currently no bookmarks for this account.";
 						}
 						else {
 							while ($row = mysqli_fetch_array($results)) {
@@ -407,7 +407,7 @@
 								?>
 						<div class="col-lg-4 col-lg-4">
                             <div class="card mb-4 listing-item listing-item-small shadow position-relative">
-                                <div class="listing-item-pic set-bg set-bg-dark" data-setbgdark="../img/listing_pictures/listing_<?php echo $listing_row['id']; ?>.jpg">
+                                <div class="listing-item-pic set-bg set-bg-dark" data-setbgdark="../img/listing_pictures/listing_picture_<?php echo $listing_row['id']; ?>.jpg">
                                     <div class="listing-details">
                                         <h2 class="card-title"><?php echo $listing_row["listing_name"]; ?></h2>
                                         <div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $listing_row['listing_address']; ?></div>

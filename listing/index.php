@@ -4,10 +4,19 @@
 	
 	// Database Connection and Bookmarking Script
 	include "../includes/bookmark.inc.php";
-	
+
+	// Script to track link clicks
+	include "../includes/clicks.inc.php";
+
+	// Device detection script
+	require_once "../includes/mobile_detect/Mobile_Detect.php";
+	$detect = new Mobile_Detect;
+
 	// If the user is logged in, store session varibles 
 	if (isset($_SESSION['login'])) {
+
 		$user_id = $_SESSION['user_id'];
+
 		// Retrieve user details from 'user' table
 		$results = mysqli_query($conn, "SELECT * FROM user WHERE id = $user_id");
 		$row = mysqli_fetch_array($results);
@@ -17,6 +26,13 @@
 		$last_name = $row['last_name'];
 		$email = $row['email'];
 		$profile_picture_status = $row['profile_picture_status'];
+
+	}
+
+	//'visits' function to store information about the current visit (i.e. day, device type...)
+	function visit($day, $conn, $listing_id) {
+		mysqli_query($conn, "UPDATE analytics SET $day = $day + 1 WHERE listing_id=$listing_id");
+		mysqli_query($conn, "UPDATE analytics SET visits = visits + 1 WHERE listing_id=$listing_id");
 	}
 ?>
 
@@ -69,7 +85,7 @@
 	<body>
 
 	<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="KtPkcmM3"></script>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="KtPkcmM3"></script>
 
 		<!-- Main Navigation -->
 
@@ -144,31 +160,52 @@
 
 		<!-- /. Modals -->
 
-		<?php 
+		<?php
+			// Set timezone
+			date_default_timezone_set("Africa/Lusaka"); 
+			// Get the current date time
+			$now   = new DateTime(); 
+			// Get the current day in string format
+			$day = $now->format('D');
 
             // Check if lisiting id exists in URL
 			if(isset($_GET['l_id'])){
 				// Get listing id from URL and store it in the listing_id variable
                 $listing_id = $_GET['l_id'];
             }
+			else {
+				// Return user to home page, if the listing page was not accessed by clicking on a particular listing
+				header("Location: ../index.php");
+			}
+			
+			// Call the 'visits' function to store information about the current visit (i.e. day, device type...)
+			visit($day, $conn, $listing_id);
+
+			// Check the type of device the user is using
+			if ( $detect->isMobile() ) {
+				mysqli_query($conn, "UPDATE analytics SET mobile = mobile + 1 WHERE listing_id=$listing_id");
+			}
+			else {
+				mysqli_query($conn, "UPDATE analytics SET computer = computer + 1 WHERE listing_id=$listing_id");
+			}
                     
             // Select listing from the 'listing' table
             $results = mysqli_query($conn, "SELECT * FROM listing WHERE id=$listing_id");
 			$row = mysqli_fetch_array($results);
 
-			$owner_id = $row["user__id"];
+			// Retrieve the email address of the owner of the listing in order to send email notification of new reviews
+			$owner_id = $row["owner_id"];
 			$owner_results = mysqli_query($conn, "SELECT * FROM user WHERE id=$owner_id");
 			$owner_row = mysqli_fetch_array($owner_results);
 			$owner_email = $owner_row["email"];
 			
 			// Get latitude and longitude of listing
 			$latitude = $row["latitude"];
-			$longtitude = $row["longtitude"];
-						
+			$longtitude = $row["longtitude"];					
 		?>
 
 		<!-- Listing Hero Section -->
-		<section class="listing-hero set-bg-dark set-bg" data-setbgdark="../img/listing_pictures/listing_1_hero.jpg">
+		<section class="listing-hero set-bg-dark set-bg" data-setbgdark="../img/listing_pictures/listing_hero_<?php echo $row['id']; ?>.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
@@ -184,111 +221,36 @@
 									?>
 									<span class="category">
 										<?php
-										// Store category id in category_id variable
-										$category_id = $row["category_id"];
-										// Select catergory from 'listing_category' table that matches the category_id variable 
-										$results_category = mysqli_query($conn, "SELECT * FROM listing_category WHERE id = $category_id"); 
-										$row_category = mysqli_fetch_array($results_category);
-										// Display relevant category badge for the selected listing category
-										if ($row_category["category"] == "Accounting & Tax Services") {
-											echo "<span>Accounting & Tax Services</span>";
-										}
-										else if ($row_category["category"] == "Animals, Safari & Wildlife") {
-											echo "<span>Animals, Safari & Wildlife</span>";
-										}
-										else if ($row_category["category"] == "Arts, Culture & Entertainment") {
-											echo "<span>Arts, Culture & Entertainment</span>";
-										}
-										else if ($row_category["category"] == "Auto Sales & Service") {
-											echo "<span>Auto Sales & Service</span>";
-										}
-										else if ($row_category["category"] == "Banking & Finance") {
-											echo "<span>Banking & Finance</span>";
-										}
-										else if ($row_category["category"] == "Business Services") {
-											echo "<span>Business Services</span>";
-										}
-										else if ($row_category["category"] == "Community Organizations") {
-											echo "<span>Business Services</span>";
-										}
-										else if ($row_category["category"] == "Dentists & Orthodontists") {
-											echo "<span>Dentists & Orthodontists</span>";
-										}
-										else if ($row_category["category"] == "Education") {
-											echo "<span>Education</span>";
-										}
-										else if ($row_category["category"] == "Health & Wellness") {
-											echo "<span>Health & Wellness</span>";
-										}
-										else if ($row_category["category"] == "Health Care") {
-											echo "<span>Health Care</span>";
-										}
-										else if ($row_category["category"] == "Home Improvement") {
-											echo "<span>Home Improvement</span>";
-										}
-										else if ($row_category["category"] == "Insurance") {
-											echo "<span>Insurance</span>";
-										}
-										else if ($row_category["category"] == "Internet & IT Services") {
-											echo "<span>Internet & IT Services</span>";
-										}
-										else if ($row_category["category"] == "Legal Services") {
-											echo "<span>Legal Services</span>";
-										}
-										else if ($row_category["category"] == "Lodging & Travel") {
-											echo "<span>Lodging & Travel</span>";
-										}
-										else if ($row_category["category"] == "Marketing & Advertising") {
-											echo "<span>Marketing & Advertising</span>";
-										}
-										else if ($row_category["category"] == "News & Media") {
-											echo "<span>News & Media</span>";
-										}
-										else if ($row_category["category"] == "Pet Services") {
-											echo "<span>Pet Services</span>";
-										}
-										else if ($row_category["category"] == "Real Estate") {
-											echo "<span>Real Estate</span>";
-										}
-										else if ($row_category["category"] == "Restaurants & Fast Food") {
-											echo "<span>Restaurants & Fast Food</span>";
-										}
-										else if ($row_category["category"] == "Salon, Barber & Spa") {
-											echo "<span>Salon, Barber & Spa</span>";
-										}
-										else if ($row_category["category"] == "Shopping & Retail") {
-											echo "<span>Shopping & Retail</span>";
-										}
-										else if ($row_category["category"] == "Sports & Recreation") {
-											echo "<span>Sports & Recreation</span>";
-										}
-										else if ($row_category["category"] == "Transportation") {
-											echo "<span>Transportation</span>";
-										}
-										else if ($row_category["category"] == "Utilities") {
-											echo "<span>Utilities</span>";
-										}
-										else if ($row_category["category"] == "Wedding, Events & Meetings") {
-											echo "<span>Wedding, Events & Meetings</span>";
-										}
+											// Store category id in category_id variable
+											$category_id = $row["category_id"];
+											// Select category from 'listing_category'
+											$results_category = mysqli_query($conn, "SELECT * FROM listing_category WHERE id = $category_id"); 
+											$row_category = mysqli_fetch_array($results_category);
+											$category = $row_category["category"];
+											echo "<span>$category</span>";
 										?>
 									</span>
 								</h2>
 								<div class="listing-hero-widget">
-									<?php
-									$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
-									$number_of_reviews = mysqli_num_rows($reviews);
-									?>
 									<div class="listing-hero-widget-rating listing-rating">
 										<?php 
-										$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
-										if ($number_of_reviews > 0) {
-											while ($row_sum = mysqli_fetch_array($rating_sum)) {
-												$sum = $row_sum['rating_sum'];
-												$average = round($sum/$number_of_reviews, 1);
-												$average = number_format($average, 1, '.', '');
+											// Retrieve the number of review for the selected listing
+											$reviews = mysqli_query($conn, "SELECT * FROM review WHERE listing_id=$listing_id");
+											$number_of_reviews = mysqli_num_rows($reviews);
+											if ($number_of_reviews > 0) {
+												// Retrive the sum of all the ratings for the selected listing
+												$rating_sum = mysqli_query($conn, "SELECT SUM(rating) as rating_sum FROM review WHERE listing_id = $listing_id");
+												while ($row_sum = mysqli_fetch_array($rating_sum)) {
+													// Find the average rating of the selected listing
+													$sum = $row_sum['rating_sum'];
+													$average = round($sum/$number_of_reviews, 1);
+													$average = number_format($average, 1, '.', '');
+												}
 											}
-										}
+											else {
+												// Set the average rating to 0 if there are no reviews
+												$average = 0;
+											}
 										?>
 										<div class="read-only-rating" id="hero-rating" data-rateyo-star-width="20px" data-rateyo-read-only="true" data-rateyo-rating="<?php echo $average ?>"></div>
 									</div>
@@ -311,7 +273,7 @@
 									</div>		
 									-->						
 								</div>
-								<p><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row["listing_address"];?></p>
+								<p><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row["listing_address"].", ".$row['city_town'].", ".$row['province'];?></p>
 							</div>
 						</div>
 					</div>
@@ -363,15 +325,15 @@
 								// Display relevant social media links if the selected listing has any 
 								if ($row["facebook"] != "") {
 									$facebook_link = $row["facebook"];
-									echo "<li><a href='https://$facebook_link' target='_blank' class='social-links-fb text-decoration-none'><i class='fab fa-facebook-square'></i> Facebook</a></li>";
+									echo "<li><a href='https://$facebook_link' target='_blank' data-id='$listing_id' class='social-links-fb text-decoration-none'><i class='fab fa-facebook-square'></i> Facebook</a></li>";
 								}
 								if ($row["instagram"] != "") {
 									$instagram_link = $row["instagram"];
-									echo "<li><a href='https://$instagram_link' target='_blank' class='social-links-ig text-decoration-none'><i class='fab fa-instagram'></i> Instagram</a></li>";
+									echo "<li><a href='https://$instagram_link' target='_blank' data-id='$listing_id' class='social-links-ig text-decoration-none'><i class='fab fa-instagram'></i> Instagram</a></li>";
 								}
 								if ($row["twitter"] != "") {
 									$twitter_link = $row["twitter"];
-									echo "<li><a href='https://$twitter_link' target='_blank' class='social-links-tt text-decoration-none'><i class='fab fa-twitter'></i> Twitter</a></li>";
+									echo "<li><a href='https://$twitter_link' target='_blank' data-id='$listing_id' class='social-links-tt text-decoration-none'><i class='fab fa-twitter'></i> Twitter</a></li>";
 								}
 								?>
 							</ul>
@@ -559,7 +521,7 @@
 								// Check if the listing contains a website link, and display the link if it exists
 								if ($row["website"] != "") {
 									$website_link = $row["website"];
-									echo "<li><i class='fa fa-external-link-alt fa-fw'></i><a href='https://$website_link' class='text-decoration-none'> $website_link</a></li>";
+									echo "<li><i class='fa fa-external-link-alt fa-fw'></i><a href='https://$website_link' data-id='$listing_id' target='_blank' class='website-link text-decoration-none'> $website_link</a></li>";
 								}
 								?>
 								<li>
@@ -583,12 +545,6 @@
 					</div>
 					<!-- Opening Hours Card -->
 					<?php
-						// Set timezone
-						date_default_timezone_set("Africa/Lusaka"); 
-						// Returns the current date time
-						$now   = new DateTime(); 
-						// Returns the current day in string format
-						$day = $now->format('D');
 						// Select the opening and closing hours for the current day
 						$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = '$day'");
 						// Check if the query return any results

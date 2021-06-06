@@ -291,7 +291,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_<?php echo $row['id']; ?>.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span>Restaurants & Fast Food</span>
 										</div>
@@ -335,7 +335,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)
@@ -393,7 +393,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span></i> Shopping & Retail</span>
 										</div>
@@ -437,7 +437,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)
@@ -495,7 +495,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span>Lodging & Travel</span>
 										</div>
@@ -539,7 +539,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)
@@ -597,7 +597,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span>Art, Culture & Entertainment</span>
 										</div>
@@ -641,7 +641,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)
@@ -699,7 +699,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span>Real Estate</span>
 										</div>
@@ -743,7 +743,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)
@@ -801,7 +801,7 @@
 							<div class="col-lg-4 col-md-6">
 								<!-- Listing Item -->
 								<div class="card mb-4 listing-item shadow">
-									<div class="listing-item-pic set-bg" data-setbg="img/restaurant.jpg">
+									<div class="listing-item-pic set-bg" data-setbg="img/listing_pictures/listing_picture_<?php echo $row['id']; ?>.jpg">
 										<div class="listing-category category">
 											<span>Auto Sales & Service</span>
 										</div>
@@ -845,7 +845,7 @@
 									</div>
 									<div class="card-body listing-details">
 										<a href="listing/index.php"><h2 class="card-title"><?php echo $row['listing_name']; ?></h2></a>
-										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address']; ?></div>
+										<div class="location"><i class="fa fa-map-marker-alt fa-fw"></i> <?php echo $row['listing_address'].", ".$row['city_town'].", ".$row['province']; ?></div>
 										<?php 
 										$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
 										$row_phone = mysqli_fetch_array($results_phone)

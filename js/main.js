@@ -131,5 +131,106 @@ $(document).ready(function(){
       })
   
     });
+
+    // if the user clicks the 'bookmark' button
+    $('.btn-bookmark').on('click', function(){
+      var listing_id = $(this).data('id');
+      $clicked_btn = $(this);
+      if ($clicked_btn.hasClass('inactive')) {
+        action = 'bookmark';
+      }
+      else if ($clicked_btn.hasClass('active')) {
+        action = 'removebookmark';
+      }
+      $.ajax({
+        type: 'post',
+        data: {
+          'action': action,
+          'listing_id': listing_id
+        },
+        success: function(data){ 
+          var res = JSON.parse(JSON.stringify(data));     
+          if (action == "bookmark") {
+            $clicked_btn.removeClass('inactive');
+            $clicked_btn.addClass('active');
+          } else if(action == "removebookmark") {
+            $clicked_btn.removeClass('active');
+            $clicked_btn.addClass('inactive');
+          }
+  
+          // Change button styling of the dislike button if user is reacting for the second time to an idea
+          $clicked_btn.siblings('i.active').removeClass('active').addClass('inactive');
+        }
+      })
+  
+    });
+
+    // if the user clicks the Facebook link
+    $('.social-links-fb').on('click', function(){
+      var listing_id = $(this).data('id');
+      action = 'increment';
+      $.ajax({
+        type: 'post',
+        data: {
+          'fb_action': action,
+          'listing_id': listing_id
+        },
+        success: function(data){ 
+          var res = JSON.parse(JSON.stringify(data));
+        }
+      })
+  
+    });
+
+    // if the user clicks the Twitter link
+    $('.social-links-tt').on('click', function(){
+      var listing_id = $(this).data('id');
+      action = 'increment';
+      $.ajax({
+        type: 'post',
+        data: {
+          'tt_action': action,
+          'listing_id': listing_id
+        },
+        success: function(data){ 
+          var res = JSON.parse(JSON.stringify(data));
+        }
+      })
+  
+    });
+
+    // if the user clicks the Instagram link
+    $('.social-links-ig').on('click', function(){
+      var listing_id = $(this).data('id');
+      action = 'increment';
+      $.ajax({
+        type: 'post',
+        data: {
+          'ig_action': action,
+          'listing_id': listing_id
+        },
+        success: function(data){ 
+          var res = JSON.parse(JSON.stringify(data));
+        }
+      })
+  
+    });
+
+    // if the user clicks the Instagram link
+    $('.website-link').on('click', function(){
+      var listing_id = $(this).data('id');
+      action = 'increment';
+      $.ajax({
+        type: 'post',
+        data: {
+          'web_action': action,
+          'listing_id': listing_id
+        },
+        success: function(data){ 
+          var res = JSON.parse(JSON.stringify(data));
+        }
+      })
+  
+    });
   
   });

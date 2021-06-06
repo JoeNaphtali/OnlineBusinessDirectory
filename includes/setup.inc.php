@@ -68,7 +68,7 @@ else {
 
 $sql = "CREATE TABLE listing(
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user__id INT(11) NOT NULL,
+    owner_id INT(11) NOT NULL,
     listing_name VARCHAR(255) NOT NULL,
     category_id INT(11) NOT NULL,
     overview TEXT NOT NULL,
@@ -84,19 +84,15 @@ $sql = "CREATE TABLE listing(
     twitter VARCHAR(255),
     facebook VARCHAR(255),
     instagram VARCHAR(255),
-    visits INT(11),
-    total_visit_time DATETIME,
     website_link_clicks INT(11),
     twitter_link_clicks INT(11),
     facebook_link_clicks INT(11),
     instagram_link_clicks INT(11),
-    web_users INT(11),
-    mobile_users INT(11),
     twitter_shares INT(11),
     facebook_shares INT(11),
     whatsapp_shares INT(11),
     FOREIGN KEY (category_id) REFERENCES listing_category(id),
-    FOREIGN KEY (user__id) REFERENCES user(id)
+    FOREIGN KEY (owner_id) REFERENCES user(id)
 )";
 //Display success message if table is created
 if($conn->query($sql)===TRUE) {
@@ -107,19 +103,33 @@ else {
     echo "There was an error creating the 'listing' table: ".$conn->error;
 }
 
-// CREATE DAYS TABLE
+// CREATE ANALYTICS TABLE
 
-$sql = "CREATE TABLE days_of_week (
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    day_of_week VARCHAR(255) NOT NULL
+$sql = "CREATE TABLE analytics(
+    listing_id INT(11) PRIMARY KEY NOT NULL,
+    owner_id INT(11),
+    visits INT(11),
+    total_visit_time INT(11) NOT NULL,
+    sun INT(11) NOT NULL,
+    mon INT(11) NOT NULL,
+    tue INT(11) NOT NULL,
+    wed INT(11) NOT NULL,
+    thu INT(11) NOT NULL,
+    fri INT(11) NOT NULL,
+    sat INT(11) NOT NULL,
+    mobile INT(11) NOT NULL,
+    other INT(11) NOT NULL,
+    computer INT(11) NOT NULL,
+    FOREIGN KEY (listing_id) REFERENCES listing(id),
+    FOREIGN KEY (owner_id) REFERENCES user(id)
 )";
 //Display success message if table is created
 if($conn->query($sql)===TRUE) {
-    echo "The 'days_of_week' table was created succesfully | ";
+    echo "The 'analytics' table was created succesfully | ";
 }
 //Display error message if table is not created
 else {
-    echo "There was an error creating the 'days_of_week' table: ".$conn->error;
+    echo "There was an error creating the 'analytics' table: ".$conn->error;
 }
 
 // CREATE OPENING HOURS TABLE
@@ -139,24 +149,6 @@ if($conn->query($sql)===TRUE) {
 //Display error message if table is not created
 else {
     echo "There was an error creating the 'opening_hours' table: ".$conn->error;
-}
-
-// CREATE EVENT DATE TABLE
-
-$sql = "CREATE TABLE event_date_time(
-    event_date date NOT NULL,
-    start_time time NOT NULL,
-    end_time time NOT NULL,
-    listing_id INT(11) NOT NULL,
-    FOREIGN KEY (listing_id) REFERENCES listing(id)
-)";
-//Display success message if table is created
-if($conn->query($sql)===TRUE) {
-    echo "The 'event_date_time' table was created succesfully | ";
-}
-//Display error message if table is not created
-else {
-    echo "There was an error creating the 'event_date_time' table: ".$conn->error;
 }
 
 // CREATE AMENITY TABLE
@@ -194,44 +186,6 @@ else {
     echo "There was an error creating the 'listing_phone_number' table: ".$conn->error;
 }
 
-// CREATE PRODUCT CATEGORY TABLE
-
-$sql = "CREATE TABLE product_category(
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    listing_id INT(11) NOT NULL,
-    category VARCHAR(255) NOT NULL,
-    FOREIGN KEY (listing_id) REFERENCES listing(id)
-    )";
-//Display success message if table is created
-if($conn->query($sql)===TRUE) {
-    echo "The 'product_category' table was created succesfully | ";
-}
-//Display error message if table is not created
-else {
-    echo "There was an error creating the 'product_category' table: ".$conn->error;
-}
-
-// CREATE PRODUCT TABLE
-
-$sql = "CREATE TABLE product(
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    listing_id INT(11) NOT NULL,
-    category_id INT(11),
-    product_name VARCHAR(255) NOT NULL,
-    product_description VARCHAR(255) NOT NULL,
-    product_price VARCHAR(255) NOT NULL,
-    FOREIGN KEY (listing_id) REFERENCES listing(id),
-    FOREIGN KEY (category_id) REFERENCES product_category(id)
-    )";
-// Display success message if table is created
-if($conn->query($sql)===TRUE) {
-    echo "The 'product' table was created succesfully | ";
-}
-// Display error message if table is not created
-else {
-    echo "There was an error creating the 'product' table: ".$conn->error;
-}
-
 // CREATE BOOKMARK TABLE
 
 $sql = "CREATE TABLE bookmark(
@@ -255,13 +209,15 @@ else {
 $sql = "CREATE TABLE review(
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     listing_id INT(11) NOT NULL,
+    owner_id INT(11) NOT NULL,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT NOT NULL,
     submission_date DATETIME NOT NULL,
     feedback TEXT NOT NULL,
     rating DECIMAL NOT NULL,
-    FOREIGN KEY (listing_id) REFERENCES listing(id)
+    FOREIGN KEY (listing_id) REFERENCES listing(id),
+    FOREIGN KEY (owner_id) REFERENCES user(id)
 )";
 // Display success message if table is created
 if($conn->query($sql)===TRUE) {
@@ -270,63 +226,6 @@ if($conn->query($sql)===TRUE) {
 // Display error message if table was not created
 else {
     echo "There was an error creating the 'review' table: ".$conn->error;
-}
-
-// CREATE ARTICLE CATEGORY TABLE
-
-$sql = "CREATE TABLE article_category(
-    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    category VARCHAR(255) NOT NULL
-)";
-// Dwasplay success message if table was created
-if($conn->query($sql)===TRUE) {
-    echo "The 'article_category' table was created succesfully | ";
-}
-// Display error message if table was not created
-else {
-    echo "There was an error creating the 'article_category' table: ".$conn->error;
-}
-
-// CREATE ARTICLE TABLE
-
-$sql = "CREATE TABLE article(
-    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    user__id INT(11) NOT NULL,
-    category_id INT(11) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    header_photo_status BOOLEAN NOT NULL,
-    post_date DATETIME NOT NULL,
-    content TEXT NOT NULL,
-    comment_count INT(11),
-    view_count INT(11),
-    FOREIGN KEY (user__id) REFERENCES user(id),
-    FOREIGN KEY (category_id) REFERENCES article_category(id)
-)";
-// Display success message if table was created
-if($conn->query($sql)===TRUE) {
-    echo "The 'article' table was created succesfully | ";
-}
-// Display error message if table was not created
-else {
-    echo "There was an error creating the 'article' table: ".$conn->error;
-}
-
-// CREATE READ LATER TABLE
-
-$sql = "CREATE TABLE read_later(
-    user__id INT(11) NOT NULL,
-    article_id INT(11) NOT NULL,
-    FOREIGN KEY (user__id) REFERENCES user(id),
-    FOREIGN KEY (article_id) REFERENCES article(id),
-    CONSTRAINT PK_bookmark PRIMARY KEY (user__id, article_id)
-    )";
-// Display success message if table was created
-if($conn->query($sql)===TRUE) {
-    echo "The 'read_later' table was created succesfully | ";
-}
-// Display error message if table was not created
-else {
-    echo "There was an error creating the 'read_later' table: ".$conn->error;
 }
 
 // CREATE PASSWORD RESET TABLE
@@ -374,19 +273,6 @@ if($conn->query($sql)===TRUE) {
 // Display error message if user was not added
 else {
     echo "There was an error adding the default categories: ".$conn->error;
-}
-
-// INSERT DAYS INTO 'DAYS_OF_WEEK' TABLE
-
-$sql = "INSERT INTO days_of_week (day_of_week) 
-        VALUES ('Monday'), ('Tuesday'), ('Wednesday'), ('Thursday'), ('Friday'), ('Saturday'), ('Sunday')";
-// Display success message if user was added
-if($conn->query($sql)===TRUE) {
-    echo "The days were added succesfully | DONE!";
-}
-// Display error message if user was not added
-else {
-    echo "There was an error adding the days: ".$conn->error;
 }
 
 // Close connection string

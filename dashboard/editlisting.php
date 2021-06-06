@@ -63,7 +63,7 @@
 	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 	crossorigin=""></script>
 
-	<title>Add Listing | Find Us</title>
+	<title>Edit Listing | Find Us</title>
 
 	<!-- Font Awesome -->
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -74,6 +74,24 @@
 </head>
 
 <body id="page-top">
+
+	<?php
+		// Check if lisiting id exists in URL
+		if(isset($_GET['l_id'])){
+			// Get listing id from URL and store it in the listing_id variable
+			$listing_id = $_GET['l_id'];
+		}
+		else {
+			// Return user to home page, if the listing page was not accessed by clicking on a particular listing
+			header("Location: ../index.php");
+		}
+		// Select listing from the 'listing' table
+		$results = mysqli_query($conn, "SELECT * FROM listing WHERE id=$listing_id");
+		$row = mysqli_fetch_array($results);
+		// Get latitude and longitude of listing
+		$latitude = $row["latitude"];
+		$longtitude = $row["longtitude"];
+	?>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -189,7 +207,7 @@
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Listing</h1>
+						<h1 class="h3 mb-0 text-gray-800">Edit Listing</h1>
 					</div>
 
 					<!-- Content Row -->
@@ -212,34 +230,42 @@
 												<?php if (isset($_GET['lname'])): ?>
 												<input type="text" id="listing-name" class="form-control" name="listing_name" value="<?php echo($_GET['lname']) ?>">
 												<?php else: ?>
-												<input type="text" id="listing-name" class="form-control" name="listing_name">
+												<input type="text" id="listing-name" class="form-control" name="listing_name" value="<?php echo $row['listing_name'] ?>">
 												<?php endif ?>
 											</div>
-                                    		<div class="form-group col-md-6">
+											<div class="form-group col-md-6">
 												<label for="category">Category</label>
 												<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
 												<select class="form-control" id="category" name="category[]">
-													<option disabled selected>Select Category...</option>
+													<?php 
+														// Store category id in category_id variable
+														$category_id = $row["category_id"];
+														// Select category from 'listing_category'
+														$results_category = mysqli_query($conn, "SELECT * FROM listing_category WHERE id = $category_id"); 
+														$row_category = mysqli_fetch_array($results_category);
+														$category = $row_category["category"];
+													?>
+													<option selected value="<?php echo $category_id ?>"><?php echo $category ?></option>
 													<?php 
 													// Select all catergories from the 'listing_category' table and list them in the dropdown-list
 													$results = mysqli_query($conn, "SELECT * FROM listing_category");
-													while ($row = mysqli_fetch_array($results)) { ?>
-													<option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>	
+													while ($category_row = mysqli_fetch_array($results)) { ?>
+													<option value="<?php echo $category_row['id']; ?>"><?php echo $category_row['category']; ?></option>	
 													<?php } ?>
 												</select>
 											</div>
-                                		</div>
+										</div>
 										<div class="form-group">
 											<label for="keywords">Keywords (Optional)</label>
 											<i class="fa fa-question-circle fa-fw" data-toggle="tooltip" title="Maximum of 15 keywords related to your business, separated by a comma. These keywords will help users search for your listing."></i>
-											<input type="text" class="form-control" id="keywords" name="keywords">
+											<input type="text" class="form-control" id="keywords" name="keywords" value="<?php echo $row['keywords'] ?>">
 										</div>
 										<div class="form-group">
 											<label for="description">Description</label>
 											<?php if (isset($_GET['desc'])): ?>
 											<textarea class="form-control" id="summernote" name="description"><?php echo ($_GET['desc']); ?></textarea>
 											<?php else :?>
-											<textarea class="form-control" id="summernote" name="description"></textarea>
+											<textarea class="form-control" id="summernote" name="description"><?php echo $row['overview'] ?></textarea>
 											<?php endif ?>
 										</div>
 										<!--
@@ -253,8 +279,8 @@
 											</div>
 										</div>
 										-->
-                            		</div>
-                        		</div>
+									</div>
+								</div>
 								
 								<!-- Location Information -->
 								<div class="add-listing-section location shadow">
@@ -270,7 +296,7 @@
 												<label for="province">Province</label>
 												<span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
 												<select id="province" class="form-control" name="province[]">
-													<option disabled selected>Select Province...</option>
+													<option selected value="<?php echo $row['province'] ?>"><?php echo $row['province'] ?></option>
 													<option value="Lusaka">Lusaka</option>
 													<option value="Copperbelt">Copperbelt</option>
 													<option value="Southern">Southern</option>
@@ -278,7 +304,7 @@
 													<option value="Central">Central</option>
 													<option value="Eastern">Eastern</option>
 													<option value="Northern">Northern</option>
-													<option value="North-Western">North-Western</option>
+													<option value="North-western">North-Western</option>
 													<option value="Muchinga">Muchinga</option>
 													<option value="Luapula">Luapula</option>
 												</select>
@@ -288,7 +314,7 @@
 												<?php if (isset($_GET['citytown'])) :?>
 												<input type="text" class="form-control" id="citytown" name="city_town" value="<?php echo ($_GET['citytown']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="citytown" name="city_town">
+												<input type="text" class="form-control" id="citytown" name="city_town" value="<?php echo $row['city_town']; ?>">
 												<?php endif ?>
 											</div>
 										</div>
@@ -298,7 +324,7 @@
 												<?php if (isset($_GET['address'])) :?>
 												<input type="text" class="form-control" id="address" name="address" value="<?php echo ($_GET['address']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="address" name="address">
+												<input type="text" class="form-control" id="address" name="address" value="<?php echo $row['listing_address']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
@@ -307,7 +333,7 @@
 												<?php if (isset($_GET['faddress'])) :?>
 												<input type="text" class="form-control" id="friendly-address" name="friendly_address" value="<?php echo ($_GET['faddress']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="friendly-address" name="friendly_address">
+												<input type="text" class="form-control" id="friendly-address" name="friendly_address" value="<?php echo $row['friendly_address']; ?>">
 												<?php endif ?>
 											</div>
 										</div>
@@ -317,7 +343,7 @@
 												<?php if (isset($_GET['lat'])) :?>
 												<input type="text" class="form-control" id="latitude" name="latitude" value="<?php echo ($_GET['lat']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="latitude" name="latitude">
+												<input type="text" class="form-control" id="latitude" name="latitude" value="<?php echo $latitude ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
@@ -325,28 +351,12 @@
 												<?php if (isset($_GET['long'])) :?>
 												<input type="text" class="form-control" id="longitude" name="longitude" value="<?php echo ($_GET['long']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="longitude" name="longitude">
+												<input type="text" class="form-control" id="longitude" name="longitude" value="<?php echo $longtitude ?>">
 												<?php endif ?>
 											</div>
 										</div>
-                            		</div>
-                        		</div>
-
-								<!-- Picture -->
-								<div class="add-listing-section picture shadow">
-									<div class="add-listing-headline">
-										<span>Picture</span>
 									</div>
-									<div class="add-listing-container">
-										<div class="form-row">
-											<input class="form-control-file" type="file" name="listing_picture" id="listing_picture">
-											<div class="image-preview" id="imagePreview">
-												<img src="" alt="Image Preview" class="image-preview__image">
-												<span class="image-preview__default-text">Image Preview</span>
-											</div>
-										</div>
-                            		</div>
-                        		</div>
+								</div>
 								
 								<!-- Contact Information -->
 								<div class="add-listing-section contact-information shadow">
@@ -356,27 +366,42 @@
 									<div class="add-listing-container">
 										<div class="form-row">
 											<div class="form-group col-md-4">
+												<?php 
+													// Select all phone numbers from the 'listing_phone_number' table that match the selected listing
+													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+													$row_phone = mysqli_fetch_array($results_phone)
+												?>
 												<label for="phone-1"><i class="fa fa-phone-square"></i> Phone 1</label>
 												<?php if (isset($_GET['phone_1'])) :?>
 												<input type="text" class="form-control" id="phone-1" name="phone_1" value="<?php echo ($_GET['phone_1']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="phone-1" name="phone_1">
+												<input type="text" class="form-control" id="phone-1" name="phone_1" value="<?php echo $row_phone['phone_number']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
+												<?php 
+													// Select all phone numbers from the 'listing_phone_number' table that match the selected listing
+													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+													$row_phone = mysqli_fetch_array($results_phone)
+												?>
 												<label for="phone-2"><i class="fa fa-phone-square"></i> Phone 2 (Optional)</label>
 												<?php if (isset($_GET['phone_2'])) :?>
 												<input type="text" class="form-control" id="phone-2" name="phone_2" value="<?php echo ($_GET['phone_2']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="phone-2" name="phone_2">
+												<input type="text" class="form-control" id="phone-2" name="phone_2" value="<?php echo $row_phone['phone_number']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
+												<?php 
+													// Select all phone numbers from the 'listing_phone_number' table that match the selected listing
+													$results_phone = mysqli_query($conn, "SELECT * FROM listing_phone_number WHERE listing_id = $listing_id AND number_rank = 1"); 
+													$row_phone = mysqli_fetch_array($results_phone)
+												?>
 												<label for="phone-3"><i class="fa fa-phone-square"></i> Phone 3 (Optional)</label>
 												<?php if (isset($_GET['phone_3'])) :?>
 												<input type="text" class="form-control" id="phone-3" name="phone_3" value="<?php echo ($_GET['phone_3']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="phone-3" name="phone_3">
+												<input type="text" class="form-control" id="phone-3" name="phone_3" value="<?php echo $row_phone['phone_number']; ?>">
 												<?php endif ?>
 											</div>
 										</div>
@@ -386,7 +411,7 @@
 												<?php if (isset($_GET['web'])) :?>
 												<input type="text" class="form-control" id="website" name="website" value="<?php echo ($_GET['web']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="website" name="website">
+												<input type="text" class="form-control" id="website" name="website" value="<?php echo $row['website']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-6">
@@ -394,7 +419,7 @@
 												<?php if (isset($_GET['email'])) :?>
 												<input type="email" class="form-control" id="email" name="email" value="<?php echo ($_GET['email']); ?>">
 												<?php else :?>
-												<input type="email" class="form-control" id="email" name="email">
+												<input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>">
 												<?php endif ?>
 											</div>
 										</div>
@@ -404,7 +429,7 @@
 												<?php if (isset($_GET['fb'])) :?>
 												<input type="text" class="form-control" id="facebook" name="facebook" value="<?php echo ($_GET['fb']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="facebook" name="facebook">
+												<input type="text" class="form-control" id="facebook" name="facebook" value="<?php echo $row['facebook']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
@@ -412,7 +437,7 @@
 												<?php if (isset($_GET['twi'])) :?>
 												<input type="text" class="form-control" id="twitter" name="twitter" value="<?php echo ($_GET['twi']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="twiiter" name="twitter">
+												<input type="text" class="form-control" id="twiiter" name="twitter" value="<?php echo $row['twitter']; ?>">
 												<?php endif ?>
 											</div>
 											<div class="form-group col-md-4">
@@ -420,7 +445,7 @@
 												<?php if (isset($_GET['inst'])) :?>
 												<input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo ($_GET['inst']); ?>">
 												<?php else :?>
-												<input type="text" class="form-control" id="instagram" name="instagram">
+												<input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo $row['instagram']; ?>">
 												<?php endif ?>
 											</div>
 										</div>
@@ -442,13 +467,17 @@
 										<p><span class="star">* </span>Toggle the switch if you wish to have your listing's opening and closing hours displayed on the listing page</p>
 										<div class="monday">
 											<label>Monday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'mon'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-monday" data-target-input="nearest">
 														<?php if (isset($_GET['mon_op'])) :?>
 														<input type="text" id="monday-open" class="form-control datetimepicker-input" name="monday_open" data-target="#opening-monday" value="<?php echo ($_GET['mon_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="monday-open" class="form-control datetimepicker-input" name="monday_open" data-target="#opening-monday" disabled/>
+														<input type="text" id="monday-open" class="form-control datetimepicker-input" name="monday_open" data-target="#opening-monday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-monday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -460,7 +489,7 @@
 														<?php if (isset($_GET['mon_cl'])) :?>
 														<input type="text" id="monday-close" class="form-control datetimepicker-input" name="monday_close" data-target="#closing-monday" value="<?php echo ($_GET['mon_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="monday-close" class="form-control datetimepicker-input" name="monday_close" data-target="#closing-monday" disabled/>
+														<input type="text" id="monday-close" class="form-control datetimepicker-input" name="monday_close" data-target="#closing-monday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-monday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -473,13 +502,17 @@
 										<hr>
 										<div class="tuesday">
 											<label>Tuesday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'tue'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-tuesday" data-target-input="nearest">
 														<?php if (isset($_GET['tue_op'])) :?>
 														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" name="tuesday_open" data-target="#opening-tuesday" value="<?php echo ($_GET['tue_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" name="tuesday_open" data-target="#opening-tuesday" disabled/>
+														<input type="text" id="tuesday-open" class="form-control datetimepicker-input" name="tuesday_open" data-target="#opening-tuesday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-tuesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -491,7 +524,7 @@
 														<?php if (isset($_GET['tue_cl'])) :?>
 														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" name="tuesday_close" data-target="#closing-tuesday" value="<?php echo ($_GET['tue_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" name="tuesday_close" data-target="#closing-tuesday" disabled/>
+														<input type="text" id="tuesday-close" class="form-control datetimepicker-input" name="tuesday_close" data-target="#closing-tuesday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-tuesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -504,13 +537,17 @@
 										<hr>
 										<div class="wednesday">
 											<label>Wednesday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'wed'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-wednesday" data-target-input="nearest">
 														<?php if (isset($_GET['wed_op'])) :?>
 														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" name="wednesday_open" data-target="#opening-wednesday" value="<?php echo ($_GET['wed_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" name="wednesday_open" data-target="#opening-wednesday" disabled/>
+														<input type="text" id="wednesday-open" class="form-control datetimepicker-input" name="wednesday_open" data-target="#opening-wednesday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-wednesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -522,7 +559,7 @@
 														<?php if (isset($_GET['wed_cl'])) :?>
 														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" name="wednesday_close" data-target="#closing-wednesday" value="<?php echo ($_GET['wed_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" name="wednesday_close" data-target="#closing-wednesday" disabled/>
+														<input type="text" id="wednesday-close" class="form-control datetimepicker-input" name="wednesday_close" data-target="#closing-wednesday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-wednesday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -535,13 +572,17 @@
 										<hr>
 										<div class="thursday">
 											<label>Thursday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'thu'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-thursday" data-target-input="nearest">
 														<?php if (isset($_GET['thur_op'])) :?>
 														<input type="text" id="thursday-open" class="form-control datetimepicker-input" name="thursday_open" data-target="#opening-thursday" value="<?php echo ($_GET['thur_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="thursday-open" class="form-control datetimepicker-input" name="thursday_open" data-target="#opening-thursday" disabled/>
+														<input type="text" id="thursday-open" class="form-control datetimepicker-input" name="thursday_open" data-target="#opening-thursday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-thursday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -553,7 +594,7 @@
 														<?php if (isset($_GET['thur_cl'])) :?>
 														<input type="text" id="thursday-close" class="form-control datetimepicker-input" name="thursday_close" data-target="#closing-thursday" value="<?php echo ($_GET['thur_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="thursday-close" class="form-control datetimepicker-input" name="thursday_close" data-target="#closing-thursday" disabled/>
+														<input type="text" id="thursday-close" class="form-control datetimepicker-input" name="thursday_close" data-target="#closing-thursday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-thursday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -566,13 +607,17 @@
 										<hr>
 										<div class="friday">
 											<label>Friday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'fri'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-friday" data-target-input="nearest">
 														<?php if (isset($_GET['fri_op'])) :?>
 														<input type="text" id="friday-open" class="form-control datetimepicker-input" name="friday_open" data-target="#opening-friday" value="<?php echo ($_GET['fri_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="friday-open" class="form-control datetimepicker-input" name="friday_open" data-target="#opening-friday" disabled/>
+														<input type="text" id="friday-open" class="form-control datetimepicker-input" name="friday_open" data-target="#opening-friday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-friday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -584,7 +629,7 @@
 														<?php if (isset($_GET['fri_cl'])) :?>
 														<input type="text" id="friday-close" class="form-control datetimepicker-input" name="friday_close" data-target="#closing-friday" value="<?php echo ($_GET['fri_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="friday-close" class="form-control datetimepicker-input" name="friday_close" data-target="#closing-friday" disabled/>
+														<input type="text" id="friday-close" class="form-control datetimepicker-input" name="friday_close" data-target="#closing-friday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-friday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -597,13 +642,17 @@
 										<hr>
 										<div class="saturday">
 											<label>Saturday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'sat'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-saturday" data-target-input="nearest">
 														<?php if (isset($_GET['sat_op'])) :?>
 														<input type="text" id="saturday-open" class="form-control datetimepicker-input" name="saturday_open" data-target="#opening-saturday" value="<?php echo ($_GET['sat_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="saturday-open" class="form-control datetimepicker-input" name="saturday_open" data-target="#opening-saturday" disabled/>
+														<input type="text" id="saturday-open" class="form-control datetimepicker-input" name="saturday_open" data-target="#opening-saturday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-saturday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -615,7 +664,7 @@
 														<?php if (isset($_GET['sat_cl'])) :?>
 														<input type="text" id="saturday-close" class="form-control datetimepicker-input" name="saturday_close" data-target="#closing-saturday" value="<?php echo ($_GET['sat_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="saturday-close" class="form-control datetimepicker-input" name="saturday_close" data-target="#closing-saturday" disabled/>
+														<input type="text" id="saturday-close" class="form-control datetimepicker-input" name="saturday_close" data-target="#closing-saturday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-saturday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -628,13 +677,17 @@
 										<hr>
 										<div class="sunday">
 											<label>Sunday</label>
+											<?php
+												$results_opening_hours = mysqli_query($conn, "SELECT * FROM opening_hours WHERE listing_id = $listing_id AND weekday = 'sun'");
+												$row_opening_hours = mysqli_fetch_array($results_opening_hours); 
+											?>
 											<div class="form-row">
 												<div class="form-group col-md-6">
 													<div class="input-group date" id="opening-sunday" data-target-input="nearest">
 														<?php if (isset($_GET['sun_op'])) :?>
 														<input type="text" id="sunday-open" class="form-control datetimepicker-input" name="sunday_open" data-target="#opening-sunday" value="<?php echo ($_GET['sun_op']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="sunday-open" class="form-control datetimepicker-input" name="sunday_open" data-target="#opening-sunday" disabled/>
+														<input type="text" id="sunday-open" class="form-control datetimepicker-input" name="sunday_open" data-target="#opening-sunday" value="<?php echo $row_opening_hours['opening_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#opening-sunday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -646,7 +699,7 @@
 														<?php if (isset($_GET['sun_cl'])) :?>
 														<input type="text" id="sunday-close" class="form-control datetimepicker-input" name="sunday_close" data-target="#closing-sunday" value="<?php echo ($_GET['sun_cl']); ?>" disabled/>
 														<?php else :?>
-														<input type="text" id="sunday-close" class="form-control datetimepicker-input" name="sunday_close" data-target="#closing-sunday" disabled/>
+														<input type="text" id="sunday-close" class="form-control datetimepicker-input" name="sunday_close" data-target="#closing-sunday" value="<?php echo $row_opening_hours['closing_time'] ?>" disabled/>
 														<?php endif ?>
 														<div class="input-group-append" data-target="#closing-sunday" data-toggle="datetimepicker">
 															<div class="input-group-text"><i class="fa fa-clock"></i></div>
@@ -716,29 +769,56 @@
 										</div>
 									</div>
 									<div class="add-listing-container">
+										<?php 
+											// Select listing from the 'listing' table
+											$results = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id=$listing_id AND amenity='Wi-Fi'");
+											$row = mysqli_fetch_array($results);
+										?>
 										<p><span class="star">* </span>Toggle the switch if you wish to have any products displayed on the listing page</p>
 										<div class="form-check form-check-inline">
+										    <?php if (isset($row['amenity'])): ?>
+											<input class="form-check-input amenity" name="wi_fi" id="wi-fi" checked type="checkbox" value="Wi-Fi" disabled>
+											<?php else: ?>
 											<input class="form-check-input amenity" name="wi_fi" id="wi-fi" type="checkbox" value="Wi-Fi" disabled>
+											<?php endif ?>
 											<label class="form-check-label" for="wi-fi">Free Wi-FI</label>
 										</div>
+										<?php 
+											// Select listing from the 'listing' table
+											$results = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id=$listing_id AND amenity='Pet Friendly'");
+											$row = mysqli_fetch_array($results);
+										?>
 										<div class="form-check form-check-inline">
+										    <?php if (isset($row['amenity'])): ?>
+											<input class="form-check-input amenity" checked name="pets" id="pets-allowed" type="checkbox" value="Pet Friendly" disabled>
+											<?php else: ?>
 											<input class="form-check-input amenity" name="pets" id="pets-allowed" type="checkbox" value="Pet Friendly" disabled>
+											<?php endif ?>
 											<label class="form-check-label" for="pets-allowed">Pets Allowed</label>
 										</div>
+										<?php 
+											// Select listing from the 'listing' table
+											$results = mysqli_query($conn, "SELECT * FROM amenity WHERE listing_id=$listing_id AND amenity='Smoking'");
+											$row = mysqli_fetch_array($results);
+										?>
 										<div class="form-check form-check-inline">
+											<?php if (isset($row['amenity'])): ?>
+											<input class="form-check-input amenity" checked name="smoking" id="smoking-allowed" type="checkbox" value="Smoking" disabled>
+											<?php else: ?>
 											<input class="form-check-input amenity" name="smoking" id="smoking-allowed" type="checkbox" value="Smoking" disabled>
+											<?php endif ?>
 											<label class="form-check-label" for="smoking-allowed">Smoking Allowed</label>
 										</div>
 									</div>
 								</div>
 
-                        		<button class="btn btn-primary" type="submit" name="submit-listing"><i class="fa fa-arrow-circle-right fa-fw"></i> Submit Listing</button>
+								<button class="btn btn-primary" type="submit" name="update-listing"><i class="fa fa-arrow-circle-right fa-fw"></i> Update Listing</button>
 
-                    		</form>
+							</form>
 
-                		</div>
-            		</div>
-        		</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /.Content Wrapper -->
@@ -747,27 +827,30 @@
 	<!-- /.Page Wrapper -->
 
 	<!-- Leaflet Map Script	-->
-    <script>
+	<script>
 			
-		var mymap = L.map('map').setView([-15.386283, 28.399378], 17);
-		var marker = L.marker([-15.386283, 28.399378], { draggable: true }).addTo(mymap);
+		var longtitude  = '<?php echo $longtitude;?>';
+		var latitude  = '<?php echo $latitude;?>';
+			
+		var listing_map = L.map('map').setView([latitude, longtitude], 18);
+		var listing_marker = L.marker([latitude, longtitude], { draggable: true }).addTo(listing_map);
 
-		marker.on('dragend', function (e) {
-			document.getElementById('latitude').value = marker.getLatLng().lat;
-			document.getElementById('longitude').value = marker.getLatLng().lng;
+		listing_marker.on('dragend', function (e) {
+			document.getElementById('latitude').value = listing_marker.getLatLng().lat;
+			document.getElementById('longitude').value = listing_marker.getLatLng().lng;
 		});
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
+		maxZoom: 16,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
 		zoomOffset: -1
-		}).addTo(mymap);
+		}).addTo(listing_map);
 
-    </script>
+	</script>
 
 	<!-- Google Map
 	<script>
@@ -783,7 +866,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5KcYk33GCMh1iuJrYzxynDb9Fx2Tfbaw&callback=initMap"></script>
 
 	<!-- Clear time fields -->
-    <script>
+	<script>
 		function ClearFieldsMonday() {
 			document.getElementById("monday-open").value = "";
 			document.getElementById("monday-close").value = "";
@@ -818,7 +901,7 @@
 			document.getElementById("sunday-open").value = "";
 			document.getElementById("sunday-close").value = "";
 		}
-    </script>
+	</script>
 
 	<!-- Core plugin JavaScript-->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -835,51 +918,51 @@
 
 	<!-- Time picker fields -->
   	<script type="text/javascript">
-        $(function () {
-            $('#opening-monday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-monday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-tuesday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-tuesday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-wednesday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-wednesday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-thursday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-thursday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-friday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-friday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-saturday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-saturday').datetimepicker({
-                format: 'LT'
-            });
-            $('#opening-sunday').datetimepicker({
-                format: 'LT'
-            });
-            $('#closing-sunday').datetimepicker({
-                format: 'LT'
-            });
-        });
-    </script>
+		$(function () {
+			$('#opening-monday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-monday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-tuesday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-tuesday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-wednesday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-wednesday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-thursday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-thursday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-friday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-friday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-saturday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-saturday').datetimepicker({
+				format: 'LT'
+			});
+			$('#opening-sunday').datetimepicker({
+				format: 'LT'
+			});
+			$('#closing-sunday').datetimepicker({
+				format: 'LT'
+			});
+		});
+	</script>
 
 	<script>
 	$(document).ready(function(){
