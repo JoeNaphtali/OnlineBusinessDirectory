@@ -159,7 +159,7 @@ if (isset($_POST['register'])) {
                             // Check if there were any errors uploading the profile picture
                             if ($fileError === 0) {
                                 // Check if the file is less than 100Mb
-                                if ($fileSize < 10000001) {
+                                if ($fileSize < 10000011) {
                                     $fileNameNew = "profile_picture_user_".mysqli_insert_id($conn).".".$fileActualExt;
                                     $fileDestination = '../img/profile_pictures/'.$fileNameNew;
                                     move_uploaded_file($fileTmpName, $fileDestination);
